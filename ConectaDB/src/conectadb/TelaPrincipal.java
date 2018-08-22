@@ -103,7 +103,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_usuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     Sistema tela = new Sistema();
+     
+        Sistema tela = new Sistema();
         tela.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
