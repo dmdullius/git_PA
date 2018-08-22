@@ -1,4 +1,3 @@
-
 package conectadb;
 
 /**
@@ -7,13 +6,11 @@ package conectadb;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-
     public TelaPrincipal() {
         initComponents();
-            this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -103,19 +100,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_usuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     
         Sistema tela = new Sistema();
         tela.setVisible(true);
         this.setVisible(false);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.exit(0); 
+        System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-  
+    private void usuarios(String nome, String user, String senha) {
+
+    }
+
     public static void main(String args[]) {
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaPrincipal().setVisible(true);
