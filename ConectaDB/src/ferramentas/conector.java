@@ -17,7 +17,15 @@ public class conector {
     private String user;
     private String senha;
 
-    public void Conexao() {
+    public conector(String url, String user, String senha) {
+        this.url = url;
+        this.user = user;
+        this.senha = senha;
+    }
+    
+    
+
+    void Conector() {
         url = "jdbc:postgresql://localhost:5432/Aula_db";
         user = "postgres";
         senha = "postgres";

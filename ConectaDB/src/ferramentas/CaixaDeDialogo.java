@@ -7,7 +7,8 @@
  * and open the template in the editor.
  */
 
-package aula;
+package ferramentas
+        ;
 import javax.swing.JOptionPane;
 /**
  *
