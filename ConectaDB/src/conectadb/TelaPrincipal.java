@@ -1,9 +1,12 @@
 package conectadb;
 
+import ferramentas.CaixaDeDialogo;
+
 /**
  *
  * @author dmdullius
  */
+
 public class TelaPrincipal extends javax.swing.JFrame {
 
     public TelaPrincipal() {
@@ -100,9 +103,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_usuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Sistema tela = new Sistema();
-        tela.setVisible(true);
-        this.setVisible(false);
+
+        String useru = "admin";
+
+        if (usuario.getText().equals(useru)) {
+            Sistema tela = new Sistema();
+            tela.setVisible(true);
+            this.setVisible(false);
+        } else if (senha.getPassword().equals("admin123")) {
+            Sistema tela = new Sistema();
+            tela.setVisible(true);
+            this.setVisible(false);
+        } else {
+
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe um usúario valído!!!", "Erro de Login, contate o suporte", 'e');
+        }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -110,8 +126,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void usuarios(String nome, String user, String senha) {
-
+    public void Conector() {
+        String url = "jdbc:postgresql://localhost:5432/Aula_db";
+        String user = "postgres";
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
+        String senha = "postgres";
     }
 
     public static void main(String args[]) {
