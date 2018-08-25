@@ -5,6 +5,11 @@
  */
 package conectadb;
 
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import ferramentas.CaixaDeDialogo;
+
 /**
  *
  * @author dmdullius
@@ -34,8 +39,8 @@ public class Sistema extends javax.swing.JFrame {
         jToggleButton3 = new javax.swing.JToggleButton();
         jToggleButton4 = new javax.swing.JToggleButton();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        usuariosis = new javax.swing.JFormattedTextField();
+        senhasis = new javax.swing.JPasswordField();
         jToolBar3 = new javax.swing.JToolBar();
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
@@ -43,6 +48,8 @@ public class Sistema extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btcad = new javax.swing.JButton();
         btvalida = new javax.swing.JButton();
+        nomesis = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         jToolBar1.setRollover(true);
 
@@ -63,14 +70,14 @@ public class Sistema extends javax.swing.JFrame {
 
         jCheckBox1.setText(" manter logado");
 
-        jFormattedTextField2.setText("");
-        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+        usuariosis.setText("");
+        usuariosis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField2ActionPerformed(evt);
+                usuariosisActionPerformed(evt);
             }
         });
 
-        jPasswordField1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        senhasis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jToolBar3.setRollover(true);
 
@@ -94,8 +101,17 @@ public class Sistema extends javax.swing.JFrame {
         jLabel2.setText("Senha:");
 
         btcad.setText("Cadastar");
+        btcad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btcadActionPerformed(evt);
+            }
+        });
 
         btvalida.setText("Validar");
+
+        nomesis.setText("jTextField1");
+
+        jLabel3.setText("Nome:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,16 +138,19 @@ public class Sistema extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(usuariosis, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nomesis, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(senhasis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btcad, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btvalida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(btvalida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -149,19 +168,23 @@ public class Sistema extends javax.swing.JFrame {
                                 .addComponent(jToggleButton4)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 86, Short.MAX_VALUE)
+                        .addGap(0, 52, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(usuariosis, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(senhasis, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomesis, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btcad, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btvalida, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox1)
                     .addComponent(jButton1)))
@@ -174,18 +197,42 @@ public class Sistema extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
-    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+    private void usuariosisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuariosisActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+    }//GEN-LAST:event_usuariosisActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-       
+
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new TelaPrincipal().setVisible(true);
+        new TelaPrincipal().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btcadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btcadActionPerformed
+        String usersis = usuariosis.getText();
+        String senhas = String.valueOf(senhasis.getPassword());
+        String nomes = nomesis.getText();
+
+        try {
+            String url = "jdbc:postgresql://localhost:5432/Aula_db_2";
+            String user = "postgres";
+            String senha = "postgres";
+            Connection conexao = DriverManager.getConnection(url, user, senha);
+            String insere = "INSERT INTO usuarios (login, senha, nome ) VALUES ('" + usersis + "', '" + senhas + nomes + "')";
+            Statement stmt = conexao.createStatement();
+            stmt.execute(insere);
+            //stmt.close();
+            
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Usuario Adicionado", "inclusão de usuarios", 'i');
+            
+
+        }
+
+
+    }//GEN-LAST:event_btcadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,15 +275,35 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton4;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar3;
+    private javax.swing.JTextField nomesis;
+    private javax.swing.JPasswordField senhasis;
+    private javax.swing.JFormattedTextField usuariosis;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     *
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public void Conector() throws SQLException, ClassNotFoundException {
+        String url = "jdbc:postgresql://localhost:5432/Aula_db";
+        String user = "postgres";
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
+        String senha = "postgres";
+
+        Class.forName("org.postgresql.Driver");
+        Connection connection = null;
+        connection = DriverManager.getConnection(url, user, senha);
+        connection.close();
+
+    }
 }
