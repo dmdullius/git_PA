@@ -6,7 +6,6 @@ import ferramentas.CaixaDeDialogo;
  *
  * @author dmdullius
  */
-
 public class TelaPrincipal extends javax.swing.JFrame {
 
     public TelaPrincipal() {
@@ -106,14 +105,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         String useru = "admin";
 
-        if (usuario.getText().equals(useru)) {
+        if (usuario.getText().equals(useru) && new String(senha.getPassword()).equals("admin123")) {
             Sistema tela = new Sistema();
             tela.setVisible(true);
             this.setVisible(false);
-        } else if (senha.getPassword().equals("admin123")) {
-            Sistema tela = new Sistema();
-            tela.setVisible(true);
-            this.setVisible(false);
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário valido", "validação de credenciais", 'i');
         } else {
 
             CaixaDeDialogo.obterinstancia().exibirMensagem("Informe um usúario valído!!!", "Erro de Login, contate o suporte", 'e');
@@ -126,12 +122,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public void Conector() {
-        String url = "jdbc:postgresql://localhost:5432/Aula_db";
-        String user = "postgres";
-        @SuppressWarnings("LocalVariableHidesMemberVariable")
-        String senha = "postgres";
-    }
+   
 
     public static void main(String args[]) {
 
@@ -150,4 +141,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPasswordField senha;
     private javax.swing.JFormattedTextField usuario;
     // End of variables declaration//GEN-END:variables
+
+    private void If(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
