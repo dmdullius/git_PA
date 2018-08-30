@@ -5,10 +5,12 @@
  */
 package conectadb;
 
+import Model.Usuario;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ferramentas.CaixaDeDialogo;
+import ferramentas.ConnectionFactory;
 
 /**
  *
@@ -147,7 +149,7 @@ public class Sistema extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(nomesis, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(senhasis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(btcad, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btvalida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -211,25 +213,24 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btcadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btcadActionPerformed
-        String usersis = usuariosis.getText();
-        String senhas = String.valueOf(senhasis.getPassword());
-        String nomes = nomesis.getText();
 
-        try {
-            String url = "jdbc:postgresql://localhost:5432/Aula_db_2";
-            String user = "postgres";
-            String senha = "postgres";
-            Connection conexao = DriverManager.getConnection(url, user, senha);
-            String insere = "INSERT INTO usuarios (login, senha, nome ) VALUES ('" + usersis + "', '" + senhas + nomes + "')";
-            Statement stmt = conexao.createStatement();
-            stmt.execute(insere);
-            //stmt.close();
-            
-        } catch (Exception ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Usuario Adicionado", "inclusão de usuarios", 'i');
-            
+        /*try {
+            StringBuilder sql = new StringBuilder();
+            sql.append("INSERT INTO usuarios (login, senha, nome)");
+            sql.append("values");
+            sql.append("('").append(usuariosis).append("'").append(senhasis).append("' ").append(nomesis).append("')");
 
-        }
+            ConnectionFactory.abreConexao();
+            ConnectionFactory.stmt.executeQuery(sql.toString());
+
+        } catch (SQLException ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem(ex.getMessage(), "ERRO de SQL: ", 'e');
+
+        } finally {
+            Connection con = ConnectionFactory.getConnection();
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Usuario Adicionado,  fechando a conexão com o banco de dados...", "inclusão de usuarios", 'i');
+            ConnectionFactory.closeConnection(con);
+        }*/
 
 
     }//GEN-LAST:event_btcadActionPerformed
@@ -289,21 +290,4 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField usuariosis;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     *
-     * @throws SQLException
-     * @throws ClassNotFoundException
-     */
-    public void Conector() throws SQLException, ClassNotFoundException {
-        String url = "jdbc:postgresql://localhost:5432/Aula_db";
-        String user = "postgres";
-        @SuppressWarnings("LocalVariableHidesMemberVariable")
-        String senha = "postgres";
-
-        Class.forName("org.postgresql.Driver");
-        Connection connection = null;
-        connection = DriverManager.getConnection(url, user, senha);
-        connection.close();
-
-    }
 }

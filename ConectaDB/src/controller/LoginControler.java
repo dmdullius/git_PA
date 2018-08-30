@@ -5,11 +5,11 @@
  */
 package controller;
 
-import connection.ConnectionFactory;
+import ferramentas.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import model.usuario;
+import Model.Usuario;
 
 /**
  *
@@ -17,13 +17,13 @@ import model.usuario;
  */
 public class LoginControler {
 
-    public boolean Login(String usuario, String senha) {
+    public Usuario Login(String usuario, String senha) {
         //INÍCIO CONEXÃO COM O BANCO DE DADOS
         System.out.println("Vai abrir a conexão com o banco de dados");
         ConnectionFactory.abreConexao();
 
         ResultSet rs = null;
-        usuario user;
+        Usuario user = null;
 
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT login, senha");
@@ -37,22 +37,20 @@ public class LoginControler {
             System.out.println("Executou Conexão em buscar area");
 
             if (rs.next() == true) {
-                user = new usuario();
+                user = new Usuario();
                 user.setNome(rs.getString("nome"));
-                user.setLogin(rs.getString("login"));
+                user.setNome(rs.getString("login"));
 
             }
         } catch (SQLException ex) {
             System.out.println("ERRO de SQL: " + ex.getMessage().toString());
-            
+
         } finally {
             Connection con = ConnectionFactory.getConnection();
             System.out.println("Vai fechar a conexão com o banco de dados");
             ConnectionFactory.closeConnection(con);
         }
-        return false;
-
-        
+        return user;
 
     }
 }

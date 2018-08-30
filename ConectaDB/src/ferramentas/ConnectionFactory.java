@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package connection;
+package ferramentas;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class ConnectionFactory {
     
     private final static String DRIVER = "org.postgresql.Driver";
-    private final static String URL = "jdbc:postgresql://localhost:5432/Aula_db";
+    private final static String URL = "jdbc:postgresql://localhost:5432/Aula_db_u";
     private final static String USER = "postgres";
     private final static String PASS = "postgres";
     
