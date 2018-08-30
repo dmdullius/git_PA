@@ -1,6 +1,13 @@
 package conectadb;
 
+import Model.Usuario;
 import ferramentas.CaixaDeDialogo;
+import controller.LoginControler;
+import java.sql.SQLException;
+import ferramentas.ConnectionFactory;
+import static ferramentas.ConnectionFactory.con;
+import static ferramentas.ConnectionFactory.stmt;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -23,6 +30,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        testacon = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +59,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        testacon.setText("testar conexão");
+        testacon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testaconActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -70,11 +85,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(91, Short.MAX_VALUE))
+                        .addGap(102, 102, 102)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(testacon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(104, 104, 104))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,11 +105,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(testacon, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -114,6 +134,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             CaixaDeDialogo.obterinstancia().exibirMensagem("Informe um usúario valído!!!", "Erro de Login, contate o suporte", 'e');
         }
+        LoginControler login = new LoginControler();
+        Usuario user = login.Login(usuario.getText().trim(), senha.getText().trim());
+        if (user == null) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe um usúario valído!!!, o usuario não existe na base de dados", "Erro de Login, contate o suporte", 'e');
+        }
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -122,7 +147,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-   
+    private void testaconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testaconActionPerformed
+        try {
+            ConnectionFactory.abreConexao();
+            ConnectionFactory.getConnection();
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Conexão bem suscedida, fechando conexão de teste!!!", "BANCO DE DADOS ", 'i');
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO DE SQL: " + ex.getMessage(), "Erro de SQL, contate o suporte", 'e');
+        } finally {
+            ConnectionFactory.closeConnection(con);
+        }
+    }//GEN-LAST:event_testaconActionPerformed
 
     public static void main(String args[]) {
 
@@ -139,6 +174,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField senha;
+    private javax.swing.JButton testacon;
     private javax.swing.JFormattedTextField usuario;
     // End of variables declaration//GEN-END:variables
 
