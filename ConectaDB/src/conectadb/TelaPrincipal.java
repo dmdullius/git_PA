@@ -2,7 +2,8 @@ package conectadb;
 
 import Model.Usuario;
 import ferramentas.CaixaDeDialogo;
-import controller.LoginControler;
+import controller.LoginController;
+import controller.LoginController;
 import java.sql.SQLException;
 import ferramentas.ConnectionFactory;
 import static ferramentas.ConnectionFactory.con;
@@ -24,8 +25,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        usuario = new javax.swing.JFormattedTextField();
-        senha = new javax.swing.JPasswordField();
+        txtUsuario = new javax.swing.JFormattedTextField();
+        txtSenha = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -34,10 +35,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        usuario.setText("usuário");
-        usuario.addActionListener(new java.awt.event.ActionListener() {
+        txtUsuario.setText("usuário");
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarioActionPerformed(evt);
+                txtUsuarioActionPerformed(evt);
             }
         });
 
@@ -80,10 +81,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
-                                .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(102, 102, 102)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,11 +100,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -117,28 +118,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usuarioActionPerformed
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        String useru = "admin";
-
-        if (usuario.getText().equals(useru) && new String(senha.getPassword()).equals("admin123")) {
+        LoginController login = new LoginController();
+        
+        String usuario = txtUsuario.getText().trim();//captura o usuario da tela
+        String senha = txtSenha.getText().toString();//captura a senha da tela
+        
+        Usuario user = login.Login(usuario, senha);
+        
+        if(user == null){ //verifica se a funcao conseguiu retornar um usuario valido
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário não existe","Erro de login, contate o suporte",'e');
+        }else{ //caso o usuario de retorno seja válido, a tela principal abre
             Sistema tela = new Sistema();
             tela.setVisible(true);
-            this.setVisible(false);
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário valido", "validação de credenciais", 'i');
-        } else {
-
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe um usúario valído!!!", "Erro de Login, contate o suporte", 'e');
+            this.setVisible(false);//fecha tela de login
         }
-        LoginControler login = new LoginControler();
-        Usuario user = login.Login(usuario.getText().trim(), senha.getText().trim());
-        if (user == null) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe um usúario valído!!!, o usuario não existe na base de dados", "Erro de Login, contate o suporte", 'e');
-        }
+        
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -173,9 +173,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField senha;
     private javax.swing.JButton testacon;
-    private javax.swing.JFormattedTextField usuario;
+    private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JFormattedTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
     private void If(boolean b) {

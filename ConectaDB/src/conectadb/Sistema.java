@@ -5,25 +5,17 @@
  */
 package conectadb;
 
-import Model.Usuario;
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import ferramentas.CaixaDeDialogo;
-import ferramentas.ConnectionFactory;
-
 /**
  *
- * @author dmdullius
+ * @author Jonas
  */
 public class Sistema extends javax.swing.JFrame {
 
     /**
-     * Creates new form Sistema
+     * Creates new form TelaPrincipal
      */
     public Sistema() {
         initComponents();
-        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -35,210 +27,88 @@ public class Sistema extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToolBar1 = new javax.swing.JToolBar();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        usuariosis = new javax.swing.JFormattedTextField();
-        senhasis = new javax.swing.JPasswordField();
-        jToolBar3 = new javax.swing.JToolBar();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        btcad = new javax.swing.JButton();
-        btvalida = new javax.swing.JButton();
-        nomesis = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        menuProfessores = new javax.swing.JMenuItem();
+        menuAlunos = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
-        jToolBar1.setRollover(true);
+        jRadioButtonMenuItem1.setSelected(true);
+        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
-        jToggleButton1.setText("jToggleButton1");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jButton1.setText("jButton1");
 
-        jToggleButton2.setText("bloquear tela");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1.setText("Cadastros");
+
+        menuProfessores.setText("Alunos");
+        menuProfessores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
+                menuProfessoresActionPerformed(evt);
             }
         });
+        jMenu1.add(menuProfessores);
 
-        jToggleButton3.setText("exigir troca de senha");
-
-        jToggleButton4.setText("logar sem senha");
-
-        jCheckBox1.setText(" manter logado");
-
-        usuariosis.setText("");
-        usuariosis.addActionListener(new java.awt.event.ActionListener() {
+        menuAlunos.setText("Professores");
+        menuAlunos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuariosisActionPerformed(evt);
+                menuAlunosActionPerformed(evt);
             }
         });
+        jMenu1.add(menuAlunos);
 
-        senhasis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuBar1.add(jMenu1);
 
-        jToolBar3.setRollover(true);
+        jMenu3.setText("Sair");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "criar usuario", "recadastrar senha", "gerar boleto", "sair" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem1.setText("Fechar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
-        jToolBar3.add(jComboBox2);
+        jMenu3.add(jMenuItem1);
 
-        jButton1.setText("voltar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jMenuBar1.add(jMenu3);
 
-        jLabel1.setText("Usuário:");
-
-        jLabel2.setText("Senha:");
-
-        btcad.setText("Cadastar");
-        btcad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btcadActionPerformed(evt);
-            }
-        });
-
-        btvalida.setText("Validar");
-
-        nomesis.setText("jTextField1");
-
-        jLabel3.setText("Nome:");
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCheckBox1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jToolBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jToggleButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jToggleButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                        .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(usuariosis, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nomesis, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(senhasis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(btcad, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btvalida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addGap(0, 618, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jToolBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jToggleButton2)
-                                .addComponent(jToggleButton3)
-                                .addComponent(jToggleButton4)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 52, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(usuariosis, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(senhasis, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nomesis, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btcad, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btvalida, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jButton1)))
+            .addGap(0, 418, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+    private void menuProfessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProfessoresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+        AlunosView alunos = new AlunosView();
+        alunos.setVisible(true);
+    }//GEN-LAST:event_menuProfessoresActionPerformed
 
-    private void usuariosisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuariosisActionPerformed
+    private void menuAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAlunosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usuariosisActionPerformed
+    }//GEN-LAST:event_menuAlunosActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new TelaPrincipal().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btcadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btcadActionPerformed
-
-        /*try {
-            StringBuilder sql = new StringBuilder();
-            sql.append("INSERT INTO usuarios (login, senha, nome)");
-            sql.append("values");
-            sql.append("('").append(usuariosis).append("'").append(senhasis).append("' ").append(nomesis).append("')");
-
-            ConnectionFactory.abreConexao();
-            ConnectionFactory.stmt.executeQuery(sql.toString());
-
-        } catch (SQLException ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem(ex.getMessage(), "ERRO de SQL: ", 'e');
-
-        } finally {
-            Connection con = ConnectionFactory.getConnection();
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Usuario Adicionado,  fechando a conexão com o banco de dados...", "inclusão de usuarios", 'i');
-            ConnectionFactory.closeConnection(con);
-        }*/
-
-
-    }//GEN-LAST:event_btcadActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+ System.exit(0);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main() {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -261,6 +131,13 @@ public class Sistema extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Sistema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -271,23 +148,13 @@ public class Sistema extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btcad;
-    private javax.swing.JButton btvalida;
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
-    private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JToolBar jToolBar3;
-    private javax.swing.JTextField nomesis;
-    private javax.swing.JPasswordField senhasis;
-    private javax.swing.JFormattedTextField usuariosis;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
+    private javax.swing.JMenuItem menuAlunos;
+    private javax.swing.JMenuItem menuProfessores;
     // End of variables declaration//GEN-END:variables
-
 }
