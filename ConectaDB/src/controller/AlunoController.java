@@ -45,16 +45,18 @@ public class AlunoController {
             cabecalhos.add("Matricula");
             cabecalhos.add("Curso");
             cabecalhos.add("Nome");
+            cabecalhos.add("E-mail");
 
             ResultSet result = null;
 
             try {
 
                 String SQL = "";
-                SQL = " SELECT mat_alu, c.nom_curso, nom_alu ";
+                SQL = " SELECT mat_alu, c.nom_curso, nom_alu, email ";
                 SQL += " FROM alunos a, cursos c ";
                 SQL += " WHERE a.cod_curso = c.cod_curso ";
                 SQL += " ORDER BY nom_alu ";
+                
 
                 result = ConnectionFactory.stmt.executeQuery(SQL);
 
@@ -63,6 +65,7 @@ public class AlunoController {
                     linha.add(result.getInt(1));
                     linha.add(result.getString(2));
                     linha.add(result.getString(3));
+                    linha.add(result.getString(4));
                     dadosTabela.add(linha);
                 }
 
@@ -123,31 +126,6 @@ public class AlunoController {
 
     }
 
-    public boolean incluir() {
-
-        ConnectionFactory.abreConexao();
-        Connection con = ConnectionFactory.getConnection();
-        PreparedStatement stmt = null;
-
-        try {
-            stmt = con.prepareStatement("INSERT INTO alunos (mat_alu, cod_curso, dat_nasc, tot_cred, mgp, email )VALUES(?,?,?,?)");
-            stmt.setString(1, String.valueOf(objAluno.getMat_aluno()));
-            stmt.setString(2, String.valueOf(objAluno.getCod_curso()));
-            stmt.setString(3, objAluno.getDat_nasc());
-            stmt.setString(4, objAluno.getEmail());
-
-            stmt.executeUpdate();
-
-            return true;
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            return false;
-        } finally {
-            ConnectionFactory.closeConnection(con, stmt);
-        }
-
-    }
 
     public Aluno buscar(String id) {
         try {
