@@ -1,4 +1,4 @@
-package conectadb;
+package view;
 
 import Model.Usuario;
 import ferramentas.CaixaDeDialogo;

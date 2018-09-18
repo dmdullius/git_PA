@@ -127,31 +127,36 @@ public class AlunoController {
     }
 
 
-    public Aluno buscar(String id) {
+   public Aluno buscar(String id)
+    {
         try {
             ConnectionFactory.abreConexao();
             ResultSet rs = null;
 
             String SQL = "";
-            SQL = " SELECT id, nome, email ";
-            SQL += " FROM visitante ";
-            SQL += " WHERE id = '" + id + "'";
+            SQL = " SELECT mat_alu, nom_alu, email, cod_curso";
+            SQL += " FROM alunos";
+            SQL += " WHERE mat_alu = '" + id + "'";
             //stm.executeQuery(SQL);
 
-            try {
+            try{
                 System.out.println("Vai Executar Conexão em buscar visitante");
                 rs = ConnectionFactory.stmt.executeQuery(SQL);
-                System.out.println("Executou Conexão em buscar visitante");
-
-                objAluno = new Aluno();
-
-                if (rs.next() == true) {
-                    objAluno.setNom_aluno(rs.getString(1));
-                    objAluno.setMat_aluno(rs.getInt(2));
-                    objAluno.setCod_curso(rs.getInt(3));
-                    objAluno.setEmail(rs.getString(4));
+                System.out.println("Executou Conexão em buscar aluno");
+                
+               objAluno = new Aluno();
+               
+                if(rs.next() == true)
+                {
+                    objAluno.setMat_aluno(rs.getInt(1));
+                    objAluno.setNom_aluno(rs.getString(2));
+                    objAluno.setEmail(rs.getString(3));
+                    objAluno.setCod_curso(rs.getInt(4));
                 }
-            } catch (SQLException ex) {
+            }
+
+            catch (SQLException ex )
+            {
                 System.out.println("ERRO de SQL: " + ex.getMessage().toString());
                 return null;
             }
@@ -160,8 +165,8 @@ public class AlunoController {
             System.out.println("ERRO: " + e.getMessage().toString());
             return null;
         }
-
-        System.out.println("Executou buscar visitante com sucesso");
+        
+        System.out.println ("Executou buscar aluno com sucesso");
         return objAluno;
     }
 

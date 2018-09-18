@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package conectadb;
+package view;
 
 import Model.Aluno;
 import controller.*;
@@ -20,71 +20,32 @@ public class AlunosView extends javax.swing.JFrame {
      * Creates new form ViewAlunos
      */
     Combos cbCurso;
-
+    
     public AlunosView() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        
         //carregar os cursos existentes
-
+        
         //carregar os alunos existentes
-        try {
-
+        try{
+            
             AlunoController alunoCon = new AlunoController(null, jtbAlunos);
             alunoCon.PreencheAlunos();
-
             
-
+            cbCurso = new Combos(jcbCurso);
+            cbCurso.PreencheCombo("SELECT cod_curso, nom_curso FROM cursos ORDER BY nom_curso");
+            
             /*//Recuperando dados de uma ComboBox
             Combos c = new Combos();
             c =(Combos) cmbCidade.getSelectedItem();
             int id_cidade = Integer.parseInt(c.getCodigo());
-             */
-        } catch (Exception ex) {
-            System.out.println("Erro ao atualizar os dados iniciais da tela");
+            */
+            
+        }catch(Exception ex){
+            System.out.println("Erro ao atualizar os dados inicias da tela");
         }
-
+        
     }
-
-    public Aluno buscar(String id) {
-        Aluno objAluno;
-        try {
-            ConnectionFactory.abreConexao();
-            ResultSet rs = null;
-
-            String SQL = "";
-            SQL = " select cod_curso, mat_alu,  email  ";
-            SQL += " FROM alunos ";
-            try {
-                PreparedStatement stmt = null;
-                ConnectionFactory.abreConexao();
-                Connection con = ConnectionFactory.getConnection();
-                stmt = con.prepareStatement(SQL);
-                System.out.println("Vai Executar Conexão em buscar visitante");
-                rs = ConnectionFactory.stmt.executeQuery(SQL);
-                System.out.println("Executou Conexão em buscar visitante");
-
-                objAluno = new Aluno();
-
-                if (rs.next() == true) {
-                    //objAluno.setNom_aluno(rs.getString(1));
-                    objAluno.setMat_aluno(rs.getInt(1));
-                    objAluno.setCod_curso(rs.getInt(2));
-                    objAluno.setEmail(rs.getString(3));
-                }
-            } catch (SQLException ex) {
-                System.out.println("ERRO de SQL: " + ex.getMessage().toString());
-                return null;
-            }
-
-        } catch (Exception e) {
-            System.out.println("ERRO: " + e.getMessage().toString());
-            return null;
-        }
-
-        System.out.println("Executou buscar aluno com sucesso");
-        return objAluno;
-    }
-
     public boolean incluir() {
         Aluno objAluno = new Aluno();
         ConnectionFactory.abreConexao();
@@ -266,14 +227,23 @@ public class AlunosView extends javax.swing.JFrame {
     private void jcbCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCursoActionPerformed
 
     }//GEN-LAST:event_jcbCursoActionPerformed
-    String coluna;
+    
 
     private void jtbAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbAlunosMouseClicked
-        // pega a linha selecionada
-        int linhasel = jtbAlunos.getSelectedRow();
-        //primeira coluna da linha
-        coluna = jtbAlunos.getModel().getValueAt(linhasel, 0).toString();
-
+        // TODO add your handling code here:
+        //pega a linha selecionada
+         int linhaSelecionada = jtbAlunos.getSelectedRow();
+         // Primeira coluna da linha que é o código
+         String coluna = jtbAlunos.getModel().getValueAt(linhaSelecionada, 0).toString();
+         //System.out.println(coluna1);
+         Aluno objAluno = new Aluno();
+         AlunoController alunoCon = new AlunoController(objAluno, null);
+         objAluno = alunoCon.buscar(coluna);
+         
+         txtMatricula.setText(String.valueOf(objAluno.getMat_aluno()));
+         txtnome_aluno.setText(objAluno.getNom_aluno());
+         txtEmail.setText(objAluno.getEmail());
+         cbCurso.SetaComboBox(String.valueOf(objAluno.getCod_curso()));    
     }//GEN-LAST:event_jtbAlunosMouseClicked
 
     private void incluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incluiActionPerformed
