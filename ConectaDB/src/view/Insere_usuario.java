@@ -4,19 +4,19 @@
  * and open the template in the editor.
  */
 package view;
+
 import Model.*;
 import ferramentas.*;
 import controller.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 /**
  *
  * @author dougl
  */
 public class Insere_usuario extends javax.swing.JFrame {
-
-    
 
     /**
      * Creates new form Insere_usuario
@@ -25,38 +25,8 @@ public class Insere_usuario extends javax.swing.JFrame {
     public Insere_usuario() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
-    }
-    Usuario objusuario = new Usuario();
-    
-    public boolean incluir() {
-        ConnectionFactory.abreConexao();
-        Connection con = ConnectionFactory.getConnection();
-        PreparedStatement stmt = null;
-        objusuario.setNome(nome.getText());
-        objusuario.setLogin(login.getText());
-        objusuario.setSenha(senha.getText());
-        
-        
-        
-        try {
-            stmt = con.prepareStatement("INSERT INTO usuarios (nome, login, senha)VALUES(?,?,?)");
-          stmt.setString(1, objusuario.getNome());
-          stmt.setString(2, objusuario.getLogin());
-          stmt.setString(3, objusuario.getSenha());
-            
-            
-            stmt.executeUpdate();
-            
-            return true;
-            
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            return false;
-        }finally{
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Usuario incluido","Inclusão de usuários",'i');
-            ConnectionFactory.closeConnection(con, stmt);
-        }
+
+      
     }
 
     /**
@@ -104,8 +74,6 @@ public class Insere_usuario extends javax.swing.JFrame {
             }
         });
 
-        senha.setText("");
-
         jMenu1.setText("Voltar");
 
         volta.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_BACK_SPACE, 0));
@@ -140,22 +108,23 @@ public class Insere_usuario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(senha))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(incui)
-                .addGap(28, 28, 28)
-                .addComponent(limpa)
-                .addGap(0, 46, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(senha))
+                        .addContainerGap(120, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(incui, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(limpa, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(112, 112, 112))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,11 +152,18 @@ public class Insere_usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void incuiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incuiActionPerformed
-        incluir();
+Usuario objUsuario = new Usuario();
+       
+        
+ UsuarioController userCon = new UsuarioController(objUsuario, null);
+        objUsuario.setLogin(login.getText());
+        objUsuario.setNome(nome.getText());
+        objUsuario.setSenha(senha.getText());
+      userCon.incluir();
     }//GEN-LAST:event_incuiActionPerformed
 
     private void fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaActionPerformed
-         System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_fechaActionPerformed
 
     private void voltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltaActionPerformed
@@ -253,6 +229,4 @@ public class Insere_usuario extends javax.swing.JFrame {
     private javax.swing.JMenuItem volta;
     // End of variables declaration//GEN-END:variables
 
-  
-    
 }

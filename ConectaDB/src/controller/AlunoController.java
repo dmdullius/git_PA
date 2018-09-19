@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import Model.Aluno;
+import Model.Usuario;
+import ferramentas.CaixaDeDialogo;
 import ferramentas.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,6 +29,7 @@ public class AlunoController {
 
     Aluno objAluno;
     JTable jtbAlunos = null;
+    Usuario objUsuario;
 
     public AlunoController(Aluno objAluno, JTable jtbAlunos) {
         this.objAluno = objAluno;
@@ -56,7 +59,6 @@ public class AlunoController {
                 SQL += " FROM alunos a, cursos c ";
                 SQL += " WHERE a.cod_curso = c.cod_curso ";
                 SQL += " ORDER BY nom_alu ";
-                
 
                 result = ConnectionFactory.stmt.executeQuery(SQL);
 
@@ -126,9 +128,7 @@ public class AlunoController {
 
     }
 
-
-   public Aluno buscar(String id)
-    {
+    public Aluno buscar(String id) {
         try {
             ConnectionFactory.abreConexao();
             ResultSet rs = null;
@@ -139,24 +139,20 @@ public class AlunoController {
             SQL += " WHERE mat_alu = '" + id + "'";
             //stm.executeQuery(SQL);
 
-            try{
+            try {
                 System.out.println("Vai Executar Conexão em buscar visitante");
                 rs = ConnectionFactory.stmt.executeQuery(SQL);
                 System.out.println("Executou Conexão em buscar aluno");
-                
-               objAluno = new Aluno();
-               
-                if(rs.next() == true)
-                {
+
+                objAluno = new Aluno();
+
+                if (rs.next() == true) {
                     objAluno.setMat_aluno(rs.getInt(1));
                     objAluno.setNom_aluno(rs.getString(2));
                     objAluno.setEmail(rs.getString(3));
                     objAluno.setCod_curso(rs.getInt(4));
                 }
-            }
-
-            catch (SQLException ex )
-            {
+            } catch (SQLException ex) {
                 System.out.println("ERRO de SQL: " + ex.getMessage().toString());
                 return null;
             }
@@ -165,9 +161,31 @@ public class AlunoController {
             System.out.println("ERRO: " + e.getMessage().toString());
             return null;
         }
-        
-        System.out.println ("Executou buscar aluno com sucesso");
+
+        System.out.println("Executou buscar aluno com sucesso");
         return objAluno;
     }
 
+    public boolean alterar() {
+
+        ConnectionFactory.abreConexao();
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("UPDATE alunos SET nome=?, email=?, WHERE id=?");
+            stmt.setString(1, objAluno.getNom_aluno());
+            stmt.setString(2, objAluno.getEmail());
+            stmt.executeUpdate();
+
+            return true;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+
+    }
 }

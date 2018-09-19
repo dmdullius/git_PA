@@ -33,7 +33,6 @@ public class Sistema extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuProfessores = new javax.swing.JMenuItem();
-        menuAlunos = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -54,14 +53,6 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
         jMenu1.add(menuProfessores);
-
-        menuAlunos.setText("Professores");
-        menuAlunos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuAlunosActionPerformed(evt);
-            }
-        });
-        jMenu1.add(menuAlunos);
 
         jMenuItem2.setText("incluir usuário");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -106,10 +97,6 @@ public class Sistema extends javax.swing.JFrame {
         AlunosView alunos = new AlunosView();
         alunos.setVisible(true);
     }//GEN-LAST:event_menuProfessoresActionPerformed
-
-    private void menuAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAlunosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuAlunosActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
  System.exit(0);
@@ -172,7 +159,6 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JMenuItem menuAlunos;
     private javax.swing.JMenuItem menuProfessores;
     // End of variables declaration//GEN-END:variables
 }
