@@ -20,6 +20,7 @@ import ferramentas.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import view.AlunosView;
 
 /**
  *
@@ -173,10 +174,9 @@ public class AlunoController {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("UPDATE alunos SET nome=?, email=?, WHERE id=?");
+            stmt = con.prepareStatement("UPDATE alunos SET nome=?, email=?, WHERE mat_alu=?");
             stmt.setString(1, objAluno.getNom_aluno());
             stmt.setString(2, objAluno.getEmail());
-            stmt.executeUpdate();
 
             return true;
 
@@ -188,4 +188,29 @@ public class AlunoController {
         }
 
     }
+
+    public boolean guardaDados() {
+
+        ConnectionFactory.abreConexao();
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("INSERT INTO alunos(mat_alu, nom_alu, email) VALUES (?,?,?)");
+            stmt.setString(1, String.valueOf(objAluno.getMat_aluno()));
+            stmt.setString(2, objAluno.getNom_aluno());
+            stmt.setString(3, objAluno.getEmail());
+
+            stmt.executeUpdate();
+
+            return true;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
+
 }

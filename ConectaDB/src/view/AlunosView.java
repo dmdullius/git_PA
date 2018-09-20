@@ -20,67 +20,34 @@ public class AlunosView extends javax.swing.JFrame {
      * Creates new form ViewAlunos
      */
     Combos cbCurso;
-    
+
     public AlunosView() {
         initComponents();
-        
+
         //carregar os cursos existentes
-        
         //carregar os alunos existentes
-        try{
-            
+        try {
+
             AlunoController alunoCon = new AlunoController(null, jtbAlunos);
             alunoCon.PreencheAlunos();
-            
+
             cbCurso = new Combos(jcbCurso);
             cbCurso.PreencheCombo("SELECT cod_curso, nom_curso FROM cursos ORDER BY nom_curso");
-            
+
             /*//Recuperando dados de uma ComboBox
             Combos c = new Combos();
             c =(Combos) cmbCidade.getSelectedItem();
             int id_cidade = Integer.parseInt(c.getCodigo());
-            */
-            
-        }catch(Exception ex){
+             */
+        } catch (Exception ex) {
             System.out.println("Erro ao atualizar os dados inicias da tela");
         }
-        
-    }
-    public boolean incluir() {
-        Aluno objAluno = new Aluno();
-        ConnectionFactory.abreConexao();
-        Connection con = ConnectionFactory.getConnection();
-        PreparedStatement stmt = null;
-        int matricula = Integer.parseInt(txtMatricula.getText());
-        objAluno.setNom_aluno(txtnome_aluno.getText());
-        objAluno.setMat_aluno(matricula);
-        objAluno.setEmail(txtEmail.getText());
 
-        try {
-            stmt = con.prepareStatement("INSERT INTO alunos (nom_alu, mat_alu, email)VALUES(?,?,?)");
-            stmt.setString(1, objAluno.getNom_aluno());
-            stmt.setString(2, String.valueOf(objAluno.getMat_aluno()));
-            stmt.setString(3,objAluno.getEmail());
-
-            stmt.executeUpdate();
-
-            return true;
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            return false;
-        } finally {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Aluno incluido", "Cadastro de alunos", 'i');
-            ConnectionFactory.closeConnection(con, stmt);
-        }
     }
 
-    private void guardaDados(){
-Aluno objAluno = new Aluno();
-      objAluno.setMat_aluno(Integer.parseInt(txtMatricula.getText()));
-      objAluno.setNom_aluno(txtnome_aluno.getText());
-      objAluno.setEmail(txtEmail.getText());
-      }
+   
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -124,6 +91,12 @@ Aluno objAluno = new Aluno();
         setResizable(false);
 
         jLabel1.setText("Nome:");
+
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("E-mai:");
 
@@ -261,38 +234,51 @@ Aluno objAluno = new Aluno();
     private void jcbCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCursoActionPerformed
 
     }//GEN-LAST:event_jcbCursoActionPerformed
-    
+
 
     private void jtbAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbAlunosMouseClicked
         // TODO add your handling code here:
         //pega a linha selecionada
-         int linhaSelecionada = jtbAlunos.getSelectedRow();
-         // Primeira coluna da linha que é o código
-         String coluna = jtbAlunos.getModel().getValueAt(linhaSelecionada, 0).toString();
-         //System.out.println(coluna1);
-         Aluno objAluno = new Aluno();
-         AlunoController alunoCon = new AlunoController(objAluno, null);
-         objAluno = alunoCon.buscar(coluna);
-         
-         txtMatricula.setText(String.valueOf(objAluno.getMat_aluno()));
-         txtnome_aluno.setText(objAluno.getNom_aluno());
-         txtEmail.setText(objAluno.getEmail());
-         cbCurso.SetaComboBox(String.valueOf(objAluno.getCod_curso()));    
+        int linhaSelecionada = jtbAlunos.getSelectedRow();
+        // Primeira coluna da linha que é o código
+        String coluna = jtbAlunos.getModel().getValueAt(linhaSelecionada, 0).toString();
+        //System.out.println(coluna1);
+        Aluno objAluno = new Aluno();
+        AlunoController alunoCon = new AlunoController(objAluno, null);
+        objAluno = alunoCon.buscar(coluna);
+
+        txtMatricula.setText(String.valueOf(objAluno.getMat_aluno()));
+        txtnome_aluno.setText(objAluno.getNom_aluno());
+        txtEmail.setText(objAluno.getEmail());
+        cbCurso.SetaComboBox(String.valueOf(objAluno.getCod_curso()));
     }//GEN-LAST:event_jtbAlunosMouseClicked
 
     private void incluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incluiActionPerformed
-        guardaDados();
+         Aluno objAluno = new Aluno();
+         AlunoController alunoCon = new AlunoController(objAluno, null);
+        objAluno.setMat_aluno(Integer.parseInt(txtMatricula.getText()));
+        objAluno.setNom_aluno(txtnome_aluno.getText());
+        objAluno.setEmail(txtEmail.getText());
+       alunoCon.guardaDados();
     }//GEN-LAST:event_incluiActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    Aluno objAluno = new Aluno();
-         AlunoController alunoCon = new AlunoController(objAluno, null);
-          alunoCon.alterar();
+        Aluno objAluno = new Aluno();
+        AlunoController alunoCon = new AlunoController(objAluno, null);
+        alunoCon.alterar();
+        objAluno.setNom_aluno(txtnome_aluno.getText());
+        objAluno.setEmail(txtEmail.getText());
+        objAluno.setMat_aluno(Integer.parseInt(txtMatricula.getText()));
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
 
     /**
      * @param args the command line arguments
