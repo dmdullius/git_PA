@@ -78,7 +78,7 @@ public class Validacao {
 
     public static void validarTelefone(JFormattedTextField campo) {
         if (campo.getText().trim().length() < 13) {
-            //Formatacao.reformatarTelefone(campo);
+            Formatacao.reformatarTelefone(campo);
         }
     }
 }
