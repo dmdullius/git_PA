@@ -201,7 +201,7 @@ public class AlunoController {
             stmt.setInt(2, objAluno.getCod_curso());
             stmt.setString(3, objAluno.getNom_aluno());
             stmt.setString(4, objAluno.getEmail());
-            stmt.setString(5, objAluno.getDat_nasc());
+            stmt.setDate(5, Date.valueOf(objAluno.getDat_nasc()));
             
             stmt.executeUpdate();
             

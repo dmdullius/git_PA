@@ -29,7 +29,7 @@ public class AlunosView extends javax.swing.JFrame {
         //carregar os cursos existentes
         //carregar os alunos existentes
         try {
-
+            atualizarTabela();
             AlunoController alunoCon = new AlunoController(null, jtbAlunos);
             alunoCon.PreencheAlunos();
 
@@ -45,6 +45,17 @@ public class AlunosView extends javax.swing.JFrame {
             System.out.println("Erro ao atualizar os dados inicias da tela");
         }
 
+    }
+
+    private void atualizarTabela() {
+        try {
+
+            AlunoController alunoCon = new AlunoController(null, jtbAlunos);
+            alunoCon.PreencheAlunos();
+
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
+        }
     }
 
     /**
@@ -269,7 +280,7 @@ public class AlunosView extends javax.swing.JFrame {
         txtEmail.setText(objAluno.getEmail());
         txtDataNasc.setText(objAluno.getDat_nasc());
         cbCurso.SetaComboBox(String.valueOf(objAluno.getCod_curso()));
-        
+
     }//GEN-LAST:event_jtbAlunosMouseClicked
 
     private void incluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incluiActionPerformed
@@ -294,11 +305,10 @@ public class AlunosView extends javax.swing.JFrame {
         objAluno.setMat_aluno(Integer.parseInt(txtMatricula.getText()));
         objAluno.setNom_aluno(txtnome_aluno.getText());
         objAluno.setEmail(txtEmail.getText());
-
+        objAluno.setDat_nasc(txtDataNasc.getText());
 //ajustar a data
-        
-        //data_formatada = Formatacao.ajustaDataAMD(txtDataNasc.getText());
-        //objAluno.setDat_nasc(data_formatada);
+
+        // data_formatada = Formatacao.ajustaDataAMD(txtDataNasc.getText());
     }
 
     //validar os dados
@@ -321,7 +331,7 @@ public class AlunosView extends javax.swing.JFrame {
             txtEmail.setText("");
             txtDataNasc.setValue("");
             cbCurso.SetaComboBox("");
-            //Formatacao.colocaMascara(txtDataNasc, "##/##/####");
+            Formatacao.colocaMascara(txtDataNasc, "##/##/####");
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
 
