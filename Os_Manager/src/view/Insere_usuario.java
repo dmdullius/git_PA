@@ -6,11 +6,7 @@
 package view;
 
 import Model.*;
-import ferramentas.*;
 import controller.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 /**
  *
@@ -77,6 +73,7 @@ public class Insere_usuario extends javax.swing.JFrame {
         jMenu1.setText("Voltar");
 
         volta.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_BACK_SPACE, 0));
+        volta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/back-button.png"))); // NOI18N
         volta.setText("voltar");
         volta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

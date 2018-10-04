@@ -38,9 +38,9 @@ public class TecnicoController {
             //stm.executeQuery(SQL);
 
             try {
-                System.out.println("Vai Executar Conexão em buscar visitante");
+                System.out.println("Vai Executar Conexão em buscar técnico");
                 rs = ConnectionFactory.stmt.executeQuery(SQL);
-                System.out.println("Executou Conexão em buscar aluno");
+                System.out.println("Executou Conexão em buscar técnico");
 
                 objTecnico = new Tecnico();
 
@@ -67,7 +67,7 @@ public class TecnicoController {
             return null;
         }
 
-        CaixaDeDialogo.obterinstancia().exibirMensagem("Cliente encontrado", " Pesquisa de Cliente", 'i');
+        CaixaDeDialogo.obterinstancia().exibirMensagem("Técnico encontrado", " Pesquisa de Técnicos", 'i');
         return objTecnico;
     }
 
@@ -79,7 +79,7 @@ public class TecnicoController {
 
         try {
 
-            stmt = con.prepareStatement("UPDATE clientes SET nome=?, rg=?, cpf=?, dat_nasc=?, nome_fantasia=?, cnpj=?, rua=?, numero=?, bairro=?, telefone=?, telefone_comercial=?, celular=? WHERE nome=?");
+            stmt = con.prepareStatement("UPDATE clientes SET nome=?, rg=?, cpf=?, dat_nasc=?,  rua=?, numero=?, bairro=?, telefone=?, email=?, celular=? WHERE nome=?");
             stmt.setString(1, objTecnico.getNome());
             stmt.setString(2, objTecnico.getRG());
             stmt.setString(3, objTecnico.getData_nasc());
@@ -91,48 +91,48 @@ public class TecnicoController {
             stmt.setString(12, objTecnico.getCelular());
 
             stmt.executeUpdate();
-
+            CaixaDeDialogo.obterinstancia().exibirMensagem("O técnico foi alterado", "Cadastro de Técnicos: ", 'i');
             return true;
 
         } catch (SQLException ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Impossivel alterar os dados do cliente", "Erro de SQL: " + ex.toString(), 'e');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Impossivel alterar os dados do técnico", "Erro de SQL: " + ex.toString(), 'e');
             return false;
         } finally {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("O cliente foi alterado", "Cadastro de Clientes: ", 'i');
+
             ConnectionFactory.closeConnection(con, stmt);
         }
 
     }
 
-    /*public boolean incluir() {
+    public boolean incluir() {
 
         ConnectionFactory.abreConexao();
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("INSERT INTO clientes (nome, rg, cpf, data_nasc, nome_fantasia, cnpj, rua, numero, bairro, telefone, telefone_comercial, celular)VALUES(?,?,?,?,?,?,?,?,?,?,?)");
-            stmt.setString(1, objCliente.getNome());
-            stmt.setString(2, objCliente.getRG());
-            stmt.setString(3, objCliente.getData_Nasc());
-            stmt.setString(4, objCliente.getNome_Fantasia());
-            stmt.setString(6, objCliente.getCNPJ());
-            stmt.setString(7, objCliente.getRua());
-            stmt.setInt(8, objCliente.getNumero());
-            stmt.setString(9, objCliente.getBairro());
-            stmt.setString(10, objCliente.getTelefone());
-            stmt.setString(11, objCliente.getTelefone_Comercial());
-            stmt.setString(12, objCliente.getCelular());
+            stmt = con.prepareStatement("INSERT INTO tecnicos (nome, rg, cpf, data_nasc, rua, numero, bairro, cidade, telefone, celular, email)VALUES(?,?,?,?,?,?,?,?,?,?)");
+            stmt.setString(1, objTecnico.getNome());
+            stmt.setString(2, objTecnico.getRG());
+            stmt.setString(3, objTecnico.getCPF());
+            stmt.setString(4, objTecnico.getData_nasc());
+            stmt.setString(5, objTecnico.getRua());
+            stmt.setInt(6, objTecnico.getNumero());
+            stmt.setString(7, objTecnico.getBairro());
+            stmt.setString(8, objTecnico.getCidade());
+            stmt.setString(8, objTecnico.getTelefone());
+            stmt.setString(9, objTecnico.getCelular());
+            stmt.setString(10, objTecnico.getEmail());
 
             stmt.executeUpdate();
-
+            CaixaDeDialogo.obterinstancia().exibirMensagem("O Técnico foi cadastrado", "Cadastro de Técnicos: ", 'i');
             return true;
 
         } catch (SQLException ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Não é possivel inserir este cliente", "ERRO de SQL: " + ex.toString(), 'e');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Não é possivel inserir este Técnico", "ERRO de SQL: " + ex.toString(), 'e');
             return false;
         } finally {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("O cliente foi cadastrado", "Cadastro de Clientes: ", 'i');
+
             ConnectionFactory.closeConnection(con, stmt);
         }
 
@@ -140,26 +140,27 @@ public class TecnicoController {
 
     public boolean excluir() {
         String id;
-        id = objCliente.getNome();
+        id = objTecnico.getNome();
         ConnectionFactory.abreConexao();
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("DELETE clientes WHERE nome='" + id + "'");
+            stmt = con.prepareStatement("DELETE tecnicos WHERE nome='" + id + "'");
             //stmt = con.prepareStatement("UPDATE aluno SET dataExclusao=? WHERE mat_alu=?");
             //stmt.setString(1, objAluno.getDataExclusao());
-            stmt.setString(1, objCliente.getNome());
+            stmt.setString(1, objTecnico.getNome());
 
             stmt.executeUpdate();
-
+            CaixaDeDialogo.obterinstancia().exibirMensagem("O Técnico foi excluido", "Cadastro de Técnicos: ", 'i');
             return true;
 
         } catch (SQLException ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Não foi possivel excluir o cliente selecionado", "Erro de SQL:  " + ex.toString(), 'i');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Não foi possivel excluir o Técnico selecionado", "Erro de SQL:  " + ex.toString(), 'i');
             return false;
         } finally {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("O cliente foi excluido", "Cadastro de Clientes: ", 'i');
             ConnectionFactory.closeConnection(con, stmt);
-              */
+
         }
+    }
+}
