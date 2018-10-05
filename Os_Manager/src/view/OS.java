@@ -7,6 +7,7 @@ package view;
 
 import Controller.*;
 import Model.Ordem_Servico;
+
 /**
  *
  * @author dougl
@@ -174,22 +175,22 @@ public class OS extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void limpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpaActionPerformed
-       descricao.setText(null);
+        descricao.setText(null);
     }//GEN-LAST:event_limpaActionPerformed
 
     private void abre_chamadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abre_chamadoActionPerformed
-       Ordem_Servico objOS = new Ordem_Servico();
+        Ordem_Servico objOS = new Ordem_Servico();
 
-       OSController objOScon = new OSController(objOS);
-        objOS.setCodigo(Integer.parseInt(codigo.getText()));
+        OSController objOScon = new OSController(objOS, null);
         objOS.setDescricao(descricao.getText());
         objOS.setPendente("sim");
-      objOScon.incluir();
+        objOS.setFinalizado("nao");
+        objOScon.incluir();
 
     }//GEN-LAST:event_abre_chamadoActionPerformed
 
     private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelaActionPerformed
-         Sistema tela_s = new Sistema();
+        Sistema tela_s = new Sistema();
         tela_s.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_cancelaActionPerformed

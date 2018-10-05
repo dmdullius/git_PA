@@ -7,7 +7,14 @@ package Controller;
 
 import Model.Ordem_Servico;
 import ferramentas.*;
+import java.awt.Color;
+import java.awt.Component;
 import java.sql.*;
+import java.util.Vector;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -16,12 +23,104 @@ import java.sql.*;
 public class OSController {
 
     Ordem_Servico objOS = new Ordem_Servico();
-
-    public OSController(Ordem_Servico objOS) {
+    
+JTable jtbOS = null;
+    public OSController(Ordem_Servico objOS, JTable jtbOS) {
         this.objOS = objOS;
+        this.jtbOS = jtbOS;
         objOS = null;
-    }
+            }
+public void PreencheOS() {
 
+        try {
+
+            ConnectionFactory.abreConexao();
+
+            Vector<String> cabecalhos = new Vector<String>();
+            Vector dadosTabela = new Vector();
+            cabecalhos.add("Código");
+            cabecalhos.add("Técnico");
+            cabecalhos.add("Descrição");
+            cabecalhos.add("Pendente");
+            cabecalhos.add("finalizado");
+
+            ResultSet result = null;
+
+            try {
+
+                String SQL = "";
+                SQL = " SELECT codigo, t.nome, descricao, pendente, finalizado ";
+                SQL += " FROM ordem_servico a, tecnicos t ";
+                SQL += " WHERE a.tecnicos_codigo = t.codigo ";
+                SQL += " ORDER BY codigo ";
+
+                result = ConnectionFactory.stmt.executeQuery(SQL);
+
+                while (result.next()) {
+                    Vector<Object> linha = new Vector<Object>();
+                    linha.add(result.getInt(1));
+                    linha.add(result.getString(2));
+                    linha.add(result.getString(3));
+                    linha.add(result.getString(4));
+                    dadosTabela.add(linha);
+                }
+
+            } catch (SQLException e) {
+                System.out.println("problemas para popular tabela...");
+                System.out.println(e);
+            }
+
+            jtbOS.setModel(new DefaultTableModel(dadosTabela, cabecalhos) {
+
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+                // permite seleção de apenas uma linha da tabela
+            });
+
+            // permite seleção de apenas uma linha da tabela
+            jtbOS.setSelectionMode(0);
+
+            // redimensiona as colunas de uma tabela
+            TableColumn column = null;
+            for (int i = 0; i < 3; i++) {
+                column = jtbOS.getColumnModel().getColumn(i);
+                switch (i) {
+                    case 0:
+                        column.setPreferredWidth(80);
+                        break;
+                    case 1:
+                        column.setPreferredWidth(150);
+                        break;
+                    case 2:
+                        column.setPreferredWidth(150);
+                        break;
+                }
+            }
+
+            jtbOS.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value,
+                        boolean isSelected, boolean hasFocus, int row, int column) {
+                    super.getTableCellRendererComponent(table, value, isSelected,
+                            hasFocus, row, column);
+                    if (row % 2 == 0) {
+                        setBackground(Color.LIGHT_GRAY);
+                    } else {
+                        setBackground(Color.WHITE);
+                    }
+                    return this;
+                }
+            });
+            //return (true);
+
+        } catch (Exception ex) {
+            System.out.println("Erro: " + ex.getMessage().toString());
+        }
+
+    }
     public Ordem_Servico buscar(int id) {
         try {
             ConnectionFactory.abreConexao();
@@ -103,7 +202,8 @@ public class OSController {
             return true;
 
         } catch (SQLException ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Não é possivel inserir esta ordem de serviço", "ERRO de SQL: " + ex.toString(), 'e');
+            //CaixaDeDialogo.obterinstancia().exibirMensagem("Não é possivel inserir esta ordem de serviço", " " + ex.toString(), 'e');
+            System.out.println("Erro: " +ex.toString());
             return false;
         } finally {
 
