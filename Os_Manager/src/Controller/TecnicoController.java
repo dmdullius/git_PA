@@ -19,7 +19,7 @@ import java.sql.SQLException;
  */
 public class TecnicoController {
 
-    Tecnico objTecnico;
+    Tecnico objTecnico = null;
 
     public TecnicoController(Tecnico objTecnico) {
         this.objTecnico = objTecnico;

@@ -84,7 +84,7 @@ public void PreencheOS() {
 
             // redimensiona as colunas de uma tabela
             TableColumn column = null;
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 4; i++) {
                 column = jtbOS.getColumnModel().getColumn(i);
                 switch (i) {
                     case 0:
