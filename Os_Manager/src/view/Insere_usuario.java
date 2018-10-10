@@ -6,7 +6,10 @@
 package view;
 
 import Model.*;
-import controller.*;
+import Controler.UsuarioController;
+
+import ferramentas.CaixaDeDialogo;
+import ferramentas.Combos;
 
 /**
  *
@@ -18,11 +21,35 @@ public class Insere_usuario extends javax.swing.JFrame {
      * Creates new form Insere_usuario
      *
      */
+    Usuario objUsuario;
+    Combos cbUsuario;
+
     public Insere_usuario() {
         initComponents();
         this.setLocationRelativeTo(null);
 
-      
+        try {
+            //carrega o tipo de usuario
+            cbUsuario = new Combos(jcbUsuario);
+            cbUsuario.PreencheCombo("SELECT codigo, descricao FROM tipo_usuario ORDER BY codigo");
+
+            limparTela();
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
+        }
+
+    }
+
+    private void limparTela() {
+        try {
+            nome.setText("");
+            login.setText("");
+            senha.setText("");
+            cbUsuario.SetaComboBox("");
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+        }
+
     }
 
     /**
@@ -42,6 +69,7 @@ public class Insere_usuario extends javax.swing.JFrame {
         incui = new javax.swing.JButton();
         limpa = new javax.swing.JButton();
         senha = new javax.swing.JTextField();
+        jcbUsuario = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         volta = new javax.swing.JMenuItem();
@@ -67,6 +95,13 @@ public class Insere_usuario extends javax.swing.JFrame {
         limpa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 limpaActionPerformed(evt);
+            }
+        });
+
+        jcbUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbUsuarioActionPerformed(evt);
             }
         });
 
@@ -106,7 +141,7 @@ public class Insere_usuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,13 +150,17 @@ public class Insere_usuario extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                             .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                            .addComponent(senha))
-                        .addContainerGap(120, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(senha)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
                         .addComponent(incui, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(limpa, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(112, 112, 112))))
+                        .addGap(26, 26, 26)
+                        .addComponent(limpa, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(89, Short.MAX_VALUE)
+                .addComponent(jcbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,25 +177,33 @@ public class Insere_usuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addComponent(jcbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(incui, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(limpa, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69))
+                .addGap(37, 37, 37))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void incuiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incuiActionPerformed
-Usuario objUsuario = new Usuario();
-       
-        
- UsuarioController userCon = new UsuarioController(objUsuario, null);
-        objUsuario.setLogin(login.getText());
-        objUsuario.setNome(nome.getText());
-        objUsuario.setSenha(senha.getText());
-      userCon.incluir();
+        Usuario objUsuario = new Usuario();
+        try {
+            UsuarioController userCon = new UsuarioController(objUsuario, null);
+            objUsuario.setLogin(login.getText());
+            objUsuario.setNome(nome.getText());
+            objUsuario.setSenha(senha.getText());
+            userCon.incluir();
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
+        }finally{
+        Insere_tecnico tela = new Insere_tecnico();
+        tela.setVisible(true);
+        this.setVisible(false);
+    }
     }//GEN-LAST:event_incuiActionPerformed
 
     private void fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaActionPerformed
@@ -174,6 +221,10 @@ Usuario objUsuario = new Usuario();
         login.setText(null);
         senha.setText(null);
     }//GEN-LAST:event_limpaActionPerformed
+
+    private void jcbUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,6 +270,7 @@ Usuario objUsuario = new Usuario();
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JComboBox<String> jcbUsuario;
     private javax.swing.JButton limpa;
     private javax.swing.JTextField login;
     private javax.swing.JTextField nome;
