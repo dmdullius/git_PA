@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package Controller_novo;
 
 import ferramentas.ConnectionFactory;
 import java.sql.Connection;
@@ -32,9 +32,9 @@ public class LoginController {
         comandoSQL.append(" AND senha = '"+ senha +"'");
 
         try {
-            System.out.println("Vai Executar Conexão em buscar area");
+            System.out.println("Vai Executar Conexão em  buscar usuario");
             rs = ConnectionFactory.stmt.executeQuery(comandoSQL.toString());
-            System.out.println("Executou Conexão em buscar area");
+            System.out.println("Executou Conexão em buscar usuario");
             
             if (rs.next() == true) {
                 user = new Usuario();

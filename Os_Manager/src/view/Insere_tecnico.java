@@ -5,7 +5,7 @@
  */
 package view;
 
-import Controller.TecnicoController;
+import Controller_novo.TecnicoController;
 import Model.Tecnico;
 
 /**

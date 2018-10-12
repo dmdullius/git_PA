@@ -5,7 +5,7 @@
  */
 package view;
 
-import Controller.OSController;
+import Controller_novo.OSController;
 import Model.Ordem_Servico;
 import ferramentas.*;
 import javax.swing.JTable;

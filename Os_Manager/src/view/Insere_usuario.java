@@ -5,8 +5,9 @@
  */
 package view;
 
+import Controller_novo.UsuarioController;
 import Model.*;
-import Controler.UsuarioController;
+
 
 import ferramentas.CaixaDeDialogo;
 import ferramentas.Combos;
@@ -21,7 +22,7 @@ public class Insere_usuario extends javax.swing.JFrame {
      * Creates new form Insere_usuario
      *
      */
-    Usuario objUsuario;
+   
     Combos cbUsuario;
 
     public Insere_usuario() {
@@ -33,24 +34,15 @@ public class Insere_usuario extends javax.swing.JFrame {
             cbUsuario = new Combos(jcbUsuario);
             cbUsuario.PreencheCombo("SELECT codigo, descricao FROM tipo_usuario ORDER BY codigo");
 
-            limparTela();
+            
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
         }
 
     }
 
-    private void limparTela() {
-        try {
-            nome.setText("");
-            login.setText("");
-            senha.setText("");
-            cbUsuario.SetaComboBox("");
-        } catch (Exception ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
-        }
-
-    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -192,11 +184,11 @@ public class Insere_usuario extends javax.swing.JFrame {
     private void incuiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incuiActionPerformed
         Usuario objUsuario = new Usuario();
         try {
-            UsuarioController userCon = new UsuarioController(objUsuario, null);
+            UsuarioController usercon = new UsuarioController(objUsuario, null);
             objUsuario.setLogin(login.getText());
             objUsuario.setNome(nome.getText());
             objUsuario.setSenha(senha.getText());
-            userCon.incluir();
+            usercon.incluir();
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
         }finally{
@@ -279,3 +271,4 @@ public class Insere_usuario extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 }
+

@@ -2,8 +2,8 @@ package view;
 
 import Model.Usuario;
 import ferramentas.CaixaDeDialogo;
-import controller.LoginController;
-import controller.LoginController;
+import Controller_novo.LoginController;
+import Controller_novo.LoginController;
 import java.sql.SQLException;
 import ferramentas.ConnectionFactory;
 import static ferramentas.ConnectionFactory.con;
