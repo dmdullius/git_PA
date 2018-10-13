@@ -5,10 +5,11 @@
  */
 package view;
 
-import Controller_novo.OSController;
+import Controller.OSController;
 import Model.Ordem_Servico;
 import ferramentas.CaixaDeDialogo;
 import ferramentas.Combos;
+import java.sql.PreparedStatement;
 import javax.swing.JComboBox;
 
 /**
@@ -20,6 +21,7 @@ public class OS extends javax.swing.JFrame {
     /**
      * Creates new form OS
      */
+    Ordem_Servico objOS;
     Combos cbOS;
     Combos cbTipo_problema;
     Combos cbTecnicos;
@@ -90,6 +92,11 @@ public class OS extends javax.swing.JFrame {
         jcbOS_tp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jcbOS_tecnicos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbOS_tecnicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbOS_tecnicosActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Descreva de forma clara sua dificuldade:");
 
@@ -120,7 +127,12 @@ public class OS extends javax.swing.JFrame {
 
         jLabel5.setText("Código: ");
 
-        codigo.setText(null);
+        codigo.setEnabled(false);
+        codigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codigoActionPerformed(evt);
+            }
+        });
 
         jcbOS_nu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -159,7 +171,7 @@ public class OS extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(codigo, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)))
+                        .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -222,6 +234,14 @@ ValidacaoOS tela = new ValidacaoOS();
         tela_s.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_cancelaActionPerformed
+
+    private void jcbOS_tecnicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbOS_tecnicosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbOS_tecnicosActionPerformed
+
+    private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
+     
+    }//GEN-LAST:event_codigoActionPerformed
 
     /**
      * @param args the command line arguments

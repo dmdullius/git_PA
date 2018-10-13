@@ -5,21 +5,23 @@
  */
 package view;
 
-import Controller_novo.OSController;
+import Controller.OSController;
 import Model.Ordem_Servico;
 import ferramentas.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 
-/**
- *
- * @author jonasdhein
- */
+
 public class ValidacaoOS extends javax.swing.JFrame {
 
     /**
      * Creates new form ViewAlunos
      */
-    Combos cbCurso;
+    Combos cbOS;
     Ordem_Servico objOS;
 
     public ValidacaoOS() {
@@ -30,8 +32,8 @@ public class ValidacaoOS extends javax.swing.JFrame {
             atualizarTabela();
 
             //carregar os cursos existentes
-            cbCurso = new Combos(jcbCurso);
-            cbCurso.PreencheCombo("SELECT ordem_servico.tecnicos_codigo, nome FROM tecnicos ORDER BY nome");
+            cbOS = new Combos(jcbOS_tecnicos);
+            cbOS.PreencheCombo("SELECT codigo, nome FROM tecnicos ORDER BY nome");
 
             limparTela();
 
@@ -58,8 +60,8 @@ public class ValidacaoOS extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtMatricula = new javax.swing.JFormattedTextField();
-        jcbCurso = new javax.swing.JComboBox<>();
+        codigo = new javax.swing.JFormattedTextField();
+        jcbOS_tecnicos = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtbAlunos = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
@@ -90,21 +92,18 @@ public class ValidacaoOS extends javax.swing.JFrame {
 
         jLabel1.setText("finalizado");
 
-        jLabel2.setText("Pemdente");
+        jLabel2.setText("Pendente");
 
         jLabel3.setText("Técnico");
 
         jLabel4.setText("Codigo");
 
-        jcbCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbCurso.addItemListener(new java.awt.event.ItemListener() {
+        codigo.setEnabled(false);
+
+        jcbOS_tecnicos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbOS_tecnicos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcbCursoItemStateChanged(evt);
-            }
-        });
-        jcbCurso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbCursoActionPerformed(evt);
+                jcbOS_tecnicosItemStateChanged(evt);
             }
         });
 
@@ -171,32 +170,34 @@ public class ValidacaoOS extends javax.swing.JFrame {
                         .addComponent(jLabel5))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jcbCurso, 0, 185, Short.MAX_VALUE)
-                            .addComponent(txtEmail)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnIncluir)
-                                .addGap(44, 44, 44)
-                                .addComponent(btnAlterar)
-                                .addGap(30, 30, 30)
-                                .addComponent(btnExcluir)
-                                .addGap(29, 29, 29)
+                                .addComponent(btnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)
+                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
                                 .addComponent(btnLimpar))
-                            .addComponent(jLabel6))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jcbOS_tecnicos, 0, 185, Short.MAX_VALUE)
+                                    .addComponent(txtEmail))))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +207,7 @@ public class ValidacaoOS extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -220,7 +221,7 @@ public class ValidacaoOS extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcbCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jcbOS_tecnicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -276,14 +277,14 @@ public class ValidacaoOS extends javax.swing.JFrame {
         try {
             Ordem_Servico objOS = new Ordem_Servico();
 
-            objOS.setCodigo(Integer.parseInt(txtMatricula.getText()));
+            objOS.setCodigo(Integer.parseInt(codigo.getText()));
             objOS.setDescricao(txtNome.getText());
 
             //AJUSTA A DATA PARA ANO-MES-DIA PARA GRAVAR NO BANCO
             //String dataFormatada = Formatacao.ajustaDataAMD(txtDataNascimento.getText());
             //objAluno.setDat_nasc(dataFormatada);
             //RECUPERANDO O CODIGO DO CURSO DO JCOMBOBOX
-            Combos c = (Combos) jcbCurso.getSelectedItem();
+            Combos c = (Combos) jcbOS_tecnicos.getSelectedItem();
             String codigo = c.getCodigo();
             objOS.setCodigo(Integer.parseInt(codigo));
 
@@ -317,10 +318,10 @@ public class ValidacaoOS extends javax.swing.JFrame {
             //LIMPAR OS CAMPOS DA TELA
             //LIBERAR O CAMPO MATRICULA
 
-            txtMatricula.setText("");
+            codigo.setText("");
             txtNome.setText("");
             txtEmail.setText("");
-            cbCurso.SetaComboBox("");
+            cbOS.SetaComboBox("");
 
             
             atualizarTabela();
@@ -382,19 +383,19 @@ public class ValidacaoOS extends javax.swing.JFrame {
         limparTela();
     }//GEN-LAST:event_btnLimparActionPerformed
 
-    private void jcbCursoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbCursoItemStateChanged
+    private void jcbOS_tecnicosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbOS_tecnicosItemStateChanged
         try {
-            Combos c = (Combos) jcbCurso.getSelectedItem();
+            Combos c = (Combos) jcbOS_tecnicos.getSelectedItem();
             String codigoCurso = c.getCodigo();
 
         } catch (Exception ex) {
 
         }
-    }//GEN-LAST:event_jcbCursoItemStateChanged
+    }//GEN-LAST:event_jcbOS_tecnicosItemStateChanged
 
-    private void jcbCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCursoActionPerformed
+    private void jcbOS_tecnicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbOS_tecnicosActionPerformed
         
-    }//GEN-LAST:event_jcbCursoActionPerformed
+    }//GEN-LAST:event_jcbOS_tecnicosActionPerformed
 
     /*private void preencheCampos() {
         try {
@@ -402,16 +403,13 @@ public class ValidacaoOS extends javax.swing.JFrame {
             txtNome.setText(objAluno.getNom_aluno());
             txtEmail.setText(objAluno.getEmail());
             cbCurso.SetaComboBox(String.valueOf(objAluno.getCod_curso()));
-
             //Ajusta a data para DIA/MES/ANO
             String dataFormatada = Formatacao.ajustaDataDMA(objAluno.getDat_nasc());
             txtDataNascimento.setText(dataFormatada);
-
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
         }
     }
-
     /**
      * @param args the command line arguments
      */
@@ -455,6 +453,7 @@ public class ValidacaoOS extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnIncluir;
     private javax.swing.JButton btnLimpar;
+    private javax.swing.JFormattedTextField codigo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -466,10 +465,12 @@ public class ValidacaoOS extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JComboBox<String> jcbCurso;
+    private javax.swing.JComboBox<String> jcbOS_tecnicos;
     private javax.swing.JTable jtbAlunos;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JFormattedTextField txtMatricula;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
+
+
+

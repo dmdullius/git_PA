@@ -5,7 +5,7 @@
  */
 package view;
 
-import Controller_novo.UsuarioController;
+import Controller.UsuarioController;
 import Model.*;
 
 

@@ -7,10 +7,12 @@ package Controller;
 
 import Model.Ordem_Servico;
 import ferramentas.*;
+import static ferramentas.ConnectionFactory.con;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.*;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -51,7 +53,7 @@ public void PreencheOS() {
                 String SQL = "";
                 SQL = " SELECT codigo, t.nome, descricao, pendente, finalizado ";
                 SQL += " FROM ordem_servico a, tecnicos t ";
-                SQL += " WHERE a.tecnicos_codigo = t.codigo ";
+                SQL += " WHERE a.codigo =  "+objOS.getCodigo();
                 SQL += " ORDER BY codigo ";
 
                 result = ConnectionFactory.stmt.executeQuery(SQL);
@@ -159,6 +161,42 @@ public void PreencheOS() {
         CaixaDeDialogo.obterinstancia().exibirMensagem("existem chamados abertos para este tecnico: ", " Pesquisa de chamados", 'i');
         return objOS;
     }
+    
+        public Ordem_Servico Mostrar_Codigo(int id) {
+        try {
+            ConnectionFactory.abreConexao();
+            ResultSet rs = null;
+            id = objOS.getCodigo();
+            String SQL = "";
+            SQL = " SELECT codigo ";
+            SQL += " FROM ordem_servico";
+                        //stm.executeQuery(SQL);
+
+            try {
+                System.out.println("Vai Executar Conexão em buscar visitante");
+                rs = ConnectionFactory.stmt.executeQuery(SQL);
+                System.out.println("Executou Conexão em buscar aluno");
+
+                objOS = new Ordem_Servico();
+
+                if (rs.next() == true) {
+                    objOS.setCodigo(rs.getInt(1));
+                    
+
+                }
+            } catch (SQLException ex) {
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Sua pesquisa não retornou resultados validos", "Erro de SQL: " + ex.toString(), 'e');
+                return null;
+            }
+
+        } catch (Exception e) {
+            System.out.println("ERRO: " + e.getMessage().toString());
+            return null;
+        }
+
+        CaixaDeDialogo.obterinstancia().exibirMensagem("existem chamados abertos para este tecnico: ", " Pesquisa de chamados", 'i');
+        return objOS;
+    }
 
     public boolean alterar() {
 
@@ -237,5 +275,6 @@ public void PreencheOS() {
         }
 
     }
-
+    
+    
 }
