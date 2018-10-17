@@ -46,7 +46,8 @@ public class Sistema extends javax.swing.JFrame {
 
         jMenu1.setText("Cadastros");
 
-        menuProfessores.setText("Alunos");
+        menuProfessores.setIcon(new javax.swing.ImageIcon("C:\\Users\\dmdullius\\Downloads\\user-silhouette.png")); // NOI18N
+        menuProfessores.setText("incluir Técnico");
         menuProfessores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuProfessoresActionPerformed(evt);
@@ -54,7 +55,8 @@ public class Sistema extends javax.swing.JFrame {
         });
         jMenu1.add(menuProfessores);
 
-        jMenuItem2.setText("incluir usuário");
+        jMenuItem2.setIcon(new javax.swing.ImageIcon("C:\\Users\\dmdullius\\Downloads\\user-silhouette.png")); // NOI18N
+        jMenuItem2.setText("incluir Usuário");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -92,11 +94,6 @@ public class Sistema extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuProfessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProfessoresActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_menuProfessoresActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
  System.exit(0);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -105,8 +102,13 @@ public class Sistema extends javax.swing.JFrame {
         Insere_usuario tela2 = new Insere_usuario();
         tela2.setVisible(true);
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void menuProfessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProfessoresActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_menuProfessoresActionPerformed
 
     /**
      * @param args the command line arguments
