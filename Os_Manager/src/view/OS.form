@@ -23,48 +23,40 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="342" max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Component id="abre_chamado" min="-2" pref="131" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Component id="limpa" min="-2" pref="144" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Component id="cancela" pref="139" max="32767" attributes="0"/>
+              <Component id="cancela" pref="223" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
           <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jcbOS_tecnicos" pref="102" max="32767" attributes="0"/>
-                          <Component id="jcbOS_nu" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jcbOS_tp" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="codigo" min="-2" pref="53" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jcbOS_nu" pref="102" max="32767" attributes="0"/>
+                          <Component id="jcbOS_tecnicos" pref="102" max="32767" attributes="0"/>
+                          <Component id="jcbOS_tp" alignment="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -73,13 +65,13 @@
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="codigo" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="codigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
+                  <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -92,14 +84,14 @@
                   <Component id="jcbOS_tecnicos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                  <Component id="jcbOS_nu" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jcbOS_nu" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="133" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="91" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="limpa" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
@@ -116,11 +108,17 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/douglas/&#xc1;rea de Trabalho/icones_projeto_aula/problem.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Tipo de problema: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/douglas/&#xc1;rea de Trabalho/icones_projeto_aula/technical-support.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Tecnico(Opcional): "/>
       </Properties>
     </Component>
@@ -159,11 +157,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/douglas/&#xc1;rea de Trabalho/icones_projeto_aula/typing.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Descreva de forma clara sua dificuldade:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/douglas/&#xc1;rea de Trabalho/icones_projeto_aula/customer.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Nivel de Usu&#xe1;rio: "/>
       </Properties>
     </Component>
@@ -204,6 +208,9 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/douglas/&#xc1;rea de Trabalho/icones_projeto_aula/key.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="C&#xf3;digo: "/>
       </Properties>
     </Component>
@@ -229,6 +236,16 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/view/back-button.png"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

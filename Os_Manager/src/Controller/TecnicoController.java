@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controler;
+package Controller;
 
 import Model.Tecnico;
 import ferramentas.CaixaDeDialogo;
@@ -50,7 +50,7 @@ public class TecnicoController {
                     objTecnico.setCPF(rs.getString(3));
                     objTecnico.setData_nasc(rs.getString(4));
                     objTecnico.setRua(rs.getString(5));
-                    objTecnico.setNumero(rs.getInt(6));
+                    objTecnico.setNumero(String.valueOf(rs.getInt(6)));
                     objTecnico.setBairro(rs.getString(8));
                     objTecnico.setBairro(rs.getString(7));
                     objTecnico.setTelefone(rs.getString(9));
@@ -84,7 +84,7 @@ public class TecnicoController {
             stmt.setString(2, objTecnico.getRG());
             stmt.setString(3, objTecnico.getData_nasc());
             stmt.setString(4, objTecnico.getRua());
-            stmt.setInt(8, objTecnico.getNumero());
+            stmt.setInt(8, Integer.parseInt(objTecnico.getNumero()));
             stmt.setString(9, objTecnico.getBairro());
             stmt.setString(10, objTecnico.getTelefone());
             stmt.setString(11, objTecnico.getEmail());
@@ -111,15 +111,15 @@ public class TecnicoController {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("INSERT INTO tecnicos (nome, rg, cpf, data_nasc, rua, numero, bairro, cidade, telefone, celular, email)VALUES(?,?,?,?,?,?,?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO tecnicos (nome, rg, cpf, data_nasc, rua, numero, bairro, cidade_codigo, telefone, celular, email)VALUES(?,?,?,?,?,?,?,?,?,?)");
             stmt.setString(1, objTecnico.getNome());
             stmt.setString(2, objTecnico.getRG());
             stmt.setString(3, objTecnico.getCPF());
             stmt.setString(4, objTecnico.getData_nasc());
             stmt.setString(5, objTecnico.getRua());
-            stmt.setInt(6, objTecnico.getNumero());
+            stmt.setInt(6, Integer.parseInt(objTecnico.getNumero()));
             stmt.setString(7, objTecnico.getBairro());
-            stmt.setString(8, objTecnico.getCidade());
+            stmt.setInt(8, objTecnico.getCidade());
             stmt.setString(8, objTecnico.getTelefone());
             stmt.setString(9, objTecnico.getCelular());
             stmt.setString(10, objTecnico.getEmail());
@@ -147,10 +147,7 @@ public class TecnicoController {
 
         try {
             stmt = con.prepareStatement("DELETE tecnicos WHERE nome='" + id + "'");
-            //stmt = con.prepareStatement("UPDATE aluno SET dataExclusao=? WHERE mat_alu=?");
-            //stmt.setString(1, objAluno.getDataExclusao());
             stmt.setString(1, objTecnico.getNome());
-
             stmt.executeUpdate();
             CaixaDeDialogo.obterinstancia().exibirMensagem("O Técnico foi excluido", "Cadastro de Técnicos: ", 'i');
             return true;

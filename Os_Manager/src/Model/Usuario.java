@@ -1,12 +1,12 @@
 package Model;
 
 public class Usuario {
-   
+
     private String nome;
     private String login;
     private String senha;
-    Usuario objusuario ;
-    
+    private int tipo;
+    Usuario objusuario;
 
     public String getNome() {
         return nome;
@@ -31,7 +31,17 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-}
 
- 
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+   
+
+    
+
+}

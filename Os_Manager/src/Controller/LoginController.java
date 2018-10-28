@@ -32,9 +32,9 @@ public class LoginController {
         comandoSQL.append(" AND senha = '"+ senha +"'");
 
         try {
-            System.out.println("Vai Executar Conexão em  buscar usuario");
+            System.out.println("Vai Executar Conexão em buscar area");
             rs = ConnectionFactory.stmt.executeQuery(comandoSQL.toString());
-            System.out.println("Executou Conexão em buscar usuario");
+            System.out.println("Executou Conexão em buscar area");
             
             if (rs.next() == true) {
                 user = new Usuario();

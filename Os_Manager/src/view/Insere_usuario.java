@@ -8,9 +8,9 @@ package view;
 import Controller.UsuarioController;
 import Model.*;
 
-
 import ferramentas.CaixaDeDialogo;
 import ferramentas.Combos;
+import java.lang.Integer;
 
 /**
  *
@@ -22,7 +22,6 @@ public class Insere_usuario extends javax.swing.JFrame {
      * Creates new form Insere_usuario
      *
      */
-   
     Combos cbUsuario;
 
     public Insere_usuario() {
@@ -34,15 +33,11 @@ public class Insere_usuario extends javax.swing.JFrame {
             cbUsuario = new Combos(jcbUsuario);
             cbUsuario.PreencheCombo("SELECT codigo, descricao FROM tipo_usuario ORDER BY codigo");
 
-            
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
         }
 
     }
-
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -188,14 +183,18 @@ public class Insere_usuario extends javax.swing.JFrame {
             objUsuario.setLogin(login.getText());
             objUsuario.setNome(nome.getText());
             objUsuario.setSenha(senha.getText());
-            usercon.incluir();
+            objUsuario.setTipo( jcbUsuario.getSelectedIndex());
+             usercon.incluir();
+            Insere_tecnico tela = new Insere_tecnico();
+            tela.setVisible(true);
+            this.setVisible(false);
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
-        }finally{
-        Insere_tecnico tela = new Insere_tecnico();
-        tela.setVisible(true);
-        this.setVisible(false);
-    }
+        } finally {
+            
+        }
+ 
+    
     }//GEN-LAST:event_incuiActionPerformed
 
     private void fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaActionPerformed
@@ -212,6 +211,8 @@ public class Insere_usuario extends javax.swing.JFrame {
         nome.setText(null);
         login.setText(null);
         senha.setText(null);
+        cbUsuario.SetaComboBox("");
+
     }//GEN-LAST:event_limpaActionPerformed
 
     private void jcbUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbUsuarioActionPerformed
@@ -271,4 +272,3 @@ public class Insere_usuario extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 }
-

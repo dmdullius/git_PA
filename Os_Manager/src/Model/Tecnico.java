@@ -26,9 +26,9 @@ public class Tecnico {
     
     private String Rua;
     
-    private int numero;
-        
-    private String Cidade;
+    private String numero;
+          
+    private int Cidade;
     
     private String bairro;
     
@@ -92,11 +92,11 @@ public class Tecnico {
         return Rua;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -106,11 +106,11 @@ public class Tecnico {
         this.Rua = Rua;
     }
 
-    public String getCidade() {
+    public int getCidade() {
         return Cidade;
     }
 
-    public void setCidade(String Cidade) {
+    public void setCidade(int Cidade) {
         this.Cidade = Cidade;
     }
 

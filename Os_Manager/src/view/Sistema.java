@@ -30,53 +30,114 @@ public class Sistema extends javax.swing.JFrame {
 
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jButton1 = new javax.swing.JButton();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        Seleciona_tec = new javax.swing.JButton();
+        Seleciona_u = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        Seleciona_tec1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        menuProfessores = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        Sair = new javax.swing.JMenu();
+        Fechar = new javax.swing.JMenuItem();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
 
         jButton1.setText("jButton1");
 
-        jMenu1.setText("Cadastros");
+        jInternalFrame1.setTitle("Selecione seu perfil de acesso");
+        jInternalFrame1.setFrameIcon(new javax.swing.ImageIcon("/home/douglas/Área de Trabalho/icones_projeto_aula/key.png")); // NOI18N
+        jInternalFrame1.setVisible(true);
 
-        menuProfessores.setIcon(new javax.swing.ImageIcon("C:\\Users\\dmdullius\\Downloads\\user-silhouette.png")); // NOI18N
-        menuProfessores.setText("incluir Técnico");
-        menuProfessores.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setIcon(new javax.swing.ImageIcon("/home/douglas/Área de Trabalho/icones_projeto_aula/call-center.png")); // NOI18N
+        jLabel1.setText("Técnico");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("/home/douglas/Área de Trabalho/icones_projeto_aula/avatar.png")); // NOI18N
+        jLabel2.setText(" Usuário");
+
+        Seleciona_tec.setIcon(new javax.swing.ImageIcon("/home/douglas/Área de Trabalho/icones_projeto_aula/tap.png")); // NOI18N
+        Seleciona_tec.setText("Selecionar");
+        Seleciona_tec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuProfessoresActionPerformed(evt);
+                Seleciona_tecActionPerformed(evt);
             }
         });
-        jMenu1.add(menuProfessores);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon("C:\\Users\\dmdullius\\Downloads\\user-silhouette.png")); // NOI18N
-        jMenuItem2.setText("incluir Usuário");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        Seleciona_u.setIcon(new javax.swing.ImageIcon("/home/douglas/Área de Trabalho/icones_projeto_aula/tap.png")); // NOI18N
+        Seleciona_u.setText("Selecionar");
+        Seleciona_u.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                Seleciona_uActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu1);
+        jLabel3.setIcon(new javax.swing.ImageIcon("/home/douglas/Área de Trabalho/icones_projeto_aula/admin-with-cogwheels.png")); // NOI18N
+        jLabel3.setText("Administrador");
 
-        jMenu3.setText("Sair");
-
-        jMenuItem1.setText("Fechar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        Seleciona_tec1.setIcon(new javax.swing.ImageIcon("/home/douglas/Área de Trabalho/icones_projeto_aula/tap.png")); // NOI18N
+        Seleciona_tec1.setText("Selecionar");
+        Seleciona_tec1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                Seleciona_tec1ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem1);
 
-        jMenuBar1.add(jMenu3);
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Seleciona_tec1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Seleciona_tec, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seleciona_u, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Seleciona_tec, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seleciona_u, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seleciona_tec1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(144, Short.MAX_VALUE))
+        );
+
+        Sair.setText("Sair");
+
+        Fechar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        Fechar.setIcon(new javax.swing.ImageIcon("/home/douglas/Área de Trabalho/icones_projeto_aula/exit.png")); // NOI18N
+        Fechar.setText("Fechar");
+        Fechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FecharActionPerformed(evt);
+            }
+        });
+        Sair.add(Fechar);
+
+        jMenuBar1.add(Sair);
 
         setJMenuBar(jMenuBar1);
 
@@ -84,31 +145,37 @@ public class Sistema extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 618, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 418, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FecharActionPerformed
  System.exit(0);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_FecharActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        Insere_usuario tela2 = new Insere_usuario();
-        tela2.setVisible(true);
+    private void Seleciona_tecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seleciona_tecActionPerformed
+        ValidacaoOS tela = new ValidacaoOS();
+            tela.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_Seleciona_tecActionPerformed
+
+    private void Seleciona_uActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seleciona_uActionPerformed
+        OS tela = new OS();
+            tela.setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_Seleciona_uActionPerformed
+
+    private void Seleciona_tec1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seleciona_tec1ActionPerformed
+        Admin tela = new Admin();
+        tela.setVisible(true);
         this.setVisible(false);
-
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void menuProfessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProfessoresActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_menuProfessoresActionPerformed
+    }//GEN-LAST:event_Seleciona_tec1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,13 +220,17 @@ public class Sistema extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Fechar;
+    private javax.swing.JMenu Sair;
+    private javax.swing.JButton Seleciona_tec;
+    private javax.swing.JButton Seleciona_tec1;
+    private javax.swing.JButton Seleciona_u;
     private javax.swing.JButton jButton1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JMenuItem menuProfessores;
     // End of variables declaration//GEN-END:variables
 }
