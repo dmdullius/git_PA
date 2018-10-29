@@ -1,4 +1,3 @@
-
 package Controller;
 
 import ferramentas.ConnectionFactory;
@@ -21,22 +20,22 @@ import ferramentas.CaixaDeDialogo;
  * @author dmdullius
  */
 public class UsuarioController {
-    
+
     Usuario objUsuario;
     JTable jtbUsuarios = null;
-    
-    public UsuarioController (Usuario objUsuario, JTable jtbUsuarios) {
+
+    public UsuarioController(Usuario objUsuario, JTable jtbUsuarios) {
         this.objUsuario = objUsuario;
         this.jtbUsuarios = jtbUsuarios;
     }
+
     
-    
-    public boolean incluir(){
-        
+    public boolean incluir() {
+
         ConnectionFactory.abreConexao();
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
-        
+
         try {
             stmt = con.prepareStatement("INSERT INTO usuarios (nome, login, senha, codigo_tipo) VALUES (?,?,?,?)");
             stmt.setString(1, objUsuario.getNome());
@@ -44,18 +43,18 @@ public class UsuarioController {
             stmt.setString(3, objUsuario.getSenha());
             stmt.setInt(4, objUsuario.getTipo());
             stmt.executeUpdate();
-            
+
             return true;
-            
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return false;
-        }finally{
+        } finally {
             ConnectionFactory.closeConnection(con, stmt);
         }
-        
+
     }
-    
+
     public Usuario buscar(String id) {
         try {
             ConnectionFactory.abreConexao();
@@ -64,8 +63,6 @@ public class UsuarioController {
             String SQL = "";
             SQL = " SELECT codigo, nome, login, codigo_tipo ORDER BY codigo_tipo";
             SQL += " FROM usuarios";
-            
-           
 
             try {
                 System.out.println("Vai Executar Conexão em buscar usuário");
@@ -78,11 +75,10 @@ public class UsuarioController {
                     objUsuario.setNome(rs.getString(1));
                     objUsuario.setLogin(rs.getString(2));
                     objUsuario.setTipo(rs.getInt(3));
-                    
-                    
+
                 }
             } catch (SQLException ex) {
-                CaixaDeDialogo.obterinstancia().exibirMensagem("Sua pesquisa não retornou resultados validos", "Erro de SQL: "+ex.toString(), 'e');
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Sua pesquisa não retornou resultados validos", "Erro de SQL: " + ex.toString(), 'e');
                 return null;
             }
 
@@ -114,7 +110,7 @@ public class UsuarioController {
             return true;
 
         } catch (SQLException ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Impossivel alterar os dados do Usuário", "Erro de SQL: "+ex.toString(), 'e');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Impossivel alterar os dados do Usuário", "Erro de SQL: " + ex.toString(), 'e');
             return false;
         } finally {
             CaixaDeDialogo.obterinstancia().exibirMensagem("O cliente foi alterado", "Gerenciamento de usuários: ", 'i');
@@ -123,7 +119,6 @@ public class UsuarioController {
 
     }
 
- 
     public boolean excluir() {
         String id;
         id = objUsuario.getNome();
@@ -133,8 +128,7 @@ public class UsuarioController {
 
         try {
             stmt = con.prepareStatement("DELETE usuarios WHERE nome='" + id + "'");
-           
-            
+
             stmt.setString(1, objUsuario.getNome());
 
             stmt.executeUpdate();
@@ -142,7 +136,7 @@ public class UsuarioController {
             return true;
 
         } catch (SQLException ex) {
-           CaixaDeDialogo.obterinstancia().exibirMensagem("Não foi possivel excluir o cliente selecionado", "Erro de SQL:  "+ex.toString(), 'i');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Não foi possivel excluir o cliente selecionado", "Erro de SQL:  " + ex.toString(), 'i');
             return false;
         } finally {
             CaixaDeDialogo.obterinstancia().exibirMensagem("O usuário foi excluido", "Gerenciamneto de usuários: ", 'i');
@@ -151,8 +145,3 @@ public class UsuarioController {
 
     }
 }
-
-    
-
-    
-    

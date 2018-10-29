@@ -255,7 +255,6 @@ public class ValidacaoOS extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     private void atualizarTabela() {
         try {
             JTable jtbOS = null;
@@ -267,6 +266,7 @@ public class ValidacaoOS extends javax.swing.JFrame {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
         }
     }
+    
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         try {
