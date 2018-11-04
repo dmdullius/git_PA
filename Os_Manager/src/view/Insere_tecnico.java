@@ -13,6 +13,7 @@ import ferramentas.Formatacao;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Insere_tecnico extends javax.swing.JFrame {
 
     Combos cbEstados;
     Combos cbCidades;
+
     public Insere_tecnico() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -30,10 +32,13 @@ public class Insere_tecnico extends javax.swing.JFrame {
             cbEstados.PreencheCombo("SELECT codigo, estado, uf FROM estados ORDER BY codigo");
             cbCidades = new Combos(jcbCidades);
             cbCidades.PreencheCombo("SELECT codigo, cidade FROM cidades ORDER BY codigo");
+            AtualizarTabela();
         } catch (SQLException ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
         }
     }
+
+  
 
     private boolean validarDados() {
         try {
@@ -48,7 +53,18 @@ public class Insere_tecnico extends javax.swing.JFrame {
             return false;
         }
     }
+private void AtualizarTabela(){
+   try {
+            JTable jtblistaTecnico = null;
+            Tecnico objTecnico = new Tecnico();
+            TecnicoController objTeccon = new TecnicoController(objTecnico, null);
+             TecnicoController objTecCon = new TecnicoController(null, jtblistaTecnico);
+            objTeccon.PreencheLista();
 
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.toString());
+        }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -306,9 +322,9 @@ public class Insere_tecnico extends javax.swing.JFrame {
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(limpa, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inclui_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 17, Short.MAX_VALUE))
+                .addGap(0, 20, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Voltar");
@@ -369,7 +385,7 @@ public class Insere_tecnico extends javax.swing.JFrame {
 
     private void inclui_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inclui_usuarioActionPerformed
         Tecnico objTecnico = new Tecnico();
-        TecnicoController TecnicoCon = new TecnicoController(objTecnico);
+        TecnicoController TecnicoCon = new TecnicoController(objTecnico, null);
         objTecnico.setNome(Nome.getText());
         objTecnico.setData_nasc(Data_Nasc.getText());
         objTecnico.setRG(RG.getText());

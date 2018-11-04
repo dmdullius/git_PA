@@ -49,10 +49,10 @@ public void PreencheOS() {
             try {
 
                 String SQL = "";
-                SQL = " SELECT codigo, t.nome, descricao, pendente, finalizado ";
+                SQL = " SELECT t.nome, descricao, pendente, finalizado ";
                 SQL += " FROM ordem_servico a, tecnicos t ";
                 SQL += " WHERE a.tecnicos_codigo = t.codigo ";
-                SQL += " ORDER BY codigo ";
+                SQL += " ORDER BY nome ";
 
                 result = ConnectionFactory.stmt.executeQuery(SQL);
 
@@ -193,10 +193,13 @@ public void PreencheOS() {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("INSERT INTO ordem_servico (descricao, pendente, finalizado)VALUES(?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO ordem_servico (descricao, pendente, finalizado, tipo_problema_codigo, tecnicos_codigo, codigo_cidade)VALUES(?,?,?,?,?,?)");
             stmt.setString(1, objOS.getDescricao());
             stmt.setString(2, objOS.getFinalizado());
             stmt.setString(3, objOS.getPendente());
+            stmt.setInt(4, objOS.getTipo_problema());
+            stmt.setInt(5, objOS.getTecnico_codigo());
+            stmt.setInt(6, objOS.getCidade_codigo());
             stmt.executeUpdate();
             CaixaDeDialogo.obterinstancia().exibirMensagem("A ordem de serviço foi cadastrada", "Cadastro de Chamados: ", 'i');
             return true;

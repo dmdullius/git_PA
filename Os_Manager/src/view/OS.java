@@ -25,20 +25,23 @@ public class OS extends javax.swing.JFrame {
     Combos cbOS;
     Combos cbTipo_problema;
     Combos cbTecnicos;
+    Combos cbCidades;
+
     public OS() {
         initComponents();
         this.setLocationRelativeTo(null);
-         try {
+        try {
             //carrega o tipo de usuario
             cbOS = new Combos(jcbOS_nu);
             cbOS.PreencheCombo("SELECT codigo, descricao FROM tipo_usuario ORDER BY codigo");
-
+            cbCidades = new Combos(jcbCidades);
+            cbCidades.PreencheCombo("SELECT codigo, cidade FROM cidades ORDER BY codigo");
             cbTipo_problema = new Combos(jcbOS_tp);
             cbTipo_problema.PreencheCombo("SELECT codigo, descricao FROM tipo_problema ORDER BY codigo");
-            
+
             cbOS = new Combos(jcbOS_tecnicos);
             cbOS.PreencheCombo("SELECT codigo, nome FROM tecnicos ORDER BY codigo");
-            
+
             limparTela();
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
@@ -48,16 +51,12 @@ public class OS extends javax.swing.JFrame {
 
     private void limparTela() {
         try {
-            
+
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
         }
 
-    } 
-     
-        
-        
-    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -83,13 +82,13 @@ public class OS extends javax.swing.JFrame {
         codigo = new javax.swing.JTextField();
         jcbOS_nu = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jcbCidades = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/douglas/Área de Trabalho/icones_projeto_aula/problem.png")); // NOI18N
         jLabel1.setText("Tipo de problema: ");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("/home/douglas/Área de Trabalho/icones_projeto_aula/technical-support.png")); // NOI18N
         jLabel2.setText("Tecnico(Opcional): ");
 
         jcbOS_tp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -101,10 +100,8 @@ public class OS extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("/home/douglas/Área de Trabalho/icones_projeto_aula/typing.png")); // NOI18N
         jLabel3.setText("Descreva de forma clara sua dificuldade:");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("/home/douglas/Área de Trabalho/icones_projeto_aula/customer.png")); // NOI18N
         jLabel4.setText("Nivel de Usuário: ");
 
         abre_chamado.setText("Abrir Chamado");
@@ -130,7 +127,6 @@ public class OS extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(descricao);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("/home/douglas/Área de Trabalho/icones_projeto_aula/key.png")); // NOI18N
         jLabel5.setText("Código: ");
 
         codigo.setEnabled(false);
@@ -149,6 +145,15 @@ public class OS extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Cidade");
+
+        jcbCidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbCidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbCidadesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,24 +168,35 @@ public class OS extends javax.swing.JFrame {
                 .addGap(26, 26, 26))
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jcbOS_nu, 0, 102, Short.MAX_VALUE)
-                            .addComponent(jcbOS_tecnicos, 0, 102, Short.MAX_VALUE)
-                            .addComponent(jcbOS_tp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jcbCidades, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jcbOS_nu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jcbOS_tecnicos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jcbOS_tp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(415, 415, 415))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,12 +218,16 @@ public class OS extends javax.swing.JFrame {
                     .addComponent(jcbOS_tecnicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jcbCidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jcbOS_nu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                .addGap(41, 41, 41)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(limpa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,10 +251,13 @@ public class OS extends javax.swing.JFrame {
         objOS.setDescricao(descricao.getText());
         objOS.setPendente("sim");
         objOS.setFinalizado("nao");
+        objOS.setTipo_problema(jcbOS_tp.getSelectedIndex());
+        objOS.setTecnico_codigo(jcbOS_tecnicos.getSelectedIndex());
+        objOS.setCidade_codigo(jcbCidades.getSelectedIndex());
         objOScon.incluir();
-ValidacaoOS tela = new ValidacaoOS();
-            tela.setVisible(true);
-            this.setVisible(false);
+        ValidacaoOS tela = new ValidacaoOS();
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_abre_chamadoActionPerformed
 
     private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelaActionPerformed
@@ -248,14 +271,18 @@ ValidacaoOS tela = new ValidacaoOS();
     }//GEN-LAST:event_jcbOS_tecnicosActionPerformed
 
     private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
-     
+
     }//GEN-LAST:event_codigoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Sistema tela = new Sistema();
-            tela.setVisible(true);
-            this.setVisible(false);
+        Sistema tela = new Sistema();
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jcbCidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCidadesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbCidadesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,7 +330,9 @@ ValidacaoOS tela = new ValidacaoOS();
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> jcbCidades;
     private javax.swing.JComboBox<String> jcbOS_nu;
     private javax.swing.JComboBox<String> jcbOS_tecnicos;
     private javax.swing.JComboBox<String> jcbOS_tp;

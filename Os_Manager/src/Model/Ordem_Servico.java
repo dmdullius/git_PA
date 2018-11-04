@@ -19,6 +19,12 @@ public class Ordem_Servico {
     
     private int codigo;
 
+    private int  tipo_problema;
+       
+    private int tecnico_codigo;
+    
+    private int cidade_codigo;
+    
     public String getDescricao() {
         return descricao;
     }
@@ -50,5 +56,30 @@ public class Ordem_Servico {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
+    public int getTipo_problema() {
+        return tipo_problema;
+    }
+
+    public void setTipo_problema(int tipo_problema) {
+        this.tipo_problema = tipo_problema;
+    }
+
+    public int getTecnico_codigo() {
+        return tecnico_codigo;
+    }
+
+    public void setTecnico_codigo(int tecnico_codigo) {
+        this.tecnico_codigo = tecnico_codigo;
+    }
+
+    public int getCidade_codigo() {
+        return cidade_codigo;
+    }
+
+    public void setCidade_codigo(int cidade_codigo) {
+        this.cidade_codigo = cidade_codigo;
+    }
+
 
 }

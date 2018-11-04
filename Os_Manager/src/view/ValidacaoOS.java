@@ -31,7 +31,7 @@ public class ValidacaoOS extends javax.swing.JFrame {
             //carregar os alunos existentes
             atualizarTabela();
 
-            //carregar os cursos existentes
+            //carregar os técnicos existentes
             cbOS = new Combos(jcbOS_tecnicos);
             cbOS.PreencheCombo("SELECT codigo, nome FROM tecnicos ORDER BY nome");
 
