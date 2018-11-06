@@ -55,11 +55,11 @@ public class Insere_tecnico extends javax.swing.JFrame {
     }
 private void AtualizarTabela(){
    try {
-            JTable jtblistaTecnico = null;
+            
             Tecnico objTecnico = new Tecnico();
             TecnicoController objTeccon = new TecnicoController(objTecnico, null);
              TecnicoController objTecCon = new TecnicoController(null, jtblistaTecnico);
-            objTeccon.PreencheLista();
+            objTecCon.PreencheLista();
 
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.toString());
@@ -322,9 +322,9 @@ private void AtualizarTabela(){
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(limpa, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inclui_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addGap(0, 23, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Voltar");

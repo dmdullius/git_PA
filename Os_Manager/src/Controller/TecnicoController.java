@@ -188,7 +188,7 @@ public class TecnicoController {
                 String SQL = "";
                 SQL = " SELECT codigo, nome";
                 SQL += " FROM tecnicos";
-                SQL += " ORDER BY codigo ";
+                SQL += " ORDER BY nome";
 
                 result = ConnectionFactory.stmt.executeQuery(SQL);
 
