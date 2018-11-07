@@ -87,7 +87,7 @@ public class RelClientesView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        try{
+       /* try{
             Map<String,Object> parametros = new HashMap<String,Object>();
             String wDataInicio = Formatacao.ajustaDataAMD(txtDataInicio.getValue().toString());
             parametros.put("codigo", "3");   
@@ -104,7 +104,7 @@ public class RelClientesView extends javax.swing.JFrame {
             
         }catch(Exception ex){
             
-        }
+        }*/
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     /**
