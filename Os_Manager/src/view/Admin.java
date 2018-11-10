@@ -40,9 +40,7 @@ public class Admin extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        relview = new javax.swing.JMenuItem();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -106,24 +104,14 @@ public class Admin extends javax.swing.JFrame {
 
         jMenu3.setText("Relatorios");
 
-        jMenuItem1.setText("Usuários");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        relview.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
+        relview.setText("Gerar relatorios");
+        relview.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                relviewActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem1);
-
-        jMenuItem4.setText("Técnicos");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem4);
-
-        jMenuItem5.setText("OS");
-        jMenu3.add(jMenuItem5);
+        jMenu3.add(relview);
 
         jMenuBar1.add(jMenu3);
 
@@ -144,7 +132,7 @@ public class Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FecharActionPerformed
- System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_FecharActionPerformed
 
     private void MenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuUsuarioActionPerformed
@@ -155,8 +143,9 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuUsuarioActionPerformed
 
     private void menuTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTecnicoActionPerformed
-        // TODO add your handling code here:
-
+        Insere_tecnico tela = new Insere_tecnico();
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_menuTecnicoActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -165,13 +154,11 @@ public class Admin extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    private void relviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relviewActionPerformed
+        Relview tela = new Relview();
+        tela.setVisible(true);
+        this.setVisible(false);        
+    }//GEN-LAST:event_relviewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,12 +235,10 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JMenuItem menuTecnico;
+    private javax.swing.JMenuItem relview;
     // End of variables declaration//GEN-END:variables
 }

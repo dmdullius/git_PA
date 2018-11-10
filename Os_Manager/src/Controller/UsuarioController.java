@@ -22,11 +22,11 @@ import ferramentas.CaixaDeDialogo;
 public class UsuarioController {
 
     Usuario objUsuario;
-    JTable jtbUsuarios = null;
+    JTable jtblistaUsuario = null;
 
-    public UsuarioController(Usuario objUsuario, JTable jtbUsuarios) {
+    public UsuarioController(Usuario objUsuario, JTable jtblistaUsuario) {
         this.objUsuario = objUsuario;
-        this.jtbUsuarios = jtbUsuarios;
+        this.jtblistaUsuario = jtblistaUsuario;
     }
 
     
@@ -144,4 +144,93 @@ public class UsuarioController {
         }
 
     }
+    
+public void PreencheLista() {
+
+        try {
+
+            ConnectionFactory.abreConexao();
+
+            Vector<String> cabecalhos = new Vector<String>();
+            Vector dadosTabela = new Vector();
+            cabecalhos.add("Código");
+            cabecalhos.add("Nome");
+            cabecalhos.add("Login");
+
+            ResultSet result = null;
+
+            try {
+
+                String SQL = "";
+                SQL = " SELECT codigo, nome, login";
+                SQL += " FROM usuarios";
+                SQL += " ORDER BY nome";
+
+                result = ConnectionFactory.stmt.executeQuery(SQL);
+
+                while (result.next()) {
+                    Vector<Object> linha = new Vector<Object>();
+                    linha.add(result.getInt(1));
+                    linha.add(result.getString(2));
+                    linha.add(result.getString(3));
+                    dadosTabela.add(linha);
+                }
+
+            } catch (SQLException e) {
+                System.out.println("problemas para popular tabela...");
+                System.out.println(e);
+            }
+
+            jtblistaUsuario.setModel(new DefaultTableModel(dadosTabela, cabecalhos) {
+
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+                // permite seleção de apenas uma linha da tabela
+            });
+
+            // permite seleção de apenas uma linha da tabela
+            jtblistaUsuario.setSelectionMode(0);
+
+            // redimensiona as colunas de uma tabela
+            TableColumn column = null;
+            for (int i = 0; i < 4; i++) {
+                column = jtblistaUsuario.getColumnModel().getColumn(i);
+                switch (i) {
+                    case 0:
+                        column.setPreferredWidth(80);
+                        break;
+                    case 1:
+                        column.setPreferredWidth(150);
+                        break;
+                    case 2:
+                        column.setPreferredWidth(150);
+                        break;
+                }
+            }
+
+            jtblistaUsuario.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value,
+                        boolean isSelected, boolean hasFocus, int row, int column) {
+                    super.getTableCellRendererComponent(table, value, isSelected,
+                            hasFocus, row, column);
+                    if (row % 2 == 0) {
+                        setBackground(Color.LIGHT_GRAY);
+                    } else {
+                        setBackground(Color.WHITE);
+                    }
+                    return this;
+                }
+            });
+            //return (true);
+
+        } catch (Exception ex) {
+            System.out.println("Erro: " + ex.getMessage().toString());
+        }
+
+    }
 }
+

@@ -390,7 +390,7 @@ private void AtualizarTabela(){
         objTecnico.setData_nasc(Data_Nasc.getText());
         objTecnico.setRG(RG.getText());
         objTecnico.setCPF(CPF.getText());
-        objTecnico.setRua(Rua.getText());
+        objTecnico.setRua(Rua.getText().trim());
         objTecnico.setBairro(Bairro.getText());
         int valor = Integer.parseInt(Num.getText());
         objTecnico.setNumero(String.valueOf(valor));
