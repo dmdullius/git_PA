@@ -147,7 +147,7 @@ public ResultSet buscarRelatorio()
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("INSERT INTO tecnicos (nome, rg, cpf, data_nasc, rua, numero, bairro, cidade_codigo, telefone, celular, email)VALUES(?,?,?,?,?,?,?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO tecnicos (nome, rg, cpf, data_nasc, rua, numero, bairro, cidade_codigo, telefone, celular, email)VALUES(?,?,?,?,?,?,?,?,?,?,?)");
             stmt.setString(1, objTecnico.getNome());
             stmt.setString(2, objTecnico.getRG());
             stmt.setString(3, objTecnico.getCPF());
@@ -156,16 +156,16 @@ public ResultSet buscarRelatorio()
             stmt.setInt(6, Integer.parseInt(objTecnico.getNumero()));
             stmt.setString(7, objTecnico.getBairro());
             stmt.setInt(8, objTecnico.getCidade());
-            stmt.setString(8, objTecnico.getTelefone());
-            stmt.setString(9, objTecnico.getCelular());
-            stmt.setString(10, objTecnico.getEmail());
-
+            stmt.setString(9, objTecnico.getTelefone());
+            stmt.setString(10, objTecnico.getCelular());
+            stmt.setString(11, objTecnico.getEmail());
+            
             stmt.executeUpdate();
             CaixaDeDialogo.obterinstancia().exibirMensagem("O Técnico foi cadastrado", "Cadastro de Técnicos: ", 'i');
             return true;
 
         } catch (SQLException ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Não é possivel inserir este Técnico", "ERRO de SQL: " + ex.toString(), 'e');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Não é possivel inserir este Técnico, causa:  "+ex.toString(), "ERRO de SQL: ", 'e');
             return false;
         } finally {
 
