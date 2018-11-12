@@ -38,8 +38,6 @@ public class Insere_tecnico extends javax.swing.JFrame {
         }
     }
 
-  
-
     private boolean validarDados() {
         try {
             Formatacao.colocaMascara(Data_Nasc, "##/##/####");
@@ -53,18 +51,20 @@ public class Insere_tecnico extends javax.swing.JFrame {
             return false;
         }
     }
-private void AtualizarTabela(){
-   try {
-            
+
+    private void AtualizarTabela() {
+        try {
+
             Tecnico objTecnico = new Tecnico();
             TecnicoController objTeccon = new TecnicoController(objTecnico, null);
-             TecnicoController objTecCon = new TecnicoController(null, jtblistaTecnico);
+            TecnicoController objTecCon = new TecnicoController(null, jtblistaTecnico);
             objTecCon.PreencheLista();
 
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.toString());
         }
-}
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -396,7 +396,7 @@ private void AtualizarTabela(){
         objTecnico.setNumero(String.valueOf(valor));
         objTecnico.setCidade(jcbCidades.getSelectedIndex());
         TecnicoCon.incluir();
-
+        AtualizarTabela();
     }//GEN-LAST:event_inclui_usuarioActionPerformed
 
     private void TelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefoneActionPerformed

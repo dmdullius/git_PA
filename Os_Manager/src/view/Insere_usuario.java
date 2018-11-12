@@ -226,7 +226,7 @@ private void AtualizarTabela(){
             objUsuario.setSenha(senha.getText());
             objUsuario.setTipo(jcbUsuario.getSelectedIndex());
             usercon.incluir();
-
+AtualizarTabela();
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
         } finally {
