@@ -23,10 +23,11 @@ public class UsuarioController {
 
     Usuario objUsuario;
     JTable jtblistaUsuario = null;
-
+    JTable jtblistaUsuariodel = null;
     public UsuarioController(Usuario objUsuario, JTable jtblistaUsuario) {
         this.objUsuario = objUsuario;
         this.jtblistaUsuario = jtblistaUsuario;
+        this.jtblistaUsuariodel = jtblistaUsuariodel;
     }
 
     
@@ -120,26 +121,26 @@ public class UsuarioController {
     }
 
     public boolean excluir() {
-        String id;
-        id = objUsuario.getNome();
+        int id;
+      id = objUsuario.getCodigo();
         ConnectionFactory.abreConexao();
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("DELETE usuarios WHERE nome='" + id + "'");
+            stmt = con.prepareStatement("DELETE usuarios WHERE codigo='" + id + "'");
 
-            stmt.setString(1, objUsuario.getNome());
+            stmt.setInt(1, objUsuario.getCodigo());
 
             stmt.executeUpdate();
 
             return true;
 
         } catch (SQLException ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Não foi possivel excluir o cliente selecionado", "Erro de SQL:  " + ex.toString(), 'i');
+            
             return false;
         } finally {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("O usuário foi excluido", "Gerenciamneto de usuários: ", 'i');
+            
             ConnectionFactory.closeConnection(con, stmt);
         }
 
@@ -156,13 +157,14 @@ public void PreencheLista() {
             cabecalhos.add("Código");
             cabecalhos.add("Nome");
             cabecalhos.add("Login");
+            cabecalhos.add("Tipo");
 
             ResultSet result = null;
 
             try {
 
                 String SQL = "";
-                SQL = " SELECT codigo, nome, login";
+                SQL = " SELECT codigo, nome, login, codigo_tipo";
                 SQL += " FROM usuarios";
                 SQL += " ORDER BY nome";
 
@@ -173,6 +175,7 @@ public void PreencheLista() {
                     linha.add(result.getInt(1));
                     linha.add(result.getString(2));
                     linha.add(result.getString(3));
+                    linha.add(result.getInt(4));
                     dadosTabela.add(linha);
                 }
 

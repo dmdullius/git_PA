@@ -6,6 +6,7 @@ public class Usuario {
     private String login;
     private String senha;
     private int tipo;
+    private int codigo;
     Usuario objusuario;
 
     public String getNome() {
@@ -38,6 +39,14 @@ public class Usuario {
 
     public void setTipo(int tipo) {
         this.tipo = tipo;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
    

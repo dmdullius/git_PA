@@ -71,7 +71,12 @@ public class Admin extends javax.swing.JFrame {
         jMenu1.add(MenuUsuario);
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
-        jMenuItem3.setText("Gerenciar Usuários");
+        jMenuItem3.setText("Abrir chamado");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
@@ -159,6 +164,12 @@ public class Admin extends javax.swing.JFrame {
         tela.setVisible(true);
         this.setVisible(false);        
     }//GEN-LAST:event_relviewActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        OS tela_OS = new OS();
+        tela_OS.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
