@@ -141,7 +141,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_FecharActionPerformed
 
     private void MenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuUsuarioActionPerformed
-        Insere_usuario tela2 = new Insere_usuario();
+        OS_View tela2 = new OS_View();
         tela2.setVisible(true);
         this.setVisible(false);
 

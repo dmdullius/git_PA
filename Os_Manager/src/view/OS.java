@@ -255,9 +255,7 @@ public class OS extends javax.swing.JFrame {
         objOS.setTecnico_codigo(jcbOS_tecnicos.getSelectedIndex());
         objOS.setCidade_codigo(jcbCidades.getSelectedIndex());
         objOScon.incluir();
-        ValidacaoOS tela = new ValidacaoOS();
-        tela.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_abre_chamadoActionPerformed
 
     private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelaActionPerformed
