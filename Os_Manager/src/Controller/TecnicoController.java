@@ -207,13 +207,17 @@ public ResultSet buscarRelatorio()
             Vector dadosTabela = new Vector();
             cabecalhos.add("Código");
             cabecalhos.add("Nome");
+            cabecalhos.add("Cidade");
+            cabecalhos.add("Data Nasc.");
+            cabecalhos.add("RG");
+            cabecalhos.add("CPF");
 
             ResultSet result = null;
 
             try {
 
                 String SQL = "";
-                SQL = " SELECT codigo, nome";
+                SQL = " SELECT codigo, nome, cidade_codigo, data_nasc, rg, cpf";
                 SQL += " FROM tecnicos";
                 SQL += " ORDER BY nome";
 
@@ -223,6 +227,10 @@ public ResultSet buscarRelatorio()
                     Vector<Object> linha = new Vector<Object>();
                     linha.add(result.getInt(1));
                     linha.add(result.getString(2));
+                    linha.add(result.getInt(3));
+                    linha.add(result.getString(4));
+                    linha.add(result.getString(5));
+                    linha.add(result.getString(6));
                     dadosTabela.add(linha);
                 }
 

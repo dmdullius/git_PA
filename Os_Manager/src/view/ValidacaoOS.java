@@ -55,8 +55,8 @@ public class ValidacaoOS extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
+        finalizado = new javax.swing.JTextField();
+        pendente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -68,11 +68,11 @@ public class ValidacaoOS extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        desc = new javax.swing.JTextPane();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableOS = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -138,7 +138,7 @@ public class ValidacaoOS extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane3.setViewportView(jTextPane1);
+        jScrollPane3.setViewportView(desc);
 
         jLabel6.setText("Descrição ");
 
@@ -149,7 +149,7 @@ public class ValidacaoOS extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -160,7 +160,17 @@ public class ValidacaoOS extends javax.swing.JFrame {
                 "Técnico", "Descrição", "Pendente", "Finalizado"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jTableOS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableOSMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTableOS);
+        if (jTableOS.getColumnModel().getColumnCount() > 0) {
+            jTableOS.getColumnModel().getColumn(0).setResizable(false);
+            jTableOS.getColumnModel().getColumn(0).setHeaderValue("Técnico");
+            jTableOS.getColumnModel().getColumn(1).setHeaderValue("Descrição");
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,7 +182,7 @@ public class ValidacaoOS extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(finalizado, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
                             .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
@@ -180,7 +190,7 @@ public class ValidacaoOS extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jcbOS_tecnicos, 0, 185, Short.MAX_VALUE)
-                            .addComponent(txtEmail))
+                            .addComponent(pendente))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -215,14 +225,14 @@ public class ValidacaoOS extends javax.swing.JFrame {
                                 .addGap(12, 12, 12)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(pendente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(finalizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -282,7 +292,7 @@ public class ValidacaoOS extends javax.swing.JFrame {
             Ordem_Servico objOS = new Ordem_Servico();
 
             objOS.setCodigo(Integer.parseInt(codigo.getText()));
-            objOS.setDescricao(txtNome.getText());
+            objOS.setDescricao(finalizado.getText());
 
             //AJUSTA A DATA PARA ANO-MES-DIA PARA GRAVAR NO BANCO
             //String dataFormatada = Formatacao.ajustaDataAMD(txtDataNascimento.getText());
@@ -323,8 +333,8 @@ public class ValidacaoOS extends javax.swing.JFrame {
             //LIBERAR O CAMPO Codigo
 
             codigo.setText("");
-            txtNome.setText("");
-            txtEmail.setText("");
+            finalizado.setText("");
+            pendente.setText("");
             cbOS.SetaComboBox("");
             codigo.setEnabled(true);
             
@@ -388,6 +398,17 @@ public class ValidacaoOS extends javax.swing.JFrame {
             this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTableOSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableOSMouseClicked
+     int linha;
+     linha = jTableOS.getSelectedRow();
+     codigo.setText(jTableOS.getValueAt(linha, 0).toString());
+     desc.setText(jTableOS.getValueAt(linha, 1).toString());
+     pendente.setText(jTableOS.getValueAt(linha, 2).toString());
+     finalizado.setText(jTableOS.getValueAt(linha, 3).toString());
+     cbOS.SetaComboBox(jTableOS.getValueAt(linha, 4).toString());
+     
+    }//GEN-LAST:event_jTableOSMouseClicked
+
        public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -403,6 +424,8 @@ public class ValidacaoOS extends javax.swing.JFrame {
     private javax.swing.JButton btnIncluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JFormattedTextField codigo;
+    private javax.swing.JTextPane desc;
+    private javax.swing.JTextField finalizado;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -414,11 +437,9 @@ public class ValidacaoOS extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTable jTableOS;
     private javax.swing.JComboBox<String> jcbOS_tecnicos;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField pendente;
     // End of variables declaration//GEN-END:variables
 }
 

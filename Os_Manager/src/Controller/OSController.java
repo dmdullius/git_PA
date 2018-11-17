@@ -1,6 +1,5 @@
 package Controller;
 
-
 import Model.Ordem_Servico;
 import ferramentas.*;
 import java.awt.Color;
@@ -19,14 +18,16 @@ import javax.swing.table.TableColumn;
 public class OSController {
 
     Ordem_Servico objOS = new Ordem_Servico();
-    
-JTable jtbOS = null;
-    public OSController(Ordem_Servico objOS, JTable jtbOS) {
+
+    JTable jtbOS = null;
+
+    public OSController(Ordem_Servico objOS, JTable jTableOS) {
         this.objOS = objOS;
-        this.jtbOS = jtbOS;
+        this.jtbOS = jTableOS;
         objOS = null;
-            }
-public void PreencheOS() {
+    }
+
+    public void PreencheOS() {
 
         try {
 
@@ -35,8 +36,6 @@ public void PreencheOS() {
             Vector<String> cabecalhos = new Vector<String>();
             Vector dadosTabela = new Vector();
             cabecalhos.add("Código");
-            cabecalhos.add("Técnico");
-            cabecalhos.add("Descrição");
             cabecalhos.add("Pendente");
             cabecalhos.add("finalizado");
 
@@ -45,10 +44,9 @@ public void PreencheOS() {
             try {
 
                 String SQL = "";
-                SQL = " SELECT t.nome, descricao, pendente, finalizado ";
-                SQL += " FROM ordem_servico a, tecnicos t ";
-                SQL += " WHERE a.tecnicos_codigo = t.codigo ";
-                SQL += " ORDER BY nome ";
+                SQL = " SELECT codigo, pendente, finalizado ";
+                SQL += " FROM ordem_servico";
+                SQL += " ORDER BY codigo ";
 
                 result = ConnectionFactory.stmt.executeQuery(SQL);
 
@@ -57,7 +55,6 @@ public void PreencheOS() {
                     linha.add(result.getInt(1));
                     linha.add(result.getString(2));
                     linha.add(result.getString(3));
-                    linha.add(result.getString(4));
                     dadosTabela.add(linha);
                 }
 
@@ -117,6 +114,7 @@ public void PreencheOS() {
         }
 
     }
+
     public Ordem_Servico buscar(int id) {
         try {
             ConnectionFactory.abreConexao();
@@ -202,7 +200,7 @@ public void PreencheOS() {
 
         } catch (SQLException ex) {
             //CaixaDeDialogo.obterinstancia().exibirMensagem("Não é possivel inserir esta ordem de serviço", " " + ex.toString(), 'e');
-            System.out.println("Erro: " +ex.toString());
+            System.out.println("Erro: " + ex.toString());
             return false;
         } finally {
 

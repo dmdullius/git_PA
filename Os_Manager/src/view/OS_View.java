@@ -38,9 +38,9 @@ private void AtualizarTabela(){
    try {
             
             Ordem_Servico objOS= new Ordem_Servico();
-            OSController objOScon = new OSController(objOS, null);
+            OSController objOSc = new OSController(objOS, null);
             OSController objOSCon = new OSController(null, jtblistaOS);
-            objOSCon.PreencheOS();
+            objOSc.PreencheOS();
 
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.toString());
@@ -67,7 +67,7 @@ private void AtualizarTabela(){
                 {null, null, null}
             },
             new String [] {
-                "Código", "Técnico", "Pendente"
+                "Código", "Pendente", "Finalizado"
             }
         ));
         jScrollPane1.setViewportView(jtblistaOS);

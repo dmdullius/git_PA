@@ -124,7 +124,6 @@ private void AtualizarTabela() {
             UsuarioController objUsercon = new UsuarioController(objUsuario, null);
             UsuarioController objuserCon = new UsuarioController(null, jtblistaUsuariodel);
             objuserCon.PreencheLista();
-            
 
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.toString());
@@ -137,9 +136,9 @@ private void AtualizarTabela() {
             UsuarioController usercon = new UsuarioController(objUsuario, null);
             usercon.excluir();
             AtualizarTabela();
-            CaixaDeDialogo.obterinstancia().exibirMensagem("O usuário foi excluido", "Gerenciamneto de usuários: ", 'i');
+
         } catch (Exception ex) {
-           CaixaDeDialogo.obterinstancia().exibirMensagem("Não foi possivel excluir o Usúario selecionado, causa: "+ ex.toString(), "Erro de SQL  ", 'i');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Não foi possivel excluir o Usúario selecionado, causa: " + ex.toString(), "Erro de SQL  ", 'i');
         } finally {
 
         }
