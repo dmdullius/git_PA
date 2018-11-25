@@ -23,7 +23,7 @@ public class OSController {
 
     public OSController(Ordem_Servico objOS, JTable jTableOS) {
         this.objOS = objOS;
-        this.jtbOS = jTableOS;
+        this.jtbOS = jtbOS;
         objOS = null;
     }
 

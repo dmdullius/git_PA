@@ -23,33 +23,35 @@ public class Insere_usuario extends javax.swing.JFrame {
      *
      */
     Combos cbUsuario;
-
+    
     public Insere_usuario() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        
         try {
             //carrega o tipo de usuario
             cbUsuario = new Combos(jcbUsuario);
             cbUsuario.PreencheCombo("SELECT codigo, descricao FROM tipo_usuario ORDER BY codigo");
-AtualizarTabela();
+            AtualizarTabela();
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
         }
-
+        
     }
-private void AtualizarTabela() {
+    
+    private void AtualizarTabela() {
         try {
-
-            Usuario objUsuario= new Usuario();
+            
+            Usuario objUsuario = new Usuario();
             UsuarioController objUsercon = new UsuarioController(objUsuario, null);
             UsuarioController objUserCon = new UsuarioController(null, jtblistaUsuario);
             objUserCon.PreencheLista();
-
+            
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.toString());
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,6 +72,9 @@ private void AtualizarTabela() {
         jcbUsuario = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblistaUsuario = new javax.swing.JTable();
+        altera_senha = new javax.swing.JButton();
+        codigo = new javax.swing.JLabel();
+        coduser = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         volta = new javax.swing.JMenuItem();
@@ -123,6 +128,22 @@ private void AtualizarTabela() {
         });
         jScrollPane1.setViewportView(jtblistaUsuario);
 
+        altera_senha.setText("Alterar Senha");
+        altera_senha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                altera_senhaActionPerformed(evt);
+            }
+        });
+
+        codigo.setText("Código");
+
+        coduser.setEnabled(false);
+        coduser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                coduserActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Voltar");
 
         volta.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_BACK_SPACE, 0));
@@ -157,32 +178,44 @@ private void AtualizarTabela() {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(72, Short.MAX_VALUE)
+                .addContainerGap(89, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1))
-                            .addGap(23, 23, 23)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(incui, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(80, 80, 80)
-                            .addComponent(limpa, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jcbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(84, 84, 84))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(incui, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(altera_senha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(limpa, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(codigo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(coduser, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(codigo)
+                    .addComponent(coduser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -197,10 +230,12 @@ private void AtualizarTabela() {
                 .addGap(30, 30, 30)
                 .addComponent(jcbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(incui, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(limpa, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(incui, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(altera_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(limpa, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -215,18 +250,18 @@ private void AtualizarTabela() {
             objUsuario.setLogin(login.getText());
             objUsuario.setNome(nome.getText());
             objUsuario.setSenha(senha.getText());
-            objUsuario.setTipo( jcbUsuario.getSelectedIndex());
-             usercon.incluir();
-            Insere_tecnico tela = new Insere_tecnico();
-            tela.setVisible(true);
-            this.setVisible(false);
+            objUsuario.setTipo(jcbUsuario.getSelectedIndex());
+            usercon.incluir();
+            AtualizarTabela();
+            limparTela();
+            
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
         } finally {
             
         }
- 
-    
+        
+
     }//GEN-LAST:event_incuiActionPerformed
 
     private void fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaActionPerformed
@@ -244,7 +279,7 @@ private void AtualizarTabela() {
         login.setText(null);
         senha.setText(null);
         cbUsuario.SetaComboBox("");
-
+        coduser.setText("");
     }//GEN-LAST:event_limpaActionPerformed
 
     private void jcbUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbUsuarioActionPerformed
@@ -255,11 +290,29 @@ private void AtualizarTabela() {
         int linha;
         
         linha = jtblistaUsuario.getSelectedRow();
-        
-      nome.setText(jtblistaUsuario.getValueAt(linha, 1).toString());
-      login.setText(jtblistaUsuario.getValueAt(linha, 2).toString());
-      cbUsuario.SetaComboBox(jtblistaUsuario.getValueAt(linha, 3).toString());
+        coduser.setText(jtblistaUsuario.getValueAt(linha, 0).toString());
+        nome.setText(jtblistaUsuario.getValueAt(linha, 1).toString());
+        login.setText(jtblistaUsuario.getValueAt(linha, 2).toString());
+        cbUsuario.SetaComboBox(jtblistaUsuario.getValueAt(linha, 3).toString());
+
     }//GEN-LAST:event_jtblistaUsuarioMouseClicked
+
+    private void altera_senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altera_senhaActionPerformed
+        Usuario objUsuario = new Usuario();
+        UsuarioController usercon = new UsuarioController(objUsuario, null);
+        objUsuario.setLogin(login.getText());
+        objUsuario.setNome(nome.getText());
+        objUsuario.setSenha(senha.getText());
+        objUsuario.setTipo(jcbUsuario.getSelectedIndex());
+        objUsuario.setCodigo(Integer.parseInt(coduser.getText()));
+        usercon.alterar();
+        AtualizarTabela();
+        limparTela();
+    }//GEN-LAST:event_altera_senhaActionPerformed
+
+    private void coduserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coduserActionPerformed
+
+    }//GEN-LAST:event_coduserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,6 +350,9 @@ private void AtualizarTabela() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton altera_senha;
+    private javax.swing.JLabel codigo;
+    private javax.swing.JTextField coduser;
     private javax.swing.JMenuItem fecha;
     private javax.swing.JButton incui;
     private javax.swing.JLabel jLabel1;
@@ -315,4 +371,12 @@ private void AtualizarTabela() {
     private javax.swing.JMenuItem volta;
     // End of variables declaration//GEN-END:variables
 
+    private void limparTela() {
+        nome.setText(null);
+        login.setText(null);
+        senha.setText(null);
+        cbUsuario.SetaComboBox("");
+        coduser.setText("");
+    }
+    
 }

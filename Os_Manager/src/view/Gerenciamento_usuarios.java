@@ -37,7 +37,7 @@ public class Gerenciamento_usuarios extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblistaUsuariodel = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        excluiruser = new javax.swing.JTextField();
+        deleteUsuario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,22 +54,27 @@ public class Gerenciamento_usuarios extends javax.swing.JFrame {
 
         jtblistaUsuariodel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Login", "Tipo"
+                "Código", "Nome", "Login"
             }
         ));
+        jtblistaUsuariodel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtblistaUsuariodelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtblistaUsuariodel);
 
-        jLabel1.setText("Insira o tipo do usúario");
+        jLabel1.setText("Insira o código do usúario");
 
-        excluiruser.addActionListener(new java.awt.event.ActionListener() {
+        deleteUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                excluiruserActionPerformed(evt);
+                deleteUsuarioActionPerformed(evt);
             }
         });
 
@@ -88,7 +93,7 @@ public class Gerenciamento_usuarios extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(excluiUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(excluiruser, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(deleteUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
@@ -98,7 +103,7 @@ public class Gerenciamento_usuarios extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(excluiruser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deleteUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 59, 59)
                 .addComponent(excluiUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(85, Short.MAX_VALUE))
@@ -131,7 +136,7 @@ private void AtualizarTabela() {
     }
     private void excluiUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluiUsuarioActionPerformed
         Usuario objUsuario = new Usuario();
-        objUsuario.setCodigo(excluiruser.getColumns());
+      objUsuario.setNome(deleteUsuario.getText());
         try {
             UsuarioController usercon = new UsuarioController(objUsuario, null);
             usercon.excluir();
@@ -145,9 +150,15 @@ private void AtualizarTabela() {
 
     }//GEN-LAST:event_excluiUsuarioActionPerformed
 
-    private void excluiruserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluiruserActionPerformed
+    private void deleteUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_excluiruserActionPerformed
+    }//GEN-LAST:event_deleteUsuarioActionPerformed
+
+    private void jtblistaUsuariodelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblistaUsuariodelMouseClicked
+       int linha;
+       linha = jtblistaUsuariodel.getSelectedRow();
+       deleteUsuario.setText(jtblistaUsuariodel.getValueAt(linha, 1).toString());
+    }//GEN-LAST:event_jtblistaUsuariodelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -185,8 +196,8 @@ private void AtualizarTabela() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField deleteUsuario;
     private javax.swing.JButton excluiUsuario;
-    private javax.swing.JTextField excluiruser;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

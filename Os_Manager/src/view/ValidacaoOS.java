@@ -15,7 +15,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
 
-
 public class ValidacaoOS extends javax.swing.JFrame {
 
     /**
@@ -23,20 +22,18 @@ public class ValidacaoOS extends javax.swing.JFrame {
      */
     Combos cbOS;
     Ordem_Servico objOS;
+    JTable jtbOS;
 
     public ValidacaoOS() {
         initComponents();
 
         try {
-            //carregar os alunos existentes
             atualizarTabela();
 
-            //carregar os técnicos existentes
+//carregar os técnicos existentes
             cbOS = new Combos(jcbOS_tecnicos);
             cbOS.PreencheCombo("SELECT codigo, nome FROM tecnicos ORDER BY nome");
-
             limparTela();
-
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
         }
@@ -117,6 +114,7 @@ public class ValidacaoOS extends javax.swing.JFrame {
             }
         });
 
+        btnIncluir.setEnabled(false);
         btnIncluir.setText("INCLUIR");
         btnIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,13 +149,13 @@ public class ValidacaoOS extends javax.swing.JFrame {
 
         jTableOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Técnico", "Descrição", "Pendente", "Finalizado"
+                "Título 1", "Título 2", "Título 3"
             }
         ));
         jTableOS.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -166,11 +164,6 @@ public class ValidacaoOS extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(jTableOS);
-        if (jTableOS.getColumnModel().getColumnCount() > 0) {
-            jTableOS.getColumnModel().getColumn(0).setResizable(false);
-            jTableOS.getColumnModel().getColumn(0).setHeaderValue("Técnico");
-            jTableOS.getColumnModel().getColumn(1).setHeaderValue("Descrição");
-        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -255,18 +248,17 @@ public class ValidacaoOS extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void atualizarTabela() {
+        private void atualizarTabela() {
         try {
-            JTable jtbOS = null;
-            OSController objOScon = new OSController(objOS, null);
-            OSController objOSCon = new OSController(null, jtbOS);
+
+            OSController objOScon = new OSController(null, jtbOS);
             objOScon.PreencheOS();
 
         } catch (Exception ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
+            CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO: " + ex.toString());
         }
     }
-    
+
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         try {
@@ -324,6 +316,7 @@ public class ValidacaoOS extends javax.swing.JFrame {
             }
 
             limparTela();
+
         }
     }//GEN-LAST:event_btnIncluirActionPerformed
 
@@ -337,11 +330,9 @@ public class ValidacaoOS extends javax.swing.JFrame {
             pendente.setText("");
             cbOS.SetaComboBox("");
             codigo.setEnabled(true);
-            
-            atualizarTabela();
 
         } catch (Exception ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.toString());
         }
     }
 
@@ -370,7 +361,6 @@ public class ValidacaoOS extends javax.swing.JFrame {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
         }
 
-        limparTela();
 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -389,28 +379,28 @@ public class ValidacaoOS extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbOS_tecnicosItemStateChanged
 
     private void jcbOS_tecnicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbOS_tecnicosActionPerformed
-        
+
     }//GEN-LAST:event_jcbOS_tecnicosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Sistema tela = new Sistema();
-            tela.setVisible(true);
-            this.setVisible(false);
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTableOSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableOSMouseClicked
-     int linha;
-     linha = jTableOS.getSelectedRow();
-     codigo.setText(jTableOS.getValueAt(linha, 0).toString());
-     desc.setText(jTableOS.getValueAt(linha, 1).toString());
-     pendente.setText(jTableOS.getValueAt(linha, 2).toString());
-     finalizado.setText(jTableOS.getValueAt(linha, 3).toString());
-     cbOS.SetaComboBox(jTableOS.getValueAt(linha, 4).toString());
-     
+        int linha;
+        linha = jTableOS.getSelectedRow();
+        codigo.setText(jTableOS.getValueAt(linha, 0).toString());
+        desc.setText(jTableOS.getValueAt(linha, 1).toString());
+        pendente.setText(jTableOS.getValueAt(linha, 2).toString());
+        finalizado.setText(jTableOS.getValueAt(linha, 3).toString());
+        cbOS.SetaComboBox(jTableOS.getValueAt(linha, 4).toString());
+
     }//GEN-LAST:event_jTableOSMouseClicked
 
-       public static void main(String args[]) {
-        
+    public static void main(String args[]) {
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ValidacaoOS().setVisible(true);
@@ -442,6 +432,3 @@ public class ValidacaoOS extends javax.swing.JFrame {
     private javax.swing.JTextField pendente;
     // End of variables declaration//GEN-END:variables
 }
-
-
-

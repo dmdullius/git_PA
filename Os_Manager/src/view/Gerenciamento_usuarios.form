@@ -57,7 +57,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="excluiUsuario" min="-2" pref="220" max="-2" attributes="0"/>
-                              <Component id="excluiruser" min="-2" pref="260" max="-2" attributes="0"/>
+                              <Component id="deleteUsuario" min="-2" pref="260" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -72,7 +72,7 @@
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="excluiruser" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                   <Component id="excluiUsuario" min="-2" pref="68" max="-2" attributes="0"/>
@@ -100,20 +100,14 @@
             <Component class="javax.swing.JTable" name="jtblistaUsuariodel">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="4">
+                  <Table columnCount="3" rowCount="4">
                     <Column editable="true" title="C&#xf3;digo" type="java.lang.Object"/>
                     <Column editable="true" title="Nome" type="java.lang.Object"/>
                     <Column editable="true" title="Login" type="java.lang.Object"/>
-                    <Column editable="true" title="Tipo" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
@@ -135,17 +129,20 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jtblistaUsuariodelMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Insira o tipo do us&#xfa;ario"/>
+            <Property name="text" type="java.lang.String" value="Insira o c&#xf3;digo do us&#xfa;ario"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="excluiruser">
+        <Component class="javax.swing.JTextField" name="deleteUsuario">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="excluiruserActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteUsuarioActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

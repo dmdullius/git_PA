@@ -24,13 +24,13 @@ public class UsuarioController {
     Usuario objUsuario;
     JTable jtblistaUsuario = null;
     JTable jtblistaUsuariodel = null;
+
     public UsuarioController(Usuario objUsuario, JTable jtblistaUsuario) {
         this.objUsuario = objUsuario;
         this.jtblistaUsuario = jtblistaUsuario;
         this.jtblistaUsuariodel = jtblistaUsuariodel;
     }
 
-    
     public boolean incluir() {
 
         ConnectionFactory.abreConexao();
@@ -101,52 +101,53 @@ public class UsuarioController {
 
         try {
 
-            stmt = con.prepareStatement("UPDATE usuarios SET nome=?, login=?, senha=? WHERE nome=?");
+            stmt = con.prepareStatement("UPDATE usuarios SET  nome=?, login=?, senha=?, codigo_tipo=? WHERE codigo=?");
             stmt.setString(1, objUsuario.getNome());
             stmt.setString(2, objUsuario.getLogin());
             stmt.setString(3, objUsuario.getSenha());
-
+            stmt.setInt(4, objUsuario.getTipo());
+            stmt.setInt(5, objUsuario.getCodigo());
             stmt.executeUpdate();
 
             return true;
 
         } catch (SQLException ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Impossivel alterar os dados do Usuário", "Erro de SQL: " + ex.toString(), 'e');
+           
             return false;
         } finally {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("O cliente foi alterado", "Gerenciamento de usuários: ", 'i');
+            
             ConnectionFactory.closeConnection(con, stmt);
         }
 
     }
 
     public boolean excluir() {
-        int id;
-      id = objUsuario.getCodigo();
+       
+        
         ConnectionFactory.abreConexao();
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("DELETE usuarios WHERE codigo='" + id + "'");
+            stmt = con.prepareStatement("DELETE usuarios WHERE nome=?");
 
-            stmt.setInt(1, objUsuario.getCodigo());
+            stmt.setString(1, objUsuario.getNome());
 
             stmt.executeUpdate();
 
             return true;
 
         } catch (SQLException ex) {
-            
+
             return false;
         } finally {
-            
+
             ConnectionFactory.closeConnection(con, stmt);
         }
 
     }
-    
-public void PreencheLista() {
+
+    public void PreencheLista() {
 
         try {
 
@@ -236,4 +237,3 @@ public void PreencheLista() {
 
     }
 }
-

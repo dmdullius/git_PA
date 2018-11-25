@@ -40,7 +40,7 @@ private void AtualizarTabela(){
             Ordem_Servico objOS= new Ordem_Servico();
             OSController objOSc = new OSController(objOS, null);
             OSController objOSCon = new OSController(null, jtblistaOS);
-            objOSc.PreencheOS();
+            objOSCon.PreencheOS();
 
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.toString());
