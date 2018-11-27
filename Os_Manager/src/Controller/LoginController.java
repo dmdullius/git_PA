@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import Model.Usuario;
-
 /**
  *
  * @author Jonas
@@ -19,6 +18,7 @@ public class LoginController {
     
     public Usuario Login(String usuario, String senha){
         //INÍCIO CONEXÃO COM O BANCO DE DADOS
+        
         System.out.println("Vai abrir a conexão com o banco de dados");
         ConnectionFactory.abreConexao();
         

@@ -1,14 +1,9 @@
 package view;
 
 import Model.Usuario;
-import ferramentas.CaixaDeDialogo;
+import ferramentas.*;
 import Controller.LoginController;
-import Controller.LoginController;
-import java.sql.SQLException;
-import ferramentas.ConnectionFactory;
 import static ferramentas.ConnectionFactory.con;
-import static ferramentas.ConnectionFactory.stmt;
-import java.sql.PreparedStatement;
 
 /**
  *
@@ -155,26 +150,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         LoginController login = new LoginController();
 
         login_atual = txtUsuario.getText();
         String usuario = txtUsuario.getText().trim();//captura o usuario da tela
         String senha = txtSenha.getText().toString();//captura a senha da tela
-
         Usuario user = login.Login(usuario, senha);
 
         if (user
                 == null) { //verifica se a funcao conseguiu retornar um usuario valido
             CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário não existe", "Erro de login, contate o suporte", 'e');
-        } else { //caso o usuario de retorno seja válido, a tela principal abre
+           
+        } else { 
+        //caso o usuario de retorno seja válido, a tela principal abre
             Sistema tela = new Sistema();
             tela.setVisible(true);
             this.setVisible(false);//fecha tela de login
+        
         }
 
-
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
