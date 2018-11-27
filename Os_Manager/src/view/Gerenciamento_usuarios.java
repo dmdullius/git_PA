@@ -8,19 +8,31 @@ package view;
 import Controller.UsuarioController;
 import Model.Usuario;
 import ferramentas.CaixaDeDialogo;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author dmdullius
  */
+
 public class Gerenciamento_usuarios extends javax.swing.JFrame {
+
+    private DefaultListModel lista_model = new DefaultListModel();
+
+    UsuarioController objUsuarioCon;
+    Usuario objUsuario;
+    ArrayList<Usuario>Lista_Usuario = new ArrayList();
 
     /**
      * Creates new form Gerenciamento_usuarios
      */
     public Gerenciamento_usuarios() {
         initComponents();
-        AtualizarTabela();
+     objUsuarioCon = new UsuarioController(null, null);
+     
+          
+          listaUsuarios.setModel(lista_model);
     }
 
     /**
@@ -32,12 +44,19 @@ public class Gerenciamento_usuarios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         excluiUsuario = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtblistaUsuariodel = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        deleteUsuario = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listaUsuarios = new javax.swing.JList<>();
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,68 +71,39 @@ public class Gerenciamento_usuarios extends javax.swing.JFrame {
             }
         });
 
-        jtblistaUsuariodel.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Código", "Nome", "Login"
-            }
-        ));
-        jtblistaUsuariodel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtblistaUsuariodelMouseClicked(evt);
-            }
+        listaUsuarios.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jtblistaUsuariodel);
-
-        jLabel1.setText("Insira o código do usúario");
-
-        deleteUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteUsuarioActionPerformed(evt);
-            }
-        });
+        jScrollPane2.setViewportView(listaUsuarios);
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(excluiUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deleteUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(excluiUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(deleteUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
                 .addComponent(excluiUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
+            .addComponent(jScrollPane2)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,43 +112,10 @@ public class Gerenciamento_usuarios extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private void AtualizarTabela() {
-        try {
 
-            Usuario objUsuario = new Usuario();
-            UsuarioController objUsercon = new UsuarioController(objUsuario, null);
-            UsuarioController objuserCon = new UsuarioController(null, jtblistaUsuariodel);
-            objuserCon.PreencheLista();
-
-        } catch (Exception ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.toString());
-        }
-    }
     private void excluiUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluiUsuarioActionPerformed
-        Usuario objUsuario = new Usuario();
-      objUsuario.setNome(deleteUsuario.getText());
-        try {
-            UsuarioController usercon = new UsuarioController(objUsuario, null);
-            usercon.excluir();
-            AtualizarTabela();
-
-        } catch (Exception ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Não foi possivel excluir o Usúario selecionado, causa: " + ex.toString(), "Erro de SQL  ", 'i');
-        } finally {
-
-        }
-
+ 
     }//GEN-LAST:event_excluiUsuarioActionPerformed
-
-    private void deleteUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteUsuarioActionPerformed
-
-    private void jtblistaUsuariodelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblistaUsuariodelMouseClicked
-       int linha;
-       linha = jtblistaUsuariodel.getSelectedRow();
-       deleteUsuario.setText(jtblistaUsuariodel.getValueAt(linha, 1).toString());
-    }//GEN-LAST:event_jtblistaUsuariodelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -196,11 +153,11 @@ private void AtualizarTabela() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField deleteUsuario;
     private javax.swing.JButton excluiUsuario;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtblistaUsuariodel;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<String> listaUsuarios;
     // End of variables declaration//GEN-END:variables
 }

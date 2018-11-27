@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import Model.Usuario;
 import ferramentas.CaixaDeDialogo;
+import java.util.ArrayList;
 
 /**
  *
@@ -147,7 +148,7 @@ public class UsuarioController {
 
     }
 
-    public void PreencheLista() {
+    public void PreencheTabela() {
 
         try {
 
@@ -236,4 +237,34 @@ public class UsuarioController {
         }
 
     }
-}
+    
+    public ArrayList<Usuario> PreencheLista(){
+        ConnectionFactory.abreConexao();
+         ArrayList<Usuario> Lista_Usuario = new ArrayList();
+         Usuario item_usuario = null;
+         ResultSet rs = null;
+        try{
+            String SQL = "";
+            SQL = " SELECT codigo, nome";
+                SQL += " FROM usuarios";
+                SQL += " ORDER BY nome";
+            
+            rs = ConnectionFactory.stmt.executeQuery(SQL);
+            
+            while (rs.next()){
+                item_usuario = new Usuario();
+                item_usuario.setCodigo(rs.getInt("codigo"));
+                item_usuario.setNome("nome");
+                Lista_Usuario.add(item_usuario);
+            }
+        }catch(SQLException ex){
+            System.out.println("erro causado por: " + ex.toString());
+            System.out.println(ex);
+            return null;
+        }
+        return Lista_Usuario;
+    
+    }
+    
+    }
+

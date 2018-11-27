@@ -46,7 +46,7 @@ public class Insere_usuario extends javax.swing.JFrame {
             Usuario objUsuario = new Usuario();
             UsuarioController objUsercon = new UsuarioController(objUsuario, null);
             UsuarioController objUserCon = new UsuarioController(null, jtblistaUsuario);
-            objUserCon.PreencheLista();
+            objUserCon.PreencheTabela();
             
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.toString());
@@ -250,7 +250,7 @@ public class Insere_usuario extends javax.swing.JFrame {
             UsuarioController usercon = new UsuarioController(objUsuario, null);
             objUsuario.setLogin(login.getText());
             objUsuario.setNome(nome.getText());
-            objUsuario.setSenha(Criptografia.Encriptar(senha.getText()));
+            objUsuario.setSenha(senha.getText());
             objUsuario.setTipo(jcbUsuario.getSelectedIndex());
             usercon.incluir();
             AtualizarTabela();
