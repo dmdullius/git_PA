@@ -49,8 +49,10 @@ public class Usuario {
         this.codigo = codigo;
     }
 
-   
-
+   @Override
+    public String toString(){
+        return this.getNome();
+    }
     
 
 }

@@ -254,7 +254,7 @@ public class UsuarioController {
             while (rs.next()){
                 item_usuario = new Usuario();
                 item_usuario.setCodigo(rs.getInt("codigo"));
-                item_usuario.setNome("nome");
+                item_usuario.setNome(rs.getString("nome"));
                 Lista_Usuario.add(item_usuario);
             }
         }catch(SQLException ex){

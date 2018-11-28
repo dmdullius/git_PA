@@ -29,10 +29,12 @@ public class Gerenciamento_usuarios extends javax.swing.JFrame {
      */
     public Gerenciamento_usuarios() {
         initComponents();
-     objUsuarioCon = new UsuarioController(null, null);
-     
-          
-          listaUsuarios.setModel(lista_model);
+        objUsuarioCon = new UsuarioController(null,null);
+        Lista_Usuario = objUsuarioCon.PreencheLista();
+        for (Usuario objUsuario: Lista_Usuario){
+          lista_model.addElement(objUsuario);
+        }
+        listaUsuarios.setModel(lista_model);
     }
 
     /**
@@ -83,8 +85,8 @@ public class Gerenciamento_usuarios extends javax.swing.JFrame {
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(excluiUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
