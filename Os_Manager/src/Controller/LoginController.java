@@ -10,32 +10,33 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import Model.Usuario;
+
 /**
  *
  * @author Jonas
  */
 public class LoginController {
-    
-    public Usuario Login(String usuario, String senha){
+
+    public Usuario Login(String usuario, String senha) {
         //INÍCIO CONEXÃO COM O BANCO DE DADOS
-        
+
         System.out.println("Vai abrir a conexão com o banco de dados");
         ConnectionFactory.abreConexao();
-        
+
         Usuario user = null;
         ResultSet rs = null;
 
         StringBuilder comandoSQL = new StringBuilder();
         comandoSQL.append(" SELECT login, nome");
         comandoSQL.append(" FROM usuarios");
-        comandoSQL.append(" WHERE login = '"+ usuario +"'");
-        comandoSQL.append(" AND senha = '"+ senha +"'");
+        comandoSQL.append(" WHERE login = '" + usuario + "'");
+        comandoSQL.append(" AND senha = '" + senha + "'");
 
         try {
             System.out.println("Vai Executar Conexão em buscar area");
             rs = ConnectionFactory.stmt.executeQuery(comandoSQL.toString());
             System.out.println("Executou Conexão em buscar area");
-            
+
             if (rs.next() == true) {
                 user = new Usuario();
                 user.setLogin(rs.getString("login"));
@@ -44,14 +45,14 @@ public class LoginController {
         } catch (SQLException ex) {
             System.out.println("ERRO de SQL: " + ex.getMessage().toString());
             return user;
-        }finally{
+        } finally {
             Connection con = ConnectionFactory.getConnection();
             System.out.println("Vai fechar a conexão com o banco de dados");
             ConnectionFactory.closeConnection(con);
         }
-        
+
         return user;
-        
+
     }
-    
+
 }

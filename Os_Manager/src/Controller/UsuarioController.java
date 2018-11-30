@@ -113,33 +113,32 @@ public class UsuarioController {
             return true;
 
         } catch (SQLException ex) {
-           
+
             return false;
         } finally {
-            
+
             ConnectionFactory.closeConnection(con, stmt);
         }
 
     }
 
     public boolean excluir() {
-       
-        
+
         ConnectionFactory.abreConexao();
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("DELETE usuarios WHERE nome=?");
+            stmt = con.prepareStatement("DELETE from usuarios WHERE nome=?");
 
             stmt.setString(1, objUsuario.getNome());
 
-            stmt.executeUpdate();
+            stmt.execute();
 
             return true;
 
         } catch (SQLException ex) {
-
+            System.out.println("erro, causa:  " + ex.toString());
             return false;
         } finally {
 
@@ -237,34 +236,33 @@ public class UsuarioController {
         }
 
     }
-    
-    public ArrayList<Usuario> PreencheLista(){
+
+    public ArrayList<Usuario> PreencheLista() {
         ConnectionFactory.abreConexao();
-         ArrayList<Usuario> Lista_Usuario = new ArrayList();
-         Usuario item_usuario = null;
-         ResultSet rs = null;
-        try{
+        ArrayList<Usuario> Lista_Usuario = new ArrayList();
+        Usuario item_usuario = null;
+        ResultSet rs = null;
+        try {
             String SQL = "";
             SQL = " SELECT codigo, nome";
-                SQL += " FROM usuarios";
-                SQL += " ORDER BY nome";
-            
+            SQL += " FROM usuarios";
+            SQL += " ORDER BY nome";
+
             rs = ConnectionFactory.stmt.executeQuery(SQL);
-            
-            while (rs.next()){
+
+            while (rs.next()) {
                 item_usuario = new Usuario();
                 item_usuario.setCodigo(rs.getInt("codigo"));
                 item_usuario.setNome(rs.getString("nome"));
                 Lista_Usuario.add(item_usuario);
             }
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println("erro causado por: " + ex.toString());
             System.out.println(ex);
             return null;
         }
         return Lista_Usuario;
-    
-    }
-    
+
     }
 
+}

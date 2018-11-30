@@ -24,11 +24,11 @@ public class Insere_usuario extends javax.swing.JFrame {
      *
      */
     Combos cbUsuario;
-    
+
     public Insere_usuario() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
         try {
             //carrega o tipo de usuario
             cbUsuario = new Combos(jcbUsuario);
@@ -37,17 +37,17 @@ public class Insere_usuario extends javax.swing.JFrame {
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
         }
-        
+
     }
-    
+
     private void AtualizarTabela() {
         try {
-            
+
             Usuario objUsuario = new Usuario();
             UsuarioController objUsercon = new UsuarioController(objUsuario, null);
             UsuarioController objUserCon = new UsuarioController(null, jtblistaUsuario);
             objUserCon.PreencheTabela();
-            
+
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.toString());
         }
@@ -250,18 +250,17 @@ public class Insere_usuario extends javax.swing.JFrame {
             UsuarioController usercon = new UsuarioController(objUsuario, null);
             objUsuario.setLogin(login.getText());
             objUsuario.setNome(nome.getText());
-            objUsuario.setSenha(senha.getText());
+            objUsuario.setSenha(Criptografia.Encriptar(senha.getText()));
             objUsuario.setTipo(jcbUsuario.getSelectedIndex());
             usercon.incluir();
             AtualizarTabela();
             limparTela();
-            
+
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.getMessage());
         } finally {
-            
+
         }
-        
 
     }//GEN-LAST:event_incuiActionPerformed
 
@@ -289,7 +288,7 @@ public class Insere_usuario extends javax.swing.JFrame {
 
     private void jtblistaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblistaUsuarioMouseClicked
         int linha;
-        
+
         linha = jtblistaUsuario.getSelectedRow();
         coduser.setText(jtblistaUsuario.getValueAt(linha, 0).toString());
         nome.setText(jtblistaUsuario.getValueAt(linha, 1).toString());
@@ -303,7 +302,7 @@ public class Insere_usuario extends javax.swing.JFrame {
         UsuarioController usercon = new UsuarioController(objUsuario, null);
         objUsuario.setLogin(login.getText());
         objUsuario.setNome(nome.getText());
-        objUsuario.setSenha(senha.getText());
+        objUsuario.setSenha(Criptografia.Encriptar(senha.getText()));
         objUsuario.setTipo(jcbUsuario.getSelectedIndex());
         objUsuario.setCodigo(Integer.parseInt(coduser.getText()));
         usercon.alterar();
@@ -379,5 +378,5 @@ public class Insere_usuario extends javax.swing.JFrame {
         cbUsuario.SetaComboBox("");
         coduser.setText("");
     }
-    
+
 }

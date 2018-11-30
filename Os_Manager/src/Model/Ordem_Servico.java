@@ -16,15 +16,15 @@ public class Ordem_Servico {
     private String pendente;
 
     private String finalizado;
-    
+
     private int codigo;
 
-    private int  tipo_problema;
-       
+    private int tipo_problema;
+
     private int tecnico_codigo;
-    
+
     private int cidade_codigo;
-    
+
     public String getDescricao() {
         return descricao;
     }
@@ -81,5 +81,10 @@ public class Ordem_Servico {
         this.cidade_codigo = cidade_codigo;
     }
 
+    @Override
+    public String toString() {
+        return this.getDescricao();
+
+    }
 
 }

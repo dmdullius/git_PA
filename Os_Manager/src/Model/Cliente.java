@@ -16,30 +16,29 @@ public class Cliente {
     private String RG;
 
     private String CPF;
-    
+
     private String CNPJ;
-    
+
     private String Data_Nasc;
-    
+
     private String Nome_Fantasia;
-    
+
     private String Rua;
-   
-    private int Numero; 
-    
+
+    private int Numero;
+
     private String Bairro;
-    
+
     private String Telefone;
-    
+
     private String Telefone_Comercial;
-            
-    private String Celular; 
-    
+
+    private String Celular;
+
     //variavel de referencia ao objeto
     Cliente objCliente;
-    
-    //Getter e Setters
 
+    //Getter e Setters
     public String getNome() {
         return Nome;
     }

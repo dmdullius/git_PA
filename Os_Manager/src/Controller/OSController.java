@@ -5,6 +5,7 @@ import ferramentas.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -107,11 +108,40 @@ public class OSController {
                     return this;
                 }
             });
-            //return (true);
 
         } catch (Exception ex) {
             System.out.println("Erro: " + ex.getMessage().toString());
         }
+
+    }
+
+    public ArrayList<Ordem_Servico> PreencheLista() {
+        ConnectionFactory.abreConexao();
+        ArrayList<Ordem_Servico> Lista_OS = new ArrayList();
+        Ordem_Servico item_OS = null;
+        ResultSet rs = null;
+        try {
+            String SQL = "";
+            SQL = " SELECT codigo, descricao, pendente, finalizado ";
+            SQL += " FROM ordem_servico";
+            SQL += " ORDER BY codigo ";
+
+            rs = ConnectionFactory.stmt.executeQuery(SQL);
+
+            while (rs.next()) {
+                item_OS = new Ordem_Servico();
+                item_OS.setCodigo(rs.getInt("codigo"));
+                item_OS.setDescricao(rs.getString("descricao"));
+                item_OS.setPendente(rs.getString("pendente"));
+                item_OS.setFinalizado(rs.getString("finalizado"));
+                Lista_OS.add(item_OS);
+            }
+        } catch (SQLException ex) {
+            System.out.println("erro causado por: " + ex.toString());
+            System.out.println(ex);
+            return null;
+        }
+        return Lista_OS;
 
     }
 

@@ -42,7 +42,6 @@ public class Insere_tecnico extends javax.swing.JFrame {
             Data_Nasc = Formatacao.getData();
             CPF = Formatacao.getCPF();
             Telefone = Formatacao.getTelefone();
-            
 
             return true;
         } catch (Exception ex) {
@@ -387,7 +386,7 @@ public class Insere_tecnico extends javax.swing.JFrame {
         objTecnico.setNumero(String.valueOf(valor));
         objTecnico.setCidade(jcbCidades.getSelectedIndex());
         TecnicoCon.incluir();
-       
+
         AtualizarTabela();
     }//GEN-LAST:event_inclui_usuarioActionPerformed
 
@@ -410,13 +409,13 @@ public class Insere_tecnico extends javax.swing.JFrame {
     private void jtblistaTecnicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblistaTecnicoMouseClicked
         int linha;
         linha = jtblistaTecnico.getSelectedRow();
-        
+
         Nome.setText(jtblistaTecnico.getValueAt(linha, 1).toString());
         cbCidades.SetaComboBox(jtblistaTecnico.getValueAt(linha, 2).toString());
         Data_Nasc.setText(jtblistaTecnico.getValueAt(linha, 3).toString());
         RG.setText(jtblistaTecnico.getValueAt(linha, 4).toString());
         CPF.setText(jtblistaTecnico.getValueAt(linha, 5).toString());
-        
+
     }//GEN-LAST:event_jtblistaTecnicoMouseClicked
 
     /**

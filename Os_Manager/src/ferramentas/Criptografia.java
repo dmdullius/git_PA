@@ -10,7 +10,7 @@ package ferramentas;
  * @author Jonas
  */
 public class Criptografia {
-    
+
     private static String table = " !\"#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
     private static int key = 5; //Escolha um número de 2 a 10
 
@@ -26,7 +26,7 @@ public class Criptografia {
         }
         return text;
     }
-    
+
     public static String Encriptar(String text) {
         String cleaned_text = limparTexto(text);
 
@@ -43,7 +43,7 @@ public class Criptografia {
         }
         return encrypted;
     }
-    
+
     public static String Descriptar(String text) {
         String cleaned_text = limparTexto(text);
 
@@ -60,5 +60,5 @@ public class Criptografia {
         }
         return decrypted;
     }
-    
+
 }

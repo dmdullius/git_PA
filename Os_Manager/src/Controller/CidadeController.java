@@ -20,6 +20,10 @@ public class CidadeController {
 
     Cidade objCidade;
 
+    /**
+     *
+     * @param objCidade
+     */
     public CidadeController(Cidade objCidade) {
         this.objCidade = objCidade;
     }
@@ -39,7 +43,7 @@ public class CidadeController {
             return true;
 
         } catch (SQLException ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Não é possivel inserir esta cidade: " + ex.toString() +": ", "ERRO de SQL: " + ex.toString(), 'e');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Não é possivel inserir esta cidade: " + ex.toString() + ": ", "ERRO de SQL: " + ex.toString(), 'e');
             System.out.println("Erro: " + ex.getLocalizedMessage());
             return false;
         } finally {

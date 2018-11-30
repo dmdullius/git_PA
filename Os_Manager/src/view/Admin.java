@@ -141,7 +141,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_FecharActionPerformed
 
     private void MenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuUsuarioActionPerformed
-        OS_View tela2 = new OS_View();
+        OS tela2 = new OS();
         tela2.setVisible(true);
         this.setVisible(false);
 
@@ -162,7 +162,7 @@ public class Admin extends javax.swing.JFrame {
     private void relviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relviewActionPerformed
         Relview tela = new Relview();
         tela.setVisible(true);
-        this.setVisible(false);        
+        this.setVisible(false);
     }//GEN-LAST:event_relviewActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed

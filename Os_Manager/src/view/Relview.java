@@ -144,67 +144,67 @@ public class Relview extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void relTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relTecnicoActionPerformed
-Connection conn = ConnectionFactory.getConnection();
-        
+        Connection conn = ConnectionFactory.getConnection();
+
         String src = "ireport/Tecnicos.jasper";
-        
+
         JasperPrint jaspertPrint = null;
-        
+
         try {
-            
+
             jaspertPrint = JasperFillManager.fillReport(src, null, conn);
-            
+
         } catch (JRException ex) {
-            System.out.println("Error: "+ex);
+            System.out.println("Error: " + ex);
         }
-        
-        JasperViewer view = new JasperViewer(jaspertPrint,false);
-        
+
+        JasperViewer view = new JasperViewer(jaspertPrint, false);
+
         view.setVisible(true);
     }//GEN-LAST:event_relTecnicoActionPerformed
 
     private void relUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relUsuarioActionPerformed
-     Connection conn = ConnectionFactory.getConnection();
-        
+        Connection conn = ConnectionFactory.getConnection();
+
         String src = "ireport/usuarios.jasper";
-        
+
         JasperPrint jaspertPrint = null;
-        
+
         try {
-            
+
             jaspertPrint = JasperFillManager.fillReport(src, null, conn);
-            
+
         } catch (JRException ex) {
-            System.out.println("Error: "+ex);
+            System.out.println("Error: " + ex);
         }
-        
-        JasperViewer view = new JasperViewer(jaspertPrint,false);
-        
+
+        JasperViewer view = new JasperViewer(jaspertPrint, false);
+
         view.setVisible(true);
     }//GEN-LAST:event_relUsuarioActionPerformed
 
     private void relOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relOSActionPerformed
-    Connection conn = ConnectionFactory.getConnection();
-        
+        Connection conn = ConnectionFactory.getConnection();
+
         String src = "ireport/OS.jasper";
-        
+
         JasperPrint jaspertPrint = null;
-        
+
         try {
-            
+
             jaspertPrint = JasperFillManager.fillReport(src, null, conn);
-            
+
         } catch (JRException ex) {
-            System.out.println("Error: "+ex);
+            System.out.println("Error: " + ex);
         }
-        
-        JasperViewer view = new JasperViewer(jaspertPrint,false);
-        
+
+        JasperViewer view = new JasperViewer(jaspertPrint, false);
+
         view.setVisible(true);
     }//GEN-LAST:event_relOSActionPerformed
 
     private void voltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltaActionPerformed
-         Admin tela = new Admin();
+        Admin tela = new Admin();
         tela.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_voltaActionPerformed

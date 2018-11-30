@@ -10,31 +10,42 @@ import Model.Usuario;
 import ferramentas.CaixaDeDialogo;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.*;
 
 /**
  *
  * @author dmdullius
  */
-
 public class Gerenciamento_usuarios extends javax.swing.JFrame {
 
     private DefaultListModel lista_model = new DefaultListModel();
 
     UsuarioController objUsuarioCon;
     Usuario objUsuario;
-    ArrayList<Usuario>Lista_Usuario = new ArrayList();
+
+    ArrayList<Usuario> Lista_Usuario = new ArrayList();
 
     /**
      * Creates new form Gerenciamento_usuarios
      */
     public Gerenciamento_usuarios() {
         initComponents();
-        objUsuarioCon = new UsuarioController(null,null);
-        Lista_Usuario = objUsuarioCon.PreencheLista();
-        for (Usuario objUsuario: Lista_Usuario){
-          lista_model.addElement(objUsuario);
+        objUsuarioCon = new UsuarioController(objUsuario, jTbUsuarioDel);
+        AtualizarTabela();
+
+    }
+
+    private void AtualizarTabela() {
+        try {
+
+            Usuario objUsuario = new Usuario();
+            UsuarioController objUsercon = new UsuarioController(objUsuario, null);
+            UsuarioController objUserCon = new UsuarioController(null, jTbUsuarioDel);
+            objUserCon.PreencheTabela();
+
+        } catch (Exception ex) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("ERRO:" + ex.toString());
         }
-        listaUsuarios.setModel(lista_model);
     }
 
     /**
@@ -50,8 +61,9 @@ public class Gerenciamento_usuarios extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         excluiUsuario = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        listaUsuarios = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTbUsuarioDel = new javax.swing.JTable();
+        nome = new javax.swing.JTextField();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -73,51 +85,79 @@ public class Gerenciamento_usuarios extends javax.swing.JFrame {
             }
         });
 
-        listaUsuarios.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jTbUsuarioDel.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTbUsuarioDel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTbUsuarioDelMouseClicked(evt);
+            }
         });
-        jScrollPane2.setViewportView(listaUsuarios);
+        jScrollPane3.setViewportView(jTbUsuarioDel);
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(excluiUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(nome)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(excluiUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(163, 163, 163))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(excluiUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(237, Short.MAX_VALUE))
-            .addComponent(jScrollPane2)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jInternalFrame1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void excluiUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluiUsuarioActionPerformed
- 
+        objUsuario = new Usuario();
+        UsuarioController objUsercon = new UsuarioController(objUsuario, null);
+        objUsuario.setNome(nome.getText());
+        objUsercon.excluir();
+        AtualizarTabela();
     }//GEN-LAST:event_excluiUsuarioActionPerformed
+
+    private void jTbUsuarioDelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbUsuarioDelMouseClicked
+        int linha;
+
+        linha = jTbUsuarioDel.getSelectedRow();
+        nome.setText(jTbUsuarioDel.getValueAt(linha, 1).toString());
+    }//GEN-LAST:event_jTbUsuarioDelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -159,7 +199,8 @@ public class Gerenciamento_usuarios extends javax.swing.JFrame {
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<String> listaUsuarios;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTbUsuarioDel;
+    private javax.swing.JTextField nome;
     // End of variables declaration//GEN-END:variables
 }

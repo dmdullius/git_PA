@@ -20,23 +20,19 @@ import java.util.Vector;
  * @author jonasdhein
  */
 public class Relatoriocontroller {
-        
-    public ResultSet buscarRelatorio(String wSelect)
-    {
+
+    public ResultSet buscarRelatorio(String wSelect) {
         ResultSet rs = null;
         try {
             ConnectionFactory.abreConexao();
-            
+
             String SQL = "";
             SQL = wSelect;
 
-            try{
+            try {
                 System.out.println("Vai Executar Conexão em buscar");
                 rs = ConnectionFactory.stmt.executeQuery(SQL);
-            }
-
-            catch (SQLException ex )
-            {
+            } catch (SQLException ex) {
                 System.out.println("ERRO de SQL: " + ex.getMessage().toString());
                 return rs;
             }
@@ -45,11 +41,9 @@ public class Relatoriocontroller {
             System.out.println("ERRO: " + e.getMessage().toString());
             return rs;
         }
-        
-        System.out.println ("Executou buscar com sucesso");
+
+        System.out.println("Executou buscar com sucesso");
         return rs;
     }
-    
-    
-    
+
 }

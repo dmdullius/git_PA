@@ -58,7 +58,7 @@ public class ClienteController {
                     objCliente.setCelular(rs.getString(12));
                 }
             } catch (SQLException ex) {
-                CaixaDeDialogo.obterinstancia().exibirMensagem("Sua pesquisa não retornou resultados validos", "Erro de SQL: "+ex.toString(), 'e');
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Sua pesquisa não retornou resultados validos", "Erro de SQL: " + ex.toString(), 'e');
                 return null;
             }
 
@@ -98,7 +98,7 @@ public class ClienteController {
             return true;
 
         } catch (SQLException ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Impossivel alterar os dados do cliente", "Erro de SQL: "+ex.toString(), 'e');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Impossivel alterar os dados do cliente", "Erro de SQL: " + ex.toString(), 'e');
             return false;
         } finally {
             CaixaDeDialogo.obterinstancia().exibirMensagem("O cliente foi alterado", "Cadastro de Clientes: ", 'i');
@@ -132,7 +132,7 @@ public class ClienteController {
             return true;
 
         } catch (SQLException ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Não é possivel inserir este cliente", "ERRO de SQL: "+ex.toString(), 'e');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Não é possivel inserir este cliente", "ERRO de SQL: " + ex.toString(), 'e');
             return false;
         } finally {
             CaixaDeDialogo.obterinstancia().exibirMensagem("O cliente foi cadastrado", "Cadastro de Clientes: ", 'i');
@@ -159,7 +159,7 @@ public class ClienteController {
             return true;
 
         } catch (SQLException ex) {
-           CaixaDeDialogo.obterinstancia().exibirMensagem("Não foi possivel excluir o cliente selecionado", "Erro de SQL:  "+ex.toString(), 'i');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Não foi possivel excluir o cliente selecionado", "Erro de SQL:  " + ex.toString(), 'i');
             return false;
         } finally {
             CaixaDeDialogo.obterinstancia().exibirMensagem("O cliente foi excluido", "Cadastro de Clientes: ", 'i');

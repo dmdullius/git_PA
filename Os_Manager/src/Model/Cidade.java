@@ -4,16 +4,18 @@
  * and open the template in the editor.
  */
 package Model;
+
 import ferramentas.*;
+
 /**
  *
  * @author douglas
  */
-
 public class Cidade {
+
     Cidade objCidade;
-       private String cidade;
-       private  int uf;
+    private String cidade;
+    private int uf;
 
     public String getCidade() {
         return cidade;
@@ -31,7 +33,4 @@ public class Cidade {
         this.uf = uf;
     }
 
-  
-        
-    
 }

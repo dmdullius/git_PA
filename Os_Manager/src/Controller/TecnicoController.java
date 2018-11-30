@@ -34,21 +34,18 @@ public class TecnicoController {
         this.jtblistaTecnico = jtblistaTecnico;
 
     }
-public ResultSet buscarRelatorio()
-    {
+
+    public ResultSet buscarRelatorio() {
         ResultSet rs = null;
         try {
             ConnectionFactory.abreConexao();
-            
+
             String SQL = "";
             SQL = " SELECT * from usuarios";
-            try{
+            try {
                 System.out.println("Vai Executar Conexão em buscar relatorio");
                 rs = ConnectionFactory.stmt.executeQuery(SQL);
-            }
-
-            catch (SQLException ex )
-            {
+            } catch (SQLException ex) {
                 System.out.println("ERRO de SQL: " + ex.getMessage().toString());
                 return rs;
             }
@@ -57,11 +54,11 @@ public ResultSet buscarRelatorio()
             System.out.println("ERRO: " + e.getMessage().toString());
             return rs;
         }
-        
-        System.out.println ("Executou buscar relatório com sucesso");
+
+        System.out.println("Executou buscar relatório com sucesso");
         return rs;
     }
-    
+
     public Tecnico buscar(String id) {
         try {
             ConnectionFactory.abreConexao();
@@ -159,13 +156,13 @@ public ResultSet buscarRelatorio()
             stmt.setString(9, objTecnico.getTelefone());
             stmt.setString(10, objTecnico.getCelular());
             stmt.setString(11, objTecnico.getEmail());
-            
+
             stmt.executeUpdate();
             CaixaDeDialogo.obterinstancia().exibirMensagem("O Técnico foi cadastrado", "Cadastro de Técnicos: ", 'i');
             return true;
 
         } catch (SQLException ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Não é possivel inserir este Técnico, causa:  "+ex.toString(), "ERRO de SQL: ", 'e');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Não é possivel inserir este Técnico, causa:  " + ex.toString(), "ERRO de SQL: ", 'e');
             return false;
         } finally {
 

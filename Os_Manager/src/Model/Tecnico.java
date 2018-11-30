@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Model;
 
 /**
@@ -13,29 +12,29 @@ package Model;
 public class Tecnico {
 
     private String nome;
-    
+
     private String login;
-    
+
     private String senha;
-    
+
     private String RG;
-    
+
     private String CPF;
-    
+
     private String Data_nasc;
-    
+
     private String Rua;
-    
+
     private String numero;
-          
+
     private int Cidade;
-    
+
     private String bairro;
-    
+
     private String Telefone;
-    
+
     private String Celular;
-    
+
     private String email;
 
     public String getNome() {
@@ -61,8 +60,6 @@ public class Tecnico {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    
 
     public String getRG() {
         return RG;
@@ -100,8 +97,6 @@ public class Tecnico {
         this.numero = numero;
     }
 
-    
-    
     public void setRua(String Rua) {
         this.Rua = Rua;
     }
@@ -145,7 +140,5 @@ public class Tecnico {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    
 
 }

@@ -156,19 +156,19 @@ public class Sistema extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FecharActionPerformed
- System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_FecharActionPerformed
 
     private void Seleciona_tecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seleciona_tecActionPerformed
         ValidacaoOS tela = new ValidacaoOS();
-            tela.setVisible(true);
-            this.setVisible(false);
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_Seleciona_tecActionPerformed
 
     private void Seleciona_uActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seleciona_uActionPerformed
         OS tela = new OS();
-            tela.setVisible(true);
-            this.setVisible(false);
+        tela.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_Seleciona_uActionPerformed
 
     private void Seleciona_tec1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seleciona_tec1ActionPerformed
