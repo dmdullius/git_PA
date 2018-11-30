@@ -16,6 +16,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
+/**
+ *
+ * @author douglas
+ */
 public class ValidacaoOS extends javax.swing.JFrame {
 
     private DefaultListModel lista_model = new DefaultListModel();
@@ -25,6 +29,9 @@ public class ValidacaoOS extends javax.swing.JFrame {
 
     ArrayList<Ordem_Servico> Lista_OS = new ArrayList();
 
+    /**
+     *
+     */
     public ValidacaoOS() {
         initComponents();
         AtualizarTabela();
@@ -445,6 +452,10 @@ public class ValidacaoOS extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jtbOSMouseClicked
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {

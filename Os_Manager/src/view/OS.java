@@ -27,6 +27,9 @@ public class OS extends javax.swing.JFrame {
     Combos cbTecnicos;
     Combos cbCidades;
 
+    /**
+     *
+     */
     public OS() {
         initComponents();
         this.setLocationRelativeTo(null);

@@ -17,6 +17,12 @@ import Model.Usuario;
  */
 public class LoginController {
 
+    /**
+     *
+     * @param usuario
+     * @param senha
+     * @return
+     */
     public Usuario Login(String usuario, String senha) {
         //INÍCIO CONEXÃO COM O BANCO DE DADOS
 

@@ -29,6 +29,11 @@ public class Validacao {
         return soma > 9 ? 0 : soma;
     }
 
+    /**
+     *
+     * @param email
+     * @return
+     */
     public static boolean validarEmail(String email) {
         boolean isEmailIdValid = false;
         if (email != null && email.length() > 0) {
@@ -42,6 +47,11 @@ public class Validacao {
         return isEmailIdValid;
     }
 
+    /**
+     *
+     * @param cpf
+     * @return
+     */
     public static boolean validarCPF(String cpf) {
         if ((cpf == null) || (cpf.length() != 11)) {
             return false;
@@ -51,6 +61,11 @@ public class Validacao {
         return cpf.equals(cpf.substring(0, 9) + digito1.toString() + digito2.toString());
     }
 
+    /**
+     *
+     * @param cnpj
+     * @return
+     */
     public static boolean validarCNPJ(String cnpj) {
         if ((cnpj == null) || (cnpj.length() != 14)) {
             return false;
@@ -60,6 +75,13 @@ public class Validacao {
         return cnpj.equals(cnpj.substring(0, 12) + digito1.toString() + digito2.toString());
     }
 
+    /**
+     *
+     * @param d
+     * @param m
+     * @param a
+     * @return
+     */
     public static boolean validarData(int d, int m, int a) {
         boolean correto = true;
         int[] dias = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -77,12 +99,21 @@ public class Validacao {
         return (correto);
     }
 
+    /**
+     *
+     * @param campo
+     */
     public static void validarTelefone(JFormattedTextField campo) {
         if (campo.getText().trim().length() < 13) {
             Formatacao.reformatarTelefone(campo);
         }
     }
 
+    /**
+     *
+     * @param data
+     * @return
+     */
     public static boolean validarData_br(String data) {
         try {
             //SimpleDateFormat é usada para trabalhar com formatação de datas

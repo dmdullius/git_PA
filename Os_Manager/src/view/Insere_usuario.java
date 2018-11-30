@@ -25,6 +25,9 @@ public class Insere_usuario extends javax.swing.JFrame {
      */
     Combos cbUsuario;
 
+    /**
+     *
+     */
     public Insere_usuario() {
         initComponents();
         this.setLocationRelativeTo(null);

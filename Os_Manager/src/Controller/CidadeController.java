@@ -28,6 +28,10 @@ public class CidadeController {
         this.objCidade = objCidade;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean incluir() {
 
         ConnectionFactory.abreConexao();

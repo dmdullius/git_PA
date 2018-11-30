@@ -29,12 +29,21 @@ public class TecnicoController {
     Tecnico objTecnico = null;
     JTable jtblistaTecnico = null;
 
+    /**
+     *
+     * @param objTecnico
+     * @param jtblistaTecnico
+     */
     public TecnicoController(Tecnico objTecnico, JTable jtblistaTecnico) {
         this.objTecnico = objTecnico;
         this.jtblistaTecnico = jtblistaTecnico;
 
     }
 
+    /**
+     *
+     * @return
+     */
     public ResultSet buscarRelatorio() {
         ResultSet rs = null;
         try {
@@ -59,6 +68,11 @@ public class TecnicoController {
         return rs;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Tecnico buscar(String id) {
         try {
             ConnectionFactory.abreConexao();
@@ -104,6 +118,10 @@ public class TecnicoController {
         return objTecnico;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean alterar() {
 
         ConnectionFactory.abreConexao();
@@ -137,6 +155,10 @@ public class TecnicoController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean incluir() {
 
         ConnectionFactory.abreConexao();
@@ -171,6 +193,10 @@ public class TecnicoController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean excluir() {
         String id;
         id = objTecnico.getNome();
@@ -194,6 +220,9 @@ public class TecnicoController {
         }
     }
 
+    /**
+     *
+     */
     public void PreencheLista() {
 
         try {

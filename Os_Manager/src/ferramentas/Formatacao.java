@@ -18,6 +18,11 @@ public class Formatacao {
 
     static DecimalFormat df = new DecimalFormat("#,##0.00", new DecimalFormatSymbols(new Locale("pt", "BR")));
 
+    /**
+     *
+     * @param campo
+     * @param mascara
+     */
     public static void colocaMascara(JFormattedTextField campo, String mascara) {
         try {
             MaskFormatter maskData;
@@ -35,6 +40,11 @@ public class Formatacao {
         }
     }
 
+    /**
+     *
+     * @param formato
+     * @return
+     */
     public static JFormattedTextField getFormatado(String formato) {
         JFormattedTextField campoFormatado = null;
         MaskFormatter format = new MaskFormatter();
@@ -51,34 +61,67 @@ public class Formatacao {
         return campoFormatado;
     }
 
+    /**
+     *
+     * @param campo
+     */
     public static void formatarDecimal(JTextField campo) {
         campo.setText(df.format(Double.parseDouble(campo.getText())));
     }
 
+    /**
+     *
+     * @return
+     */
     public static JFormattedTextField getTelefone() {
         return getFormatado("(##) ####-####");
     }
 
+    /**
+     *
+     * @return
+     */
     public static JFormattedTextField getCNPJ() {
         return getFormatado("##.###.###/####-##");
     }
 
+    /**
+     *
+     * @return
+     */
     public static JFormattedTextField getCPF() {
         return getFormatado("###.###.###-##");
     }
 
+    /**
+     *
+     * @return
+     */
     public static JFormattedTextField getData() {
         return getFormatado("##/##/####");
     }
 
+    /**
+     *
+     * @return
+     */
     public static JFormattedTextField getDataHora() {
         return getFormatado("##/##/#### ##:##");
     }
 
+    /**
+     *
+     * @param campo
+     */
     public void formatoDecimal(JTextField campo) {
         campo.setText(df.format(Double.parseDouble(campo.getText())));
     }
 
+    /**
+     *
+     * @param formato
+     * @return
+     */
     public static String retornaDataAtual(String formato) {
         try {
             Date data = new Date();
@@ -91,6 +134,10 @@ public class Formatacao {
         }
     }
 
+    /**
+     *
+     * @param campo
+     */
     public static void reformatarData(JFormattedTextField campo) {
         try {
             MaskFormatter m = new MaskFormatter();
@@ -104,6 +151,10 @@ public class Formatacao {
         }
     }
 
+    /**
+     *
+     * @param campo
+     */
     public static void reformatarCpf(JFormattedTextField campo) {
         try {
             MaskFormatter m = new MaskFormatter();
@@ -117,6 +168,10 @@ public class Formatacao {
         }
     }
 
+    /**
+     *
+     * @param campo
+     */
     public static void reformatarCnpj(JFormattedTextField campo) {
         try {
             MaskFormatter m = new MaskFormatter();
@@ -130,6 +185,10 @@ public class Formatacao {
         }
     }
 
+    /**
+     *
+     * @param campo
+     */
     public static void reformatarTelefone(JFormattedTextField campo) {
         try {
             MaskFormatter m = new MaskFormatter();
@@ -143,6 +202,11 @@ public class Formatacao {
         }
     }
 
+    /**
+     *
+     * @param data
+     * @return
+     */
     public static String ajustaDataDMA(String data) {
         String dataFormatada = null;
         try {
@@ -154,6 +218,11 @@ public class Formatacao {
         return (dataFormatada);
     }
 
+    /**
+     *
+     * @param data
+     * @return
+     */
     public static String ajustaDataAMD(String data) {
         String dataFormatada = null;
         try {
@@ -165,6 +234,11 @@ public class Formatacao {
         return (dataFormatada);
     }
 
+    /**
+     *
+     * @param data
+     * @return
+     */
     public static String ajustaDataHoraDMA(String data) {
         String dataFormatada = null;
         try {
@@ -176,6 +250,11 @@ public class Formatacao {
         return (dataFormatada);
     }
 
+    /**
+     *
+     * @param data
+     * @return
+     */
     public static String ajustaDataHoraAMD(String data) {
         String dataFormatada = null;
         try {
@@ -187,6 +266,11 @@ public class Formatacao {
         return (dataFormatada);
     }
 
+    /**
+     *
+     * @param dado
+     * @return
+     */
     public static String removerFormatacao(String dado) {
         String retorno = "";
         for (int i = 0; i < dado.length(); i++) {
@@ -197,6 +281,11 @@ public class Formatacao {
         return (retorno);
     }
 
+    /**
+     *
+     * @param dado
+     * @return
+     */
     public static String soNumero(String dado) {
         try {
             return dado.replaceAll("\\D+", "");

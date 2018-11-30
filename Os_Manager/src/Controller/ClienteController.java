@@ -20,11 +20,20 @@ public class ClienteController {
 
     Cliente objCliente;
 
+    /**
+     *
+     * @param objCliente
+     */
     public ClienteController(Cliente objCliente) {
         this.objCliente = objCliente;
 
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Cliente buscar(String id) {
         try {
             ConnectionFactory.abreConexao();
@@ -72,6 +81,10 @@ public class ClienteController {
     }
 //metodos github professor alterar e excluir
 
+    /**
+     *
+     * @return
+     */
     public boolean alterar() {
 
         ConnectionFactory.abreConexao();
@@ -107,6 +120,10 @@ public class ClienteController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean incluir() {
 
         ConnectionFactory.abreConexao();
@@ -141,6 +158,10 @@ public class ClienteController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean excluir() {
         String id;
         id = objCliente.getNome();

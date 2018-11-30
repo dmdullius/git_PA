@@ -16,9 +16,24 @@ import javax.swing.JOptionPane;
  */
 public class CaixaDeDialogo {
 
+    /**
+     *
+     */
     final public static char ERRO = 'e';
+
+    /**
+     *
+     */
     final public static char INFO = 'i';
+
+    /**
+     *
+     */
     final public static char ALERTA = 'a';
+
+    /**
+     *
+     */
     final public static char PERGUNTA = 'p';
 
     private static CaixaDeDialogo instancia = new CaixaDeDialogo();
@@ -27,18 +42,37 @@ public class CaixaDeDialogo {
         // construtor vazio e privado
     }
 
+    /**
+     *
+     * @return
+     */
     public static CaixaDeDialogo obterinstancia() {
         return (instancia);
     }
 
+    /**
+     *
+     * @param frase
+     */
     public void exibirMensagem(String frase) {
         exibirMensagem(frase, "Mensagem", 'i');
     }
 
+    /**
+     *
+     * @param frase
+     * @param tipo
+     */
     public void exibirMensagem(String frase, char tipo) {
         exibirMensagem(frase, "Mensagem", tipo);
     }
 
+    /**
+     *
+     * @param frase
+     * @param boxFrase
+     * @param tipo
+     */
     public void exibirMensagem(String frase, String boxFrase, char tipo) {
         /* Erro 'e'
          * Informativa 'i'
@@ -57,6 +91,14 @@ public class CaixaDeDialogo {
 //    public boolean pedirConfirmacao( String frase, char tipo ) {
 //        return( pedirConfirmacao( frase, "Confirmacao", tipo ));
 //    }
+
+    /**
+     *
+     * @param frase
+     * @param boxFrase
+     * @param tipo
+     * @return
+     */
     public boolean pedirConfirmacao(String frase, String boxFrase, char tipo) {
         String[] opcoes = {"Sim", "Não"};
         int opcaoPadrao = 0;

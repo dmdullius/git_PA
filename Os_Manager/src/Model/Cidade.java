@@ -17,18 +17,34 @@ public class Cidade {
     private String cidade;
     private int uf;
 
+    /**
+     *
+     * @return
+     */
     public String getCidade() {
         return cidade;
     }
 
+    /**
+     *
+     * @param cidade
+     */
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getUf() {
         return uf;
     }
 
+    /**
+     *
+     * @param uf
+     */
     public void setUf(int uf) {
         this.uf = uf;
     }

@@ -26,12 +26,21 @@ public class UsuarioController {
     JTable jtblistaUsuario = null;
     JTable jtblistaUsuariodel = null;
 
+    /**
+     *
+     * @param objUsuario
+     * @param jtblistaUsuario
+     */
     public UsuarioController(Usuario objUsuario, JTable jtblistaUsuario) {
         this.objUsuario = objUsuario;
         this.jtblistaUsuario = jtblistaUsuario;
         this.jtblistaUsuariodel = jtblistaUsuariodel;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean incluir() {
 
         ConnectionFactory.abreConexao();
@@ -57,6 +66,11 @@ public class UsuarioController {
 
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Usuario buscar(String id) {
         try {
             ConnectionFactory.abreConexao();
@@ -94,6 +108,10 @@ public class UsuarioController {
     }
 //metodos github professor alterar e excluir
 
+    /**
+     *
+     * @return
+     */
     public boolean alterar() {
 
         ConnectionFactory.abreConexao();
@@ -122,6 +140,10 @@ public class UsuarioController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean excluir() {
 
         ConnectionFactory.abreConexao();
@@ -147,6 +169,9 @@ public class UsuarioController {
 
     }
 
+    /**
+     *
+     */
     public void PreencheTabela() {
 
         try {
@@ -237,6 +262,10 @@ public class UsuarioController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Usuario> PreencheLista() {
         ConnectionFactory.abreConexao();
         ArrayList<Usuario> Lista_Usuario = new ArrayList();

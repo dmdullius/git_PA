@@ -22,10 +22,17 @@ public class Combos {
     JComboBox cbCombo = null;
     ResultSet result = null;
 
+    /**
+     *
+     * @param cbCombo
+     */
     public Combos(JComboBox cbCombo) {
         this.cbCombo = cbCombo;
     }
 
+    /**
+     *
+     */
     public Combos() {
 
     }
@@ -58,11 +65,20 @@ public class Combos {
         this.descricao = descricao;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return descricao;
     }
 
+    /**
+     *
+     * @param wValue
+     * @return
+     */
     public int SetaComboBox(String wValue) {
 
         for (int i = 0; i < cbCombo.getItemCount(); i++) {
@@ -76,6 +92,12 @@ public class Combos {
         return 1;
     }
 
+    /**
+     *
+     * @param wSQL
+     * @return
+     * @throws SQLException
+     */
     public int PreencheCombo(String wSQL) throws SQLException {
 
         ConnectionFactory.abreConexao();

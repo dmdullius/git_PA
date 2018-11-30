@@ -24,6 +24,9 @@ public class Insere_tecnico extends javax.swing.JFrame {
     Combos cbEstados;
     Combos cbCidades;
 
+    /**
+     *
+     */
     public Insere_tecnico() {
         initComponents();
         this.setLocationRelativeTo(null);

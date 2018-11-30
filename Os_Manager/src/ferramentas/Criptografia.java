@@ -27,6 +27,11 @@ public class Criptografia {
         return text;
     }
 
+    /**
+     *
+     * @param text
+     * @return
+     */
     public static String Encriptar(String text) {
         String cleaned_text = limparTexto(text);
 
@@ -44,6 +49,11 @@ public class Criptografia {
         return encrypted;
     }
 
+    /**
+     *
+     * @param text
+     * @return
+     */
     public static String Descriptar(String text) {
         String cleaned_text = limparTexto(text);
 

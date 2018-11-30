@@ -21,6 +21,11 @@ import java.util.Vector;
  */
 public class Relatoriocontroller {
 
+    /**
+     *
+     * @param wSelect
+     * @return
+     */
     public ResultSet buscarRelatorio(String wSelect) {
         ResultSet rs = null;
         try {

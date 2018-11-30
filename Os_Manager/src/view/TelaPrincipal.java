@@ -11,8 +11,14 @@ import static ferramentas.ConnectionFactory.con;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
+    /**
+     *
+     */
     public static String senha_atual;
 
+    /**
+     *
+     */
     public TelaPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -192,6 +198,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         txtSenha.setText(null);
     }//GEN-LAST:event_limpaActionPerformed
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {

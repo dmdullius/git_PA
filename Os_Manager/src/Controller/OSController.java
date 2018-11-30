@@ -22,12 +22,20 @@ public class OSController {
 
     JTable jtbOS = null;
 
+    /**
+     *
+     * @param objOS
+     * @param jTableOS
+     */
     public OSController(Ordem_Servico objOS, JTable jTableOS) {
         this.objOS = objOS;
         this.jtbOS = jtbOS;
         objOS = null;
     }
 
+    /**
+     *
+     */
     public void PreencheOS() {
 
         try {
@@ -115,6 +123,10 @@ public class OSController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Ordem_Servico> PreencheLista() {
         ConnectionFactory.abreConexao();
         ArrayList<Ordem_Servico> Lista_OS = new ArrayList();
@@ -145,6 +157,11 @@ public class OSController {
 
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Ordem_Servico buscar(int id) {
         try {
             ConnectionFactory.abreConexao();
@@ -184,6 +201,10 @@ public class OSController {
         return objOS;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean alterar() {
 
         ConnectionFactory.abreConexao();
@@ -210,6 +231,10 @@ public class OSController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean incluir() {
 
         ConnectionFactory.abreConexao();
@@ -239,6 +264,10 @@ public class OSController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean excluir() {
         int id;
         id = objOS.getCodigo();

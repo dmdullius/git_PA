@@ -25,9 +25,19 @@ public class ConnectionFactory {
     private final static String USER = "postgres";
     private final static String PASS = "postgres";
 
+    /**
+     *
+     */
     public static Connection con;
+
+    /**
+     *
+     */
     public static Statement stmt;
 
+    /**
+     *
+     */
     public static void abreConexao() {
         try {
             Connection con = getConnection();
@@ -38,6 +48,10 @@ public class ConnectionFactory {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public static Connection getConnection() {
 
         try {
@@ -50,6 +64,10 @@ public class ConnectionFactory {
         }
     }
 
+    /**
+     *
+     * @param con
+     */
     public static void closeConnection(Connection con) {
         try {
 
@@ -62,6 +80,11 @@ public class ConnectionFactory {
         }
     }
 
+    /**
+     *
+     * @param con
+     * @param stmt
+     */
     public static void closeConnection(Connection con, PreparedStatement stmt) {
 
         //stmt é responsável por executar os comandos SQL - DML (Data Manipulation Langage)
@@ -78,6 +101,12 @@ public class ConnectionFactory {
         }
     }
 
+    /**
+     *
+     * @param con
+     * @param stmt
+     * @param rs
+     */
     public static void closeConnection(Connection con, PreparedStatement stmt, ResultSet rs) {
 
         closeConnection(con, stmt);
@@ -93,6 +122,11 @@ public class ConnectionFactory {
         }
     }
 
+    /**
+     *
+     * @param con
+     * @param stmt
+     */
     public static void closeConnecion(Connection con, PreparedStatement stmt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
