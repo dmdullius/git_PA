@@ -56,25 +56,25 @@ public class ValidacaoOS extends javax.swing.JFrame {
     }
 
     private void AtualizarTabela() {
-       try{
-           
-       
-        DefaultTableModel modelo = (DefaultTableModel) jtbOS.getModel();
-        modelo.setNumRows(0);
-        for (Ordem_Servico OStb : OScon.PreencheLista()) {
-            modelo.addRow(new Object[]{
-                OStb.getCodigo(),
-                OStb.getPendente(),
-                OStb.getFinalizado(),
-                OStb.getDescricao()
-            });
+        try {
 
+            DefaultTableModel modelo = (DefaultTableModel) jtbOS.getModel();
+            modelo.setNumRows(0);
+            for (Ordem_Servico OStb : OScon.PreencheLista()) {
+                modelo.addRow(new Object[]{
+                    OStb.getCodigo(),
+                    OStb.getPendente(),
+                    OStb.getFinalizado(),
+                    OStb.getDescricao()
+                });
+
+            }
+
+        } catch (Exception ex) {
+            System.out.println("erro:  " + ex.toString());
         }
+    }
 
-    }catch(Exception ex){
-           System.out.println("erro:  "+ex.toString()); 
-    }
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,7 +142,7 @@ public class ValidacaoOS extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("OS já cadastradas");
+        jLabel5.setText("OS á validar");
 
         btnAlterar.setText("ALTERAR");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -222,30 +222,28 @@ public class ValidacaoOS extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(finalizado, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jcbOS_tecnicos, 0, 185, Short.MAX_VALUE)
+                            .addComponent(pendente)))
+                    .addComponent(jLabel6)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(finalizado, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jcbOS_tecnicos, 0, 185, Short.MAX_VALUE)
-                                    .addComponent(pendente)))
-                            .addComponent(jLabel6)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addContainerGap())
-                            .addComponent(jScrollPane4)))))
+                        .addComponent(jLabel5)
+                        .addContainerGap())
+                    .addComponent(jScrollPane4)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(120, Short.MAX_VALUE)
                 .addComponent(btnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,47 +310,24 @@ public class ValidacaoOS extends javax.swing.JFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         try {
-            //if(validaDados()){
             OSController objOScon = new OSController(objOS, null);
-            guardarDados();
-
-            if (objOScon.alterar() == true) {
-                CaixaDeDialogo.obterinstancia().exibirMensagem("OS alterada com Sucesso!");
-            } else {
-                CaixaDeDialogo.obterinstancia().exibirMensagem("OPS! Erro ao alterar OS, que pena!!!");
-            }
+            objOS.setCodigo(Integer.parseInt(codigo.getText()));
+            objOS.setDescricao(desc.getText());
+            objOS.setPendente(pendente.getText());
+            objOS.setFinalizado(finalizado.getText());
+            objOScon.alterar();
 
             limparTela();
             //}
         } catch (Exception ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.toString());
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
-    private void guardarDados() {
-        try {
-            Ordem_Servico objOS = new Ordem_Servico();
-
-            objOS.setCodigo(Integer.parseInt(codigo.getText()));
-            objOS.setDescricao(finalizado.getText());
-
-            //AJUSTA A DATA PARA ANO-MES-DIA PARA GRAVAR NO BANCO
-            //String dataFormatada = Formatacao.ajustaDataAMD(txtDataNascimento.getText());
-            //objAluno.setDat_nasc(dataFormatada);
-            //RECUPERANDO O CODIGO DO CURSO DO JCOMBOBOX
-            Combos c = (Combos) jcbOS_tecnicos.getSelectedItem();
-            String codigo = c.getCodigo();
-            objOS.setCodigo(Integer.parseInt(codigo));
-
-        } catch (Exception ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Problemas no guardaDados: " + ex.getMessage());
-        }
-    }
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
         if (validarDados() == true) {
             //PREENCHE O OBJETO OS
-            guardarDados();
 
             OSController objOSCon = new OSController(objOS, null);
             try {
@@ -380,6 +355,7 @@ public class ValidacaoOS extends javax.swing.JFrame {
             pendente.setText("");
             cbOS.SetaComboBox("");
             codigo.setEnabled(true);
+            desc.setText("");
 
         } catch (Exception ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.toString());
@@ -400,15 +376,19 @@ public class ValidacaoOS extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
 
-        OSController objOSCon = new OSController(null, null);
         try {
+            OSController objOSCon = new OSController(objOS, null);
+            objOS.setDescricao(desc.getText());
+            objOSCon.excluir();
             if (objOSCon.excluir() == true) {
                 CaixaDeDialogo.obterinstancia().exibirMensagem("OS removida com Sucesso!");
+                lista_model.remove(listaOS.getSelectedIndex());
+                AtualizarTabela();
             } else {
                 CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao remover OS!");
             }
         } catch (Exception ex) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.toString());
         }
 
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -442,14 +422,14 @@ public class ValidacaoOS extends javax.swing.JFrame {
     }//GEN-LAST:event_listaOSMouseClicked
 
     private void jtbOSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbOSMouseClicked
-         int linha;
+        int linha;
 
         linha = jtbOS.getSelectedRow();
         codigo.setText(jtbOS.getValueAt(linha, 0).toString());
         pendente.setText(jtbOS.getValueAt(linha, 1).toString());
         finalizado.setText(jtbOS.getValueAt(linha, 2).toString());
         desc.setText(jtbOS.getValueAt(linha, 3).toString());
-        
+
     }//GEN-LAST:event_jtbOSMouseClicked
 
     /**

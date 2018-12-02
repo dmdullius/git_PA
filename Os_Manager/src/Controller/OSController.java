@@ -217,6 +217,7 @@ public class OSController {
             stmt.setString(1, objOS.getDescricao());
             stmt.setString(2, objOS.getFinalizado());
             stmt.setString(3, objOS.getPendente());
+            stmt.setInt(4, objOS.getCodigo());
             stmt.executeUpdate();
             CaixaDeDialogo.obterinstancia().exibirMensagem("O cliente foi alterado", "Cadastro de Clientes: ", 'i');
             return true;
@@ -227,6 +228,7 @@ public class OSController {
         } finally {
 
             ConnectionFactory.closeConnection(con, stmt);
+
         }
 
     }
@@ -269,16 +271,15 @@ public class OSController {
      * @return
      */
     public boolean excluir() {
-        int id;
-        id = objOS.getCodigo();
+        
         ConnectionFactory.abreConexao();
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("DELETE ordem_servico WHERE codigo='" + id + "'");
+            stmt = con.prepareStatement("DELETE from ordem_servico WHERE descricao=?");
 
-            stmt.setInt(1, objOS.getCodigo());
+            stmt.setString(1, objOS.getDescricao());
 
             stmt.executeUpdate();
             CaixaDeDialogo.obterinstancia().exibirMensagem("A ordem de serviço foi excluida", "Cadastro de Chamados: ", 'i');
