@@ -25,7 +25,7 @@ public class Tecnico {
 
     private String Rua;
 
-    private String numero;
+    private int numero;
 
     private int Cidade;
 
@@ -141,21 +141,15 @@ public class Tecnico {
         return Rua;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    /**
-     *
-     * @param numero
-     */
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
+
+   
 
     /**
      *

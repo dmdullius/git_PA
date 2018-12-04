@@ -97,7 +97,7 @@ public class TecnicoController {
                     objTecnico.setCPF(rs.getString(3));
                     objTecnico.setData_nasc(rs.getString(4));
                     objTecnico.setRua(rs.getString(5));
-                    objTecnico.setNumero(String.valueOf(rs.getInt(6)));
+                    objTecnico.setNumero((rs.getInt(6)));
                     objTecnico.setBairro(rs.getString(8));
                     objTecnico.setBairro(rs.getString(7));
                     objTecnico.setTelefone(rs.getString(9));
@@ -135,7 +135,7 @@ public class TecnicoController {
             stmt.setString(2, objTecnico.getRG());
             stmt.setString(3, objTecnico.getData_nasc());
             stmt.setString(4, objTecnico.getRua());
-            stmt.setInt(8, Integer.parseInt(objTecnico.getNumero()));
+            stmt.setInt(8, (objTecnico.getNumero()));
             stmt.setString(9, objTecnico.getBairro());
             stmt.setString(10, objTecnico.getTelefone());
             stmt.setString(11, objTecnico.getEmail());
@@ -159,7 +159,7 @@ public class TecnicoController {
      *
      * @return
      */
-    public boolean incluir() {
+    public void incluir() {
 
         ConnectionFactory.abreConexao();
         Connection con = ConnectionFactory.getConnection();
@@ -172,7 +172,7 @@ public class TecnicoController {
             stmt.setString(3, objTecnico.getCPF());
             stmt.setString(4, objTecnico.getData_nasc());
             stmt.setString(5, objTecnico.getRua());
-            stmt.setInt(6, Integer.parseInt(objTecnico.getNumero()));
+            stmt.setInt(6, (objTecnico.getNumero()));
             stmt.setString(7, objTecnico.getBairro());
             stmt.setInt(8, objTecnico.getCidade());
             stmt.setString(9, objTecnico.getTelefone());
@@ -181,11 +181,11 @@ public class TecnicoController {
 
             stmt.executeUpdate();
             CaixaDeDialogo.obterinstancia().exibirMensagem("O Técnico foi cadastrado", "Cadastro de Técnicos: ", 'i');
-            return true;
+            
 
         } catch (SQLException ex) {
             CaixaDeDialogo.obterinstancia().exibirMensagem("Não é possivel inserir este Técnico, causa:  " + ex.toString(), "ERRO de SQL: ", 'e');
-            return false;
+            
         } finally {
 
             ConnectionFactory.closeConnection(con, stmt);
