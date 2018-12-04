@@ -27,7 +27,7 @@ public class Insere_tecnico extends javax.swing.JFrame {
     /**
      *
      */
-    public Insere_tecnico() {
+	 public Insere_tecnico() {
         initComponents();
         this.setLocationRelativeTo(null);
         try {
@@ -118,14 +118,7 @@ public class Insere_tecnico extends javax.swing.JFrame {
         jLabel1.setText("Nome:");
 
         jLabel6.setText("Data de nasc.");
-
-        RG.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RGActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("RG");
+		 jLabel4.setText("RG");
 
         jLabel5.setText("CPF");
 
@@ -134,26 +127,10 @@ public class Insere_tecnico extends javax.swing.JFrame {
         jLabel7.setText("Bairro");
 
         jLabel9.setText("Número");
-
-        Email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmailActionPerformed(evt);
-            }
-        });
-
-        jLabel13.setText("E-mail");
-
+		jLabel13.setText("E-mail");
         jLabel11.setText("Telefone");
-
-        Telefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TelefoneActionPerformed(evt);
-            }
-        });
-
-        jLabel12.setText("Celular");
-
-        inclui_usuario.setText("Incluir Técnico");
+		jLabel12.setText("Celular");
+		inclui_usuario.setText("Incluir Técnico");
         inclui_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inclui_usuarioActionPerformed(evt);
@@ -168,14 +145,7 @@ public class Insere_tecnico extends javax.swing.JFrame {
         });
 
         jLabel2.setText("Cidade");
-
-        Nome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NomeActionPerformed(evt);
-            }
-        });
-
-        jcbCidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+jcbCidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jtblistaTecnico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -386,7 +356,7 @@ public class Insere_tecnico extends javax.swing.JFrame {
         objTecnico.setRua(Rua.getText().trim());
         objTecnico.setBairro(Bairro.getText());
         int valor = Integer.parseInt(Num.getText());
-        objTecnico.setNumero(String.valueOf(valor));
+        objTecnico.setNumero((valor));
         objTecnico.setCidade(jcbCidades.getSelectedIndex());
         TecnicoCon.incluir();
 
