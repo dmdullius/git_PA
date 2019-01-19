@@ -10,6 +10,7 @@ import Model.Tecnico;
 import ferramentas.CaixaDeDialogo;
 import ferramentas.Combos;
 import ferramentas.Formatacao;
+import ferramentas.Validacao;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,10 +42,15 @@ public class Insere_tecnico extends javax.swing.JFrame {
 
     private boolean validarDados() {
         try {
-            Formatacao.colocaMascara(Data_Nasc, "##/##/####");
-            Data_Nasc = Formatacao.getData();
-            CPF = Formatacao.getCPF();
-            Telefone = Formatacao.getTelefone();
+            if(Nome.getText().equals("")){
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Informe um nome");
+                return false;
+            }
+            
+            //if(Num.getText().equals("")){
+            //    CaixaDeDialogo.obterinstancia().exibirMensagem("Informe um número");
+            //    return false;
+            //}
 
             return true;
         } catch (Exception ex) {
@@ -347,20 +353,28 @@ jcbCidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 
     }//GEN-LAST:event_limpaActionPerformed
 
     private void inclui_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inclui_usuarioActionPerformed
-        Tecnico objTecnico = new Tecnico();
-        TecnicoController TecnicoCon = new TecnicoController(objTecnico, null);
-        objTecnico.setNome(Nome.getText());
-        objTecnico.setData_nasc(Data_Nasc.getText());
-        objTecnico.setRG(RG.getText());
-        objTecnico.setCPF(CPF.getText());
-        objTecnico.setRua(Rua.getText().trim());
-        objTecnico.setBairro(Bairro.getText());
-        int valor = Integer.parseInt(Num.getText());
-        objTecnico.setNumero((valor));
-        objTecnico.setCidade(jcbCidades.getSelectedIndex());
-        TecnicoCon.incluir();
+        try{
+            if(validarDados() == true){
+                Tecnico objTecnico = new Tecnico();
+                TecnicoController TecnicoCon = new TecnicoController(objTecnico, null);
+                objTecnico.setNome(Nome.getText());
+                objTecnico.setData_nasc(Data_Nasc.getText());
+                objTecnico.setRG(RG.getText());
+                objTecnico.setCPF(CPF.getText());
+                objTecnico.setRua(Rua.getText().trim());
+                objTecnico.setBairro(Bairro.getText());
+                int valor = Integer.parseInt(Num.getText());
+                objTecnico.setNumero((valor));
+                objTecnico.setCidade(jcbCidades.getSelectedIndex());
+                TecnicoCon.incluir();
 
-        AtualizarTabela();
+                AtualizarTabela();
+        
+            }
+        
+        }catch(Exception ex){
+            CaixaDeDialogo.obterinstancia().exibirMensagem(ex.getMessage());
+        }
     }//GEN-LAST:event_inclui_usuarioActionPerformed
 
     private void TelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefoneActionPerformed
