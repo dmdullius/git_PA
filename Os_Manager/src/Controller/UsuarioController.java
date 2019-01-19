@@ -169,6 +169,31 @@ public class UsuarioController {
 
     }
 
+    public boolean alterar_senha() {
+        ConnectionFactory.abreConexao();
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+
+            stmt = con.prepareStatement("UPDATE usuarios SET senha=?  WHERE login=?");
+            stmt.setString(1, objUsuario.getSenha());
+            stmt.setString(2, objUsuario.getLogin());
+
+            stmt.executeUpdate();
+
+            return true;
+
+        } catch (SQLException ex) {
+
+            return false;
+        } finally {
+
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+
+    }
+
     /**
      *
      */
